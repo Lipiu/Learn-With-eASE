@@ -1,0 +1,23 @@
+.theme-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+}
+
+.theme-btn-icon {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.2s ease, opacity 0.3s;
+}
+
+.theme-btn-icon:hover{
+    transform: scale(1.2);
+}
+
+/*This changes the sun icon to white when background is dark*/
+.dark .theme-btn-icon {
+    filter: brightness(0) invert(1);
+}
