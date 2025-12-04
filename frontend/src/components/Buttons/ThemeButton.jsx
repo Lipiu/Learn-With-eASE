@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import './theme-button.css'
+import './ThemeButton.css'
 import sunIcon from "../../assets/sun.png";
 import moonIcon from "../../assets/moon.png";
 

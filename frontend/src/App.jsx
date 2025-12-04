@@ -1,11 +1,10 @@
-import './App.css'
-import ThemeButton from "./components/buttons/theme-button";
+import Navbar from "./components/Navbar/Navbar.jsx";
 
 function App() {
 
   return (
-    <div>
-        <ThemeButton></ThemeButton>
+    <div className='container'>
+        <Navbar/>
     </div>
   )
 }
