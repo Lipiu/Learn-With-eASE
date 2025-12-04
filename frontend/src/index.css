@@ -1,7 +1,7 @@
 :root {
     --bg: white;
     --text: black;
-    --container-bg: #ced8ff;
+    --container-bg: rgba(207, 192, 251, 0.87);
 }
 *{
     margin: 0;
