@@ -2,6 +2,9 @@
     --bg: white;
     --text: black;
     --container-bg: rgba(207, 192, 251, 0.87);
+
+    /*Account button variables for light mode*/
+    --account-border: rgba(207, 192, 251, 0.87);
 }
 *{
     margin: 0;
@@ -20,6 +23,9 @@ body {
     --bg: #000;
     --text: white;
     --container-bg: #222;
+
+    /* Account button variables for dark mode */
+    --account-border: #444;
 }
 
 .container{

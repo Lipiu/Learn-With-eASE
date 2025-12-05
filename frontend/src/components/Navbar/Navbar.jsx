@@ -1,5 +1,6 @@
 import './Navbar.css'
 import ThemeButtonToggle from "../Buttons/ThemeButton.jsx";
+import AccountButton from "../Buttons/AccountButton.jsx";
 
 function Navbar(){
     return(
@@ -11,6 +12,8 @@ function Navbar(){
                 <li>Resources</li>
                 <li>Feedback</li>
             </ul>
+
+            <AccountButton></AccountButton>
         </div>
     )
 }
