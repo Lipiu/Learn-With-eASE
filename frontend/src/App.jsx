@@ -1,11 +1,26 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar.jsx";
+import Section1 from "./components/Sections/Section1.jsx";
+import Section2 from "./components/Sections/Section2.jsx";
+import Section3 from "./components/Sections/Section3.jsx";
+import Section4 from "./components/Sections/Section4.jsx";
+import Section5 from "./components/Sections/Section5.jsx";
 
 function App() {
 
   return (
-    <div className='container'>
-        <Navbar/>
-    </div>
+      <BrowserRouter>
+            <div className='container'>
+                <Navbar/>
+                <Routes>
+                    <Route path='/section1' element={<Section1/>}></Route>
+                    <Route path='/section2' element={<Section2/>}></Route>
+                    <Route path='/section3' element={<Section3/>}></Route>
+                    <Route path='/section4' element={<Section4/>}></Route>
+                    <Route path='/section5' element={<Section5/>}></Route>
+                </Routes>
+            </div>
+      </BrowserRouter>
   )
 }
 

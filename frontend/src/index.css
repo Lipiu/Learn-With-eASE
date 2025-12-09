@@ -10,13 +10,20 @@
     --text: black;
     --container-bg: rgba(207, 192, 251, 0.87);
 
-    /*Account button variables for light mode*/
+    /* Account button variables */
     --account-border: black;
     --account-bg: white;
     --account-text: black;
 
-    /*Navbar border variables light mode*/
+    /* Navbar border variables */
     --nav-border: black;
+
+    /* Navbar shading */
+    --navbar-gradient: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.75),
+            rgba(255, 255, 255, 0.25)
+    );
 }
 
 .dark {
@@ -24,13 +31,20 @@
     --text: white;
     --container-bg: #222;
 
-    /* Account button variables for dark mode */
-    --account-border: black;
+    /* Account button */
+    --account-border: white;
     --account-bg: black;
     --account-text: white;
 
-    /*Navbar border variables dark mode*/
+    /* Navbar border */
     --nav-border: white;
+
+    /* Navbar shading */
+    --navbar-gradient: linear-gradient(
+            to bottom,
+            rgba(100, 100, 110, 0.45),
+            #000
+    );
 }
 
 body {

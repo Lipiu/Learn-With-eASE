@@ -1,4 +1,5 @@
 import { useState} from "react";
+import { Link } from "react-router-dom";
 import './Navbar.css'
 import ThemeButtonToggle from "../Buttons/ThemeButton.jsx";
 import AccountButton from "../Buttons/AccountButton.jsx";
@@ -18,11 +19,11 @@ function Navbar(){
                     </button>
                     {openDropdown && (
                         <ul className='dropdown-menu'>
-                            <li>Section 1</li>
-                            <li>Section 2</li>
-                            <li>Section 3</li>
-                            <li>Section 4</li>
-                            <li>Section 5</li>
+                            <li><Link to="/section1">Section 1</Link></li>
+                            <li><Link to="/section2">Section 2</Link></li>
+                            <li><Link to="/section3">Section 3</Link></li>
+                            <li><Link to="/section4">Section 4</Link></li>
+                            <li><Link to="/section5">Section 5</Link></li>
                         </ul>
                     )}
                 </li>

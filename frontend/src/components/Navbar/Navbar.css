@@ -3,9 +3,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--bg);
+    background: var(--navbar-gradient);
     color: var(--text);
     padding: 15px 7%;
+    border-bottom: 1px solid var(--text);
+    transition: background 0.3s ease;
+}
+
+.dark .navbar {
+    background: var(--navbar-gradient);
 }
 
 .navbar > ul {
@@ -60,4 +66,10 @@ ul li button {
 
 .dropdown-menu li:hover{
     background: var(--container-bg);
+}
+
+/* Remove underline from link when clicked */
+a, a:visited, a:active, a:hover, a:focus {
+    text-decoration: none;
+    color: inherit;
 }
