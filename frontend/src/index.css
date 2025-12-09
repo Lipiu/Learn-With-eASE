@@ -11,16 +11,26 @@
     --container-bg: rgba(207, 192, 251, 0.87);
 
     /*Account button variables for light mode*/
-    --account-border: rgba(207, 192, 251, 0.87);
+    --account-border: black;
+    --account-bg: white;
+    --account-text: black;
+
+    /*Navbar border variables light mode*/
+    --nav-border: black;
 }
 
 .dark {
-    --bg: #000;
+    --bg: black;
     --text: white;
     --container-bg: #222;
 
     /* Account button variables for dark mode */
-    --account-border: #444;
+    --account-border: black;
+    --account-bg: black;
+    --account-text: white;
+
+    /*Navbar border variables dark mode*/
+    --nav-border: white;
 }
 
 body {
