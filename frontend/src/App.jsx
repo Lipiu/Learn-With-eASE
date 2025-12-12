@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar.jsx";
+import Home from "./components/Home/Home.jsx";
 import Section1 from "./components/Sections/Section1.jsx";
 import Section2 from "./components/Sections/Section2.jsx";
 import Section3 from "./components/Sections/Section3.jsx";
@@ -13,6 +14,7 @@ function App() {
             <div className='container'>
                 <Navbar/>
                 <Routes>
+                    <Route path="/" element={<Home />} />
                     <Route path='/section1' element={<Section1/>}></Route>
                     <Route path='/section2' element={<Section2/>}></Route>
                     <Route path='/section3' element={<Section3/>}></Route>

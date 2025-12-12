@@ -11,7 +11,7 @@ function Navbar(){
             <ThemeButtonToggle></ThemeButtonToggle>
             <ul>
                 <li>
-                    <button>Home</button>
+                    <Link to="/" className="nav-link">Home</Link>
                 </li>
                 <li className='dropdown-li'>
                     <button onClick={() => setOpenDropdown(prev => !prev)}>
