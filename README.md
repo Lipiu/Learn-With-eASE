@@ -2,7 +2,7 @@
 
 * ## **TO DO**:
 * Buttons
-    * dropdown for account button
+    * ~~dropdown for account button~~
         * Create account (if not logged in)
         * Login (if not logged in)
         * Go to account page (if logged in/after logging in)
