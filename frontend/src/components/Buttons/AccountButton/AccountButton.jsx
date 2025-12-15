@@ -1,7 +1,7 @@
 import {useState, useRef, useEffect} from "react";
 import {Link} from "react-router-dom";
 import "./AccountButton.css"
-import accountIcon from '../../assets/user.png'
+import accountIcon from '../../../assets/user.png'
 
 function AccountButton(){
     const [openDropdown, setOpenDropdown] = useState(false);

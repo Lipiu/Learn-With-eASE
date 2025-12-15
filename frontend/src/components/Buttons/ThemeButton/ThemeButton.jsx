@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import './ThemeButton.css'
-import './AccountButton.jsx'
-import sunIcon from "../../assets/sun.png";
-import moonIcon from "../../assets/moon.png";
+import '../AccountButton/AccountButton.jsx'
+import sunIcon from "../../../assets/sun.png";
+import moonIcon from "../../../assets/moon.png";
 
 function ThemeButtonToggle(){
     const [theme, setTheme] = useState(

@@ -1,5 +1,5 @@
 function Section4(){
-    return <h1>Section4 content test</h1>
+    return <h1>Exceptions / streams / lambdas</h1>
 }
 
 export default Section4;

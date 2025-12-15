@@ -1,8 +1,8 @@
 import {useEffect, useRef, useState} from "react";
 import { Link } from "react-router-dom";
 import './Navbar.css'
-import ThemeButtonToggle from "../Buttons/ThemeButton.jsx";
-import AccountButton from "../Buttons/AccountButton.jsx";
+import ThemeButtonToggle from "../Buttons/ThemeButton/ThemeButton.jsx";
+import AccountButton from "../Buttons/AccountButton/AccountButton.jsx";
 
 function Navbar(){
     const [openDropdown, setOpenDropdown] = useState(false);
