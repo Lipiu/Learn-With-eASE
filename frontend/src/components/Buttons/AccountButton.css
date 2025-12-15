@@ -9,7 +9,7 @@
 
     background: linear-gradient(
             to bottom,
-            rgba(207, 192, 251, 0.35),
+            rgba(231, 227, 243, 0.87),
             rgba(255, 255, 255, 1)
     );
     color: var(--account-text);

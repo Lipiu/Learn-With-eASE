@@ -8,7 +8,7 @@
 :root {
     --bg: white;
     --text: black;
-    --container-bg: rgba(207, 192, 251, 0.87);
+    --container-bg: rgba(217, 217, 227, 0.87);
 
     /* Account button variables */
     --account-border: black;
