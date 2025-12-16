@@ -1,0 +1,17 @@
+.javaIntro h1 {
+    margin-bottom: 1.5rem;
+}
+
+.javaIntro ul {
+    max-width: 700px;
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+}
+
+.javaIntro li {
+    margin-bottom: 0.5rem;
+}
+
+.javaIntro {
+    line-height: 1.6;
+}
