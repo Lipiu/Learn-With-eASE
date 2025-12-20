@@ -16,16 +16,28 @@
 * Pages for buttons
     * Customize each page accordingly
         * ~~Home~~
-            * will need more work but for now is fine
+            * ~~will need more work but for now is fine~~
         * Sections
           * Section 1 - introduction about Java, JDK, variables/control
-            * For now just add the theory and style later
-            * Decide on layout
+            * ~~For now just add the theory and style later~~
+            * ~~Decide on layout~~
             * Add quiz + sandbox for coding exercises
           * Section 2 - OOP basics
+            * Add theory
+            * Add quiz
+            * Add coding exercises
           * Section 3 - Collections/generics
+            * Add theory
+            * Add quiz
+            * Add coding exercises
           * Section 4 - Exceptions / streams / lambdas
+            * Add theory
+            * Add quiz
+            * Add coding exercises
           * Section 5 - Networking -- TCP/UDP
+            * Add theory
+            * Add quiz
+            * Add coding exercises
         * Feedback
         * Resources
         * Account
