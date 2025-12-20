@@ -1,11 +1,19 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Home from "./components/Home/Home.jsx";
-import Section1 from "./components/Sections/Section1.jsx";
-import Section2 from "./components/Sections/Section2.jsx";
-import Section3 from "./components/Sections/Section3.jsx";
-import Section4 from "./components/Sections/Section4.jsx";
-import Section5 from "./components/Sections/Section5.jsx";
+
+// Sections
+import Section1 from "./components/Sections/Section1/Section1.jsx";
+import Section1Theory from "./components/Sections/Section1/Section1Theory.jsx";
+import Section1Quiz from "./components/Sections/Section1/Section1Quiz.jsx";
+import Section1Coding from "./components/Sections/Section1/Section1Coding.jsx";
+
+import Section2 from "./components/Sections/Section2/Section2.jsx";
+import Section3 from "./components/Sections/Section3/Section3.jsx";
+import Section4 from "./components/Sections/Section4/Section4.jsx";
+import Section5 from "./components/Sections/Section5/Section5.jsx";
+
+// Other pages
 import Resources from "./components/Resources/Resources.jsx";
 import Feedback from "./components/Feedback/Feedback.jsx";
 import Login from "./components/Buttons/AccountButton/Login.jsx";
@@ -20,7 +28,13 @@ function App() {
                 <Navbar/>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path='/section1' element={<Section1/>}></Route>
+                    <Route path='/section1' element={<Section1/>}>
+                        <Route index element={<Navigate to="theory" replace />} />
+                        <Route path="theory" element={<Section1Theory />} />
+                        <Route path="quiz" element={<Section1Quiz />} />
+                        <Route path="coding" element={<Section1Coding />} />
+                    </Route>
+
                     <Route path='/section2' element={<Section2/>}></Route>
                     <Route path='/section3' element={<Section3/>}></Route>
                     <Route path='/section4' element={<Section4/>}></Route>

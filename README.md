@@ -17,7 +17,15 @@
     * Customize each page accordingly
         * ~~Home~~
             * will need more work but for now is fine
-        * ~~Sections~~
+        * Sections
+          * Section 1 - introduction about Java, JDK, variables/control
+            * For now just add the theory and style later
+            * Decide on layout
+            * Add quiz + sandbox for coding exercises
+          * Section 2 - OOP basics
+          * Section 3 - Collections/generics
+          * Section 4 - Exceptions / streams / lambdas
+          * Section 5 - Networking -- TCP/UDP
         * Feedback
         * Resources
         * Account

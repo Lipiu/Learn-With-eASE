@@ -1,0 +1,39 @@
+.section {
+    padding-top: 40px;
+    padding-left: 40px;
+}
+
+.section-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.section-dropdown button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--nav-border);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.section-dropdown-menu {
+    position: absolute;
+    top: 120%;
+    left: 0;
+    list-style: none;
+    background: var(--bg);
+    border: 1px solid var(--nav-border);
+    border-radius: 8px;
+    padding: 6px 0;
+    width: 180px;
+}
+
+.section-dropdown-menu li {
+    padding: 10px 14px;
+}
+
+.section-dropdown-menu li:hover {
+    background: var(--container-bg);
+}
