@@ -1,0 +1,51 @@
+.section-navigator {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--nav-border);
+    border-radius: 18px;
+    padding: 16px;
+}
+
+.navigator-title {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 6px 4px;
+}
+
+.chevron {
+    transition: transform 0.2s ease;
+}
+
+.chevron.open {
+    transform: rotate(180deg);
+}
+
+.navigator-list {
+    list-style: none;
+    padding: 10px 0 0;
+    margin: 0;
+}
+
+.navigator-list li {
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+
+    color: var(--text);
+    transition: background 0.2s ease;
+}
+
+.navigator-list li:hover {
+    background: rgba(255, 255, 255, 0.08);
+}

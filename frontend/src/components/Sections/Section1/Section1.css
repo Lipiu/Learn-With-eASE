@@ -3,10 +3,28 @@
     padding-left: 40px;
 }
 
+.section-layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 32px;
+
+    max-width: 1400px;
+    margin-top: 20px;
+
+    align-items: start;
+}
+
 .section-dropdown {
     position: relative;
     display: inline-block;
     margin-bottom: 20px;
+}
+
+.section-sidebar {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+    height: fit-content;
 }
 
 .section-dropdown button {

@@ -28,6 +28,7 @@ function App() {
                 <Navbar/>
                 <Routes>
                     <Route path="/" element={<Home />} />
+
                     <Route path='/section1' element={<Section1/>}>
                         <Route index element={<Navigate to="theory" replace />} />
                         <Route path="theory" element={<Section1Theory />} />
@@ -39,6 +40,7 @@ function App() {
                     <Route path='/section3' element={<Section3/>}></Route>
                     <Route path='/section4' element={<Section4/>}></Route>
                     <Route path='/section5' element={<Section5/>}></Route>
+
                     <Route path='/resources' element={<Resources/>}></Route>
                     <Route path='/feedback' element={<Feedback/>}></Route>
                     <Route path='/login' element={<Login/>}></Route>
