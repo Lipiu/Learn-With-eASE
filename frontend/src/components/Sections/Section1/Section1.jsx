@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import {Link, Outlet, useMatch} from 'react-router-dom';
 import './Section1.css'
 import SectionNavigator from "../SectionNavigator/SectionNavigator.jsx";
 
 function Section1(){
     const [open, setOpen] = useState(false);
+    const isTheory = useMatch("/section1/theory");
 
     return (
         <div className="section">
@@ -37,10 +38,11 @@ function Section1(){
                 <div className="section-main">
                     <Outlet />
                 </div>
-
-                <aside className="section-sidebar">
-                    <SectionNavigator></SectionNavigator>
-                </aside>
+                {isTheory && (
+                    <aside className="section-sidebar">
+                        <SectionNavigator></SectionNavigator>
+                    </aside>
+                )}
             </div>
         </div>
     );
