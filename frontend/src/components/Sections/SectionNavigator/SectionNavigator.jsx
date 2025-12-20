@@ -20,7 +20,7 @@ function SectionNavigator() {
                 className="navigator-title"
                 onClick={() => setOpen(prev => !prev)}
             >
-                Section 1
+                Section 1 Chapters
                 <span className={`chevron ${open ? "open" : ""}`}>▾</span>
             </button>
 

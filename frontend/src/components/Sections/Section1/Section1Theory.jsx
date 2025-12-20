@@ -15,21 +15,39 @@ function Section1Theory() {
             <section id="intro">
                 <h3>1. What is Java?</h3>
                 <p>
-                    <strong>Java</strong> is a programming language used to build applications,
-                    websites, and backend systems. It is designed to be <strong> simple, secure and portable,
-                </strong> hence its motto: <strong>Write once, run anywhere.</strong>
+                    <strong>Java</strong> is a high-level, object-oriented programming language used to build
+                    a wide range of applications, including desktop software, web applications, mobile apps,
+                    and backend systems. It was designed with the goal of being easy to learn, reliable,
+                    and efficient.
+                </p>
+
+                <p>
+                    One of Java’s key strengths is its <strong>platform independence</strong>.
+                    Java programs are compiled into an intermediate form called <strong>bytecode</strong>,
+                    which can run on any system that has a Java Virtual Machine (JVM).
+                    This is why Java follows the motto:
+                    <strong>“Write once, run anywhere.”</strong>
+                </p>
+
+                <p>
+                    Java is known for being <strong>simple</strong> through its clear syntax,
+                    <strong>secure</strong> through built-in security features,
+                    and <strong>portable</strong> because Java applications can run across different
+                    operating systems without modification.
                 </p>
             </section>
+
 
             {/* ---------------- Programming paradigms ---------------- */}
             <section id="paradigms">
                 <p>
+                    <h3>2. Java Programming Paradigms</h3>
                     Java follows the <strong>Object-Oriented</strong> Programming paradigm, as well as other programming paradigms
                     such as: <strong>Imperative</strong>, <strong>Functional</strong>, and <strong>Concurrent programming</strong>.
                 </p>
 
                 <p>
-                    <strong>1. Object-Oriented Programming Paradigm:</strong><br></br>
+                    <strong>I. Object-Oriented Programming Paradigm:</strong><br></br>
                     Object-Oriented Programming is a programming paradigm that uses "objects" to represent data and methods.
                     Java is a prominent language that implements OOP principles, making it easier to manage and reuse code.<br></br>
                     <strong>Main principles of Object-Oriented Programming</strong>
@@ -42,14 +60,14 @@ function Section1Theory() {
                 </p>
 
                 <p>
-                    <strong>2. Imperative Programming Paradigm</strong><br></br>
+                    <strong>II. Imperative Programming Paradigm</strong><br></br>
                     Imperative Programming Paradigm involved writing step-by-step instructions that the computer follows to achieve a specific outcome.
                     This paradigm focuses on how to perform tasks through commands that change the program's state, making it suitable for detailed
                     control over program execution.
                 </p>
 
                 <p>
-                    <strong>3. Functional Programming Paradigm</strong><br />
+                    <strong>III. Functional Programming Paradigm</strong><br />
                     Functional programming is a programming paradigm that focuses on using
                     <strong> functions</strong> to process data instead of changing program state step by step.
                     It encourages writing code with fewer side effects and more predictable behavior.
@@ -64,27 +82,17 @@ function Section1Theory() {
                 </p>
 
                 <p>
-                    <strong>4. Concurrent Programming Paradigm</strong><br></br>
+                    <strong>IV. Concurrent Programming Paradigm</strong><br></br>
                     Java Concurrent Programming is a paradigm that allows multiple tasks to be executed simultaneously within a program,
                     improving efficiency and responsiveness.
                     It utilizes <strong>threads</strong> as the basic units of execution, establishing better resource utilization and
                     performance on multi-core processors.
                 </p>
-
-                <p>
-                    Java is widely used in:
-                </p>
-                <ul>
-                    <li>Enterprise software</li>
-                    <li>Backend web development</li>
-                    <li>Android applications</li>
-                    <li>Large-scale systems</li>
-                </ul>
             </section>
 
             {/* ---------------- JVM, JRE, JDK ---------------- */}
             <section id="jvm-jre-jdk">
-                <h3>2. JVM, JRE, and JDK</h3>
+                <h3>3. JVM, JRE, and JDK</h3>
                 <p>
                     To understand how Java works, it is important to know three key components:
                     the <strong>JVM</strong>, <strong>JRE</strong>, and <strong>JDK</strong>.
@@ -118,7 +126,7 @@ function Section1Theory() {
 
             {/* ---------------- Variables ---------------- */}
             <section id="variables">
-                <h3>3. Variables in Java</h3>
+                <h3>4. Variables in Java</h3>
                 <p>
                     A <strong>variable</strong> is used to store data in a Java program.
                     Every variable has a <strong>type</strong> and a <strong>name</strong>.
@@ -153,7 +161,7 @@ String name = "Alex";`}
 
             {/* ---------------- Control Flow ---------------- */}
             <section id="control">
-                <h3>4. Control Flow</h3>
+                <h3>5. Control Flow</h3>
                 <p>
                     <strong>Control flow</strong> determines how a program decides what code
                     to execute and how many times.
