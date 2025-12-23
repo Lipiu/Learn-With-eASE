@@ -177,24 +177,176 @@ String name = "Alex";`}
                     <li><strong>while</strong> loops – repeat code while a condition is true</li>
                 </ul>
 
-                <p>Example:</p>
+                <br></br>
+
+                <p>
+                    <strong>The if-else statement</strong> is used to execute different blocks of code based on whether
+                    a condition is true or false.
+                    If the condition in the if statement is true,
+                    the code inside the if block runs; if it's false, the code inside the else block executes instead.
+                </p>
+                <p><strong>if/else example:</strong></p>
                 <pre>
-                {`int score = 85;
-                
-if (score >= 50) {
-    System.out.println("Passed");
-} 
-else {
-    System.out.println("Failed");
-}`}
-            </pre>
+                    {'int score = 85;\n' +
+                        '        \n' +
+                        '        if (score >= 50) {\n' +
+                        '            System.out.println("Passed");\n' +
+                        '        } \n' +
+                        '        else {\n' +
+                        '            System.out.println("Failed");\n' +
+                        '        }'}
+                </pre>
 
                 <p>
                     Control flow allows programs to make decisions, repeat tasks, and react to
-                    different inputs.
+                    different inputs. Try to guess what this program will output!
                 </p>
-            </section>
+                <br></br>
 
+                <p>
+                    <strong>The switch case</strong> is a control statement that allows you to execute
+                    different parts of code based on the value of a variable or expression.
+                </p>
+                <p><strong>switch example:</strong></p>
+                <pre>
+                    {'int weekDay = 4;\n' +
+                        '\t\t\n' +
+                        '\t\tswitch(weekDay) {\n' +
+                        '\t\tcase 1:\n' +
+                        '\t\t\tSystem.out.println("Monday");\n' +
+                        '\t\t\tbreak;\n' +
+                        '\t\t\t\n' +
+                        '\t\tcase 2:\n' +
+                        '\t\t\tSystem.out.println("Tuesday");\n' +
+                        '\t\t\tbreak;\n' +
+                        '\t\t\t\n' +
+                        '\t\tcase 3:\n' +
+                        '\t\t\tSystem.out.println("Wednesday");\n' +
+                        '\t\t\tbreak;\n' +
+                        '\t\t\t\n' +
+                        '\t\tcase 4:\n' +
+                        '\t\t\tSystem.out.println("Thursday");\n' +
+                        '\t\t\tbreak;\n' +
+                        '\t\t\t\n' +
+                        '\t\tcase 5:\n' +
+                        '\t\t\tSystem.out.println("Friday");\n' +
+                        '\t\t\tbreak;\n' +
+                        '\t\t\t\n' +
+                        '\t\tcase 6:\n' +
+                        '\t\t\tSystem.out.println("Saturday");\n' +
+                        '\t\t\tbreak;\n' +
+                        '\t\t\t\n' +
+                        '\t\tcase 7:\n' +
+                        '\t\t\tSystem.out.println("Sunday");\n' +
+                        '\t\t\tbreak;\n' +
+                        '\t\t}'}
+                </pre>
+                <p>
+                    Try and guess the output. What if we change the value of weekDay with 7?
+                </p>
+                <br></br>
+
+                <p>
+                    <strong>
+                        What is the difference between if/else statements and switch cases, and in what situations should each be used?
+                    </strong>
+                    <ul>
+                        <li>
+                            <strong>if/else</strong> is used for general decision making while <strong>switch</strong>
+                            is used for matching a single variable against fixed values.
+                        </li>
+                        <li>
+                            <strong>if/else</strong> conditions can be: relational, logical, function calls,
+                            while <strong>switch</strong> works with exact matches only, (typically: byte, int, char, String, enum)
+                        </li>
+                        <li>
+                            <strong>switch case</strong> is generally more compact that lots of nested <strong>if/else</strong> statements,
+                            thus improving readability and maintainability.
+                        </li>
+                        <li>
+                            In a <strong>switch case</strong>, if the <strong>break</strong> keyword is not used, the program continues executing the
+                            following cases until it finds a break or reaches the end of the switch block.
+                        </li>
+                        <li>
+                            Unlike a <strong>switch</strong>, in an <strong>if–else statement</strong>, once a condition evaluates to true,
+                            the other else if and else blocks are not executed.
+                        </li>
+                    </ul>
+                </p>
+
+                <br></br>
+
+                <p><strong>Repetitive structures - for loops:</strong></p>
+                <p>
+                    A for loop is a control structure that allows you to execute a block of code
+                    repeatedly for a specified number of iterations. It consists of three main parts: initialization,
+                    a condition to check before each iteration, and an increment or decrement operation to update the loop variable.
+                </p>
+                <p><strong>for loop example:</strong></p>
+                <pre>
+                    {'for(int i = 0; i < 20; i++) {\n' +
+                        '\tif(i % 2 == 0) {\n' +
+                        '\t\tSystem.out.println(i);\n' +
+                        '\t}\n' +
+                        '}'
+                    }
+                </pre>
+                <p>
+                    This basic program prints the even numbers that are strictly less than 20.
+                    Although for loops can do much more, this example is intentionally simple.
+                    <br></br>
+                    Try and adjust this program to print odd numbers instead of even numbers.
+                </p>
+
+                <br></br>
+                <p><strong>Repetitive structures - while loops:</strong></p>
+                <p>
+                    A while loop in Java is a control flow statement that repeatedly executes a block of code as long as a specified condition is true.
+                    The loop checks the condition before each iteration, and if it evaluates to false, the loop terminates.
+                </p>
+                <pre>
+                    {'int i = 10;\n' +
+                        'while(i < 20) {\n' +
+                        '\tSystem.out.println("I am learning Java");\n' +
+                        '\ti++;\n' +
+                        '}'
+                    }
+                </pre>
+                <p>
+                    This program uses a <strong>while loop</strong> to repeatedly check whether i is strictly less than 20.
+                    As long as the condition evaluates to true, the message "I am learning Java" is printed to the screen.
+                    After each iteration, i is incremented by 1.
+                    Once i reaches 20, the condition becomes false and the loop terminates.
+                    <br></br>
+                    <strong>The increment operation</strong> is essential—without it, the value of i would never change,
+                    causing the condition to remain true forever and resulting in an <strong>infinite loop</strong>.
+                </p>
+
+                <br></br>
+                <p>
+                    <strong>
+                        What is the difference between for loops and while loops?
+                    </strong>
+
+                    <ul>
+                        <li>
+                            <strong>The for loop</strong> is used when you know in advance how many times you want to execute
+                            the block of code <strong>(known number of steps)</strong>.
+                        </li>
+                        <li>
+                            <strong>The while loop</strong> is used when you do not know how many steps you want to execute
+                            the block of code <strong>(unknown number of steps)</strong>.
+                            It continues to execute as long as the specified condition is true.
+                        </li>
+                        <li>
+                            <strong>In a while loop</strong>, it is essential to make sure that the condition eventually becomes
+                            <strong> false</strong>; otherwise, the loop will run indefinitely, resulting in an infinite loop.
+                        </li>
+                    </ul>
+                </p>
+
+
+            </section>
         </div>
     );
 }
