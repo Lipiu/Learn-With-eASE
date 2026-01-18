@@ -40,24 +40,24 @@ function Section1Theory() {
 
             {/* ---------------- Programming paradigms ---------------- */}
             <section id="paradigms">
-                <p>
-                    <h3>2. Java Programming Paradigms</h3>
-                    Java follows the <strong>Object-Oriented</strong> Programming paradigm, as well as other programming paradigms
-                    such as: <strong>Imperative</strong>, <strong>Functional</strong>, and <strong>Concurrent programming</strong>.
-                </p>
+                <h3>2. Java Programming Paradigms</h3>
+                Java follows the <strong>Object-Oriented</strong> Programming paradigm, as well as other programming paradigms
+                such as: <strong>Imperative</strong>, <strong>Functional</strong>, and <strong>Concurrent programming</strong>.
 
                 <p>
                     <strong>I. Object-Oriented Programming Paradigm:</strong><br></br>
                     Object-Oriented Programming is a programming paradigm that uses "objects" to represent data and methods.
                     Java is a prominent language that implements OOP principles, making it easier to manage and reuse code.<br></br>
+                </p>
+                <p>
                     <strong>Main principles of Object-Oriented Programming</strong>
+                </p>
                     <ul>
                         <li><strong>Encapsulation</strong> - Bundles data and methods within a single unit class. It restricts direct access to some of the object's components.</li>
                         <li><strong>Inheritance</strong> -  Allows a new class to inherit properties and methods from an existing class, promoting code reuse.</li>
                         <li><strong>Polymorphism</strong> - Enables methods to do different things based on the object it is acting upon, allowing for method overloading and overriding.</li>
                         <li><strong>Abstraction</strong> - Hides complex implementation details and shows only the essential features of an object.</li>
                     </ul>
-                </p>
 
                 <p>
                     <strong>II. Imperative Programming Paradigm</strong><br></br>
@@ -250,29 +250,30 @@ String name = "Alex";`}
                     <strong>
                         What is the difference between if/else statements and switch cases, and in what situations should each be used?
                     </strong>
-                    <ul>
-                        <li>
-                            <strong>if/else</strong> is used for general decision making while <strong>switch</strong>
-                            is used for matching a single variable against fixed values.
-                        </li>
-                        <li>
-                            <strong>if/else</strong> conditions can be: relational, logical, function calls,
-                            while <strong>switch</strong> works with exact matches only, (typically: byte, int, char, String, enum)
-                        </li>
-                        <li>
-                            <strong>switch case</strong> is generally more compact that lots of nested <strong>if/else</strong> statements,
-                            thus improving readability and maintainability.
-                        </li>
-                        <li>
-                            In a <strong>switch case</strong>, if the <strong>break</strong> keyword is not used, the program continues executing the
-                            following cases until it finds a break or reaches the end of the switch block.
-                        </li>
-                        <li>
-                            Unlike a <strong>switch</strong>, in an <strong>if–else statement</strong>, once a condition evaluates to true,
-                            the other else if and else blocks are not executed.
-                        </li>
-                    </ul>
                 </p>
+                <ul>
+                    <li>
+                        <strong>if/else</strong> is used for general decision making while <strong>switch</strong>
+                        is used for matching a single variable against fixed values.
+                    </li>
+                    <li>
+                        <strong>if/else</strong> conditions can be: relational, logical, function calls,
+                        while <strong>switch</strong> works with exact matches only, (typically: byte, int, char, String, enum)
+                    </li>
+                    <li>
+                        <strong>switch case</strong> is generally more compact that lots of nested <strong>if/else</strong> statements,
+                        thus improving readability and maintainability.
+                    </li>
+                    <li>
+                        In a <strong>switch case</strong>, if the <strong>break</strong> keyword is not used, the program continues executing the
+                        following cases until it finds a break or reaches the end of the switch block.
+                    </li>
+                    <li>
+                        Unlike a <strong>switch</strong>, in an <strong>if–else statement</strong>, once a condition evaluates to true,
+                        the other else if and else blocks are not executed.
+                    </li>
+                </ul>
+
 
                 <br></br>
 
@@ -327,7 +328,7 @@ String name = "Alex";`}
                     <strong>
                         What is the difference between for loops and while loops?
                     </strong>
-
+                </p>
                     <ul>
                         <li>
                             <strong>The for loop</strong> is used when you know in advance how many times you want to execute
@@ -343,9 +344,6 @@ String name = "Alex";`}
                             <strong> false</strong>; otherwise, the loop will run indefinitely, resulting in an infinite loop.
                         </li>
                     </ul>
-                </p>
-
-
             </section>
         </div>
     );
