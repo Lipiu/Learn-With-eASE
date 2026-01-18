@@ -18,6 +18,7 @@
         * ~~Home~~
             * ~~will need more work but for now is fine~~
         * Sections
+        * MODIFY LAYOUT OF SECTION -> theory + sandbox and put quiz on another page + make it so that the section part scrolls, not whole page
           * Section 1 - introduction about Java, JDK, variables/control
             * ~~For now just add the theory and style later~~
             * ~~Decide on layout~~
