@@ -40,8 +40,17 @@
             * Add quiz
             * Add coding exercises
         * Feedback
+          * Allow users to provide feedback (only if logged in)
+          * Display the feedback on the platform in the Feedback section
         * Resources
-        * Account
+            * Nice page with useful resources related to Java:
+              * Links
+              * Books
+              * Videos
+        * ~~Account~~
+            * ~~Create register page~~
+            * ~~Create login page~~
+            * ~~Login/register logic~~
 
 * Responsiveness
     * ~~General Navbar responsiveness~~
