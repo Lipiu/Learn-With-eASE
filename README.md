@@ -22,23 +22,30 @@
           * Section 1 - introduction about Java, JDK, variables/control
             * ~~For now just add the theory and style later~~
             * ~~Decide on layout~~
-            * Add quiz + sandbox for coding exercises
+            * Add sandbox for coding exercises
           * Section 2 - OOP basics
             * Add theory
-            * Add quiz
-            * Add coding exercises
+            * Add sandbox for coding exercises
           * Section 3 - Collections/generics
             * Add theory
-            * Add quiz
-            * Add coding exercises
+            * Add sandbox for coding exercises
           * Section 4 - Exceptions / streams / lambdas
             * Add theory
-            * Add quiz
-            * Add coding exercises
+            * Add sandbox for coding exercises
           * Section 5 - Networking -- TCP/UDP
             * Add theory
-            * Add quiz
-            * Add coding exercises
+            * Add sandbox for coding exercises
+        
+        * Quiz section
+          * Add quiz for each section
+          * Add grading
+          * Add status (fail/pass)
+            * If user fails a quiz about a certain section provide option to navigate to that section
+              * Display message and points
+              * Allow to retry the quiz
+              * Shuffle the questions each time the quiz starts
+            * If user passes display message and points
+
         * Feedback
           * Allow users to provide feedback (only if logged in)
           * Display the feedback on the platform in the Feedback section
