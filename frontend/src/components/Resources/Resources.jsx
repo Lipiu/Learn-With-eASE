@@ -1,5 +1,8 @@
+//import { FaStar } from "react-icons/fa";
 function Resources(){
-    return <h1>This is the resources page</h1>
+    return(
+      <h1></h1>
+    );
 }
 
 export default Resources;

@@ -1,0 +1,94 @@
+.feedback-page {
+    max-width: 700px;
+    padding: 24px;
+}
+
+.feedback-page h2 {
+    margin-bottom: 20px;
+}
+
+.feedback-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--text);
+}
+
+.feedback-label {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.stars {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.stars svg {
+    font-size: 22px;
+    transition: transform 0.2s ease;
+}
+
+.stars svg:hover {
+    transform: scale(1.15);
+}
+
+.text-feedback {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    min-height: 100px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+.submit-feedback {
+    margin-top: 16px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #ffba5a;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.submit-btn{
+    position: relative;
+    display: inline-block;
+    width: 50%;
+}
+
+.submit-hint {
+    position: absolute;
+    left: 100px;
+    top: 60px;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.submit-btn:hover .submit-hint {
+    opacity: 1;
+}
+
+.success-message {
+    width: 100%;
+    padding: 12px;
+    margin-top: 16px;
+    border-radius: 8px;
+    background: #e6f9ee;
+    color: #1e7f43;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #b7ebc6;
+}
