@@ -37,7 +37,7 @@ function AccountButton(){
                 <div className='dropdown-menu'>
                     <Link to='/login' className='dropdown-item' onClick={closeDropdownAccount}>Login</Link>
                     <Link to='/register' className='dropdown-item' onClick={closeDropdownAccount}>Register</Link>
-                    <Link to='/logout' className='dropdown-item' onClick={closeDropdownAccount}>Logout</Link>
+                    {/*<Link to='/logout' className='dropdown-item' onClick={closeDropdownAccount}>Logout</Link>*/}
                 </div>
             )}
         </div>
