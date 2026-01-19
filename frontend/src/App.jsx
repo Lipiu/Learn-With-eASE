@@ -18,6 +18,7 @@ import Resources from "./components/Resources/Resources.jsx";
 import Feedback from "./components/Feedback/Feedback.jsx";
 import Login from "./components/Buttons/AccountButton/Login.jsx";
 import Register from "./components/Buttons/AccountButton/Register.jsx";
+import Quiz from "./components/Quiz/Quiz.jsx";
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
                     <Route path='/section5' element={<Section5/>}></Route>
 
                     <Route path='/resources' element={<Resources/>}></Route>
+                    <Route path='/quiz' element={<Quiz/>}></Route>
                     <Route path='/feedback' element={<Feedback/>}></Route>
                     <Route path='/login' element={<Login/>}></Route>
                     <Route path='/register' element={<Register/>}></Route>

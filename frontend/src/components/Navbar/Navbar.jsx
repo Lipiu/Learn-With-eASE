@@ -41,11 +41,19 @@ function Navbar(){
                         </ul>
                     )}
                 </li>
+
+                <li>
+                    <Link to="/quiz" onClick={closeDropdown}>
+                        <button>Quiz</button>
+                    </Link>
+                </li>
+
                 <li>
                     <Link to="/resources" onClick={closeDropdown}>
                         <button>Resources</button>
                     </Link>
                 </li>
+
                 <li>
                     <Link to="/feedback" onClick={closeDropdown}>
                         <button>Feedback</button>
