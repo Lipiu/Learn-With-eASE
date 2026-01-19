@@ -47,6 +47,7 @@
             * If user passes display message and points
 
         * Feedback
+          * ~~Create feedback page~~
           * Allow users to provide feedback (only if logged in)
           * Display the feedback on the platform in the Feedback section
         * Resources
