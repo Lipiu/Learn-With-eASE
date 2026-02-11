@@ -1,14 +1,21 @@
 .theory-container {
+    width: 100%;
     max-width: 900px;
-    padding: 36px 44px;
+    height: 85vh;
+    overflow-y: auto;
 
+    padding: 40px 48px;
 
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid var(--text);
-    border-radius: 18px;
+    border-radius: 10px;
+
+    backdrop-filter: blur(10px);
 
     line-height: 1.8;
+    color: var(--text);
 }
+
 
 .theory-title {
     font-size: 30px;
@@ -19,6 +26,7 @@
 .theory-container h3 {
     font-size: 22px;
     margin-top: 34px;
+    border-bottom: 2px solid var(--text);
     margin-bottom: 12px;
 }
 
