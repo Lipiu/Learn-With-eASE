@@ -1,5 +1,4 @@
 .section {
-    height: 100vh;
     padding: 20px;
     overflow: hidden;
     box-sizing: border-box;
@@ -18,4 +17,6 @@
 
 .section-main {
     height: 100%;
+    overflow-y: auto;
+    padding-right: 16px;
 }
