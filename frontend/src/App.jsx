@@ -19,6 +19,7 @@ import Feedback from "./components/Feedback/Feedback.jsx";
 import Login from "./components/Buttons/AccountButton/Login.jsx";
 import Register from "./components/Buttons/AccountButton/Register.jsx";
 import Quiz from "./components/Quiz/Quiz.jsx";
+import Section3Theory from "./components/Sections/Section3/Section3Theory.jsx";
 
 
 function App() {
@@ -40,7 +41,12 @@ function App() {
                         <Route path="theory" element={<Section2Theory/>}/>
                     </Route>
 
-                    <Route path='/section3' element={<Section3/>}></Route>
+                    <Route path='/section3' element={<Section3/>}>
+                        <Route index element={<Navigate to="theory" replace />}/>
+                        <Route path="theory" element={<Section3Theory/>}/>
+                    </Route>
+
+
                     <Route path='/section4' element={<Section4/>}></Route>
                     <Route path='/section5' element={<Section5/>}></Route>
 
