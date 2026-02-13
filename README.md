@@ -68,5 +68,5 @@
     * ~~General Navbar responsiveness~~
     * ~~Account button responsiveness~~
     * ~~Sections responsiveness~~
-    * Resources page responsiveness
+    * ~~Resources page responsiveness~~
     * Feedback page responsiveness
