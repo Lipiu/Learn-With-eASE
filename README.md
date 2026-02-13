@@ -28,14 +28,17 @@
             * ~~Add theory~~
             * Add sandbox for coding exercises
           * Section 3 - Collections/generics
-            * Add theory
+            * ~~Add theory~~
             * Add sandbox for coding exercises
           * Section 4 - Exceptions / streams / lambdas
-            * Add theory
+            * ~~Add theory~~
             * Add sandbox for coding exercises
-          * Section 5 - Networking -- TCP/UDP
-            * Add theory
+          * Section 5 - Networking -- Files
+            * ~~Add theory~~
             * Add sandbox for coding exercises
+          * Section 6 - Networking
+              * ~~Add theory~~
+              * Add sandbox for coding exercises
         
         * Quiz section
           * Add quiz for each section
