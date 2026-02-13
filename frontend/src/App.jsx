@@ -18,6 +18,10 @@ import Section4Theory from "./components/Sections/Section4/Section4Theory.jsx";
 import Section5 from "./components/Sections/Section5/Section5.jsx";
 import Section5Theory from "./components/Sections/Section5/Section5Theory.jsx";
 
+import Section6 from "./components/Sections/Section6/Section6.jsx";
+import Section6Theory from "./components/Sections/Section6/Section6Theory.jsx";
+
+
 // Other pages
 import Resources from "./components/Resources/Resources.jsx";
 import Feedback from "./components/Feedback/Feedback.jsx";
@@ -59,6 +63,11 @@ function App() {
                     <Route path='/section5' element={<Section5/>}>
                         <Route index element={<Navigate to="theory" replace />}/>
                         <Route path="theory" element={<Section5Theory/>}/>
+                    </Route>
+
+                    <Route path='/section6' element={<Section6/>}>
+                        <Route index element={<Navigate to="theory" replace />}/>
+                        <Route path="theory" element={<Section6Theory/>}/>
                     </Route>
 
                     <Route path='/resources' element={<Resources/>}></Route>

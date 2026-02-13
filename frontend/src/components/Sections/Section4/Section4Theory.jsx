@@ -69,7 +69,7 @@ function Section4Theory(){
                 </pre>
 
                 <p>
-                    Here, <code>n -> System.out.println(n * 2)</code>
+                    Here, <code>n {'->'} System.out.println(n * 2)</code>
                     is a lambda expression. It takes a number and prints
                     its double value.
                 </p>
