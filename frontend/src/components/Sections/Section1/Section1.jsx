@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router-dom';
 import './Section1.css'
-import SectionNavigator from "../SectionNavigator/SectionNavigator.jsx";
 
 
 function Section1() {
