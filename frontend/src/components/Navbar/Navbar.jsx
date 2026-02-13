@@ -38,6 +38,7 @@ function Navbar(){
                             <li><Link to="/section3" onClick={closeDropdown}>Section 3</Link></li>
                             <li><Link to="/section4" onClick={closeDropdown}>Section 4</Link></li>
                             <li><Link to="/section5" onClick={closeDropdown}>Section 5</Link></li>
+                            <li><Link to="/section6" onClick={closeDropdown}>Section 6</Link></li>
                         </ul>
                     )}
                 </li>
