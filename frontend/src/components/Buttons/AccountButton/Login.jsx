@@ -13,6 +13,8 @@ function Login() {
     const [message, setMessage] = useState(null);
     const [status, setStatus] = useState(null);
 
+    //only temporary for testing
+    //checks if an account exists (statically)
     const onSubmit = (data) => {
         const existingUser = JSON.parse(localStorage.getItem(data.email));
         if (!existingUser) {
