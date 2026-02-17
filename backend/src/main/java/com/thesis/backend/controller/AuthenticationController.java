@@ -1,8 +1,8 @@
 package com.thesis.backend.controller;
 
-import com.thesis.backend.dtos.AuthenticationResponse;
-import com.thesis.backend.dtos.LoginRequest;
-import com.thesis.backend.dtos.RegisterRequest;
+import com.thesis.backend.dtos.auth.AuthenticationResponse;
+import com.thesis.backend.dtos.auth.LoginRequest;
+import com.thesis.backend.dtos.auth.RegisterRequest;
 import com.thesis.backend.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

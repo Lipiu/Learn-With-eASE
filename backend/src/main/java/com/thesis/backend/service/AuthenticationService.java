@@ -1,8 +1,8 @@
 package com.thesis.backend.service;
 
-import com.thesis.backend.dtos.AuthenticationResponse;
-import com.thesis.backend.dtos.LoginRequest;
-import com.thesis.backend.dtos.RegisterRequest;
+import com.thesis.backend.dtos.auth.AuthenticationResponse;
+import com.thesis.backend.dtos.auth.LoginRequest;
+import com.thesis.backend.dtos.auth.RegisterRequest;
 import com.thesis.backend.model.User;
 import com.thesis.backend.model.enums.Role;
 import com.thesis.backend.repository.UserRepository;

@@ -1,6 +1,5 @@
-package com.thesis.backend.dtos;
+package com.thesis.backend.dtos.auth;
 
-import com.thesis.backend.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

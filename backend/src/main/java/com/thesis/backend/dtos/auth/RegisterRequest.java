@@ -1,4 +1,4 @@
-package com.thesis.backend.dtos;
+package com.thesis.backend.dtos.auth;
 
 import lombok.Data;
 
