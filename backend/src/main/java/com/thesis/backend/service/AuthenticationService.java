@@ -50,7 +50,12 @@ public class AuthenticationService {
 
         String token = jwtService.generateToken(extraClaims, user);
 
-        return new AuthenticationResponse(token);
+        return new AuthenticationResponse(
+                token,
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail()
+        );
     }
 
     public AuthenticationResponse authenticate(LoginRequest request){
@@ -71,6 +76,11 @@ public class AuthenticationService {
         extraClaims.put("role", user.getRole());
 
         String token = jwtService.generateToken(extraClaims, user);
-        return new AuthenticationResponse(token);
+        return new AuthenticationResponse(
+                token,
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail()
+        );
     }
 }
