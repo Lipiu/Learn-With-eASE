@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from "react";
 import {useForm} from "react-hook-form";
 import './Login.css';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function Login() {
     const {
@@ -13,24 +13,40 @@ function Login() {
     const [message, setMessage] = useState(null);
     const [status, setStatus] = useState(null);
 
+    const navigate = useNavigate();
+
     //only temporary for testing
     //checks if an account exists (statically)
-    const onSubmit = (data) => {
-        const existingUser = JSON.parse(localStorage.getItem(data.email));
-        if (!existingUser) {
-            setStatus("error");
-            setMessage("No account related to this email.")
-            return;
-        }
-        if(existingUser.password !== data.password){
-            setStatus("error");
-            setMessage("Incorrect password");
-            return;
-        }
+    const onSubmit = async (data) => {
+        try{
+            const res = await fetch("http://localhost:8080/api/auth/login", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    email: data.email,
+                    password: data.password
+                })
+            });
 
-        setStatus("success");
-        setMessage("Logged in successfully!");
-        localStorage.setItem("loggedInUser", data.email);
+            const result = await res.json();
+
+            if(res.ok){
+                localStorage.setItem("token", result.token);
+                setStatus("success");
+                setMessage("Logged in successfully!");
+
+                setTimeout(() => navigate("/account"), 1000);
+            }
+            else{
+                setStatus("error");
+                setMessage("Server Error");
+            }
+        }
+            // eslint-disable-next-line no-unused-vars
+        catch(err){
+            setStatus("error");
+            setMessage("Server error")
+        }
     };
 
     useEffect(() => {

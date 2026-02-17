@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from "react";
 import {useForm} from "react-hook-form";
 import './Register.css';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function Register() {
     const {
@@ -12,22 +12,37 @@ function Register() {
 
     const [message, setMessage] = useState(null);
     const [status, setStatus] = useState(null);
+    const navigate = useNavigate();
 
-    const onSubmit = (data) => {
-        const existingUser = JSON.parse(localStorage.getItem(data.email));
-        if (existingUser) {
-            setStatus("error");
-            setMessage("An account with this email already exists.")
-            return;
-        } else {
-            const userData = {
-                name: data.name,
-                email: data.email,
-                password: data.password,
-            };
-            localStorage.setItem(data.email, JSON.stringify(data));
-            setStatus("success");
-            setMessage("Account created successfully!");
+    const onSubmit = async (data) => {
+        try{
+            const res = await fetch("http://localhost:8080/api/auth/register", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    email: data.email,
+                    password: data.password
+                })
+            });
+            const result = await res.json();
+
+            if(res.ok){
+                setStatus("Success");
+                setMessage("Account created successfully!");
+
+                setTimeout(() => navigate("/login", 1500));
+            }
+            else{
+                setStatus("Error");
+                setMessage(result.message || "Registration failed");
+            }
+        }
+            // eslint-disable-next-line no-unused-vars
+        catch(err){
+            setStatus("Error");
+            setMessage("Server error");
         }
     };
 
@@ -54,10 +69,17 @@ function Register() {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input
                         type="text"
-                        placeholder="Name"
-                        {...register("name", { required: true })}
+                        placeholder="First Name"
+                        {...register("firstName", { required: true })}
                     />
-                    {errors.name && <span className="error">Name is mandatory</span>}
+                    {errors.firstName && <span className="error">First name is mandatory</span>}
+
+                    <input
+                        type="text"
+                        placeholder="Last Name"
+                        {...register("lastName", { required: true })}
+                    />
+                    {errors.lastName && <span className="error">Last name is mandatory</span>}
 
                     <input
                         type="email"
@@ -72,6 +94,7 @@ function Register() {
                         {...register("password", { required: true })}
                     />
                     {errors.password && <span className="error">Password is mandatory</span>}
+
                     <button type="submit">Create account</button>
                     <div className="auth-message">
                         <span>Already have an account? </span>
