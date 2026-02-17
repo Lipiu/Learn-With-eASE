@@ -17,7 +17,7 @@ import lombok.Setter;
 @Table(name="section")
 public class Section {
     @Id
-    private Integer sectionId;
+    private Long sectionId;
     private String title;
     private int sectionNumber;
 }
