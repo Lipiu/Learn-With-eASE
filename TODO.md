@@ -6,7 +6,7 @@
         * ~~Create account (if not logged in)~~
         * ~~Login (if not logged in)~~
         * ~~Go to account page (if logged in/after logging in)~~
-        * Create personal account page
+        * ~~Create personal account page~~
     * ~~Redirect user for the rest of the buttons~~
         * ~~Home~~
         * ~~Sections~~
