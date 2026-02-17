@@ -5,7 +5,8 @@
     * ~~dropdown for account button~~
         * ~~Create account (if not logged in)~~
         * ~~Login (if not logged in)~~
-        * Go to account page (if logged in/after logging in)
+        * ~~Go to account page (if logged in/after logging in)~~
+        * Create personal account page
     * ~~Redirect user for the rest of the buttons~~
         * ~~Home~~
         * ~~Sections~~
@@ -55,10 +56,10 @@
           * Allow users to provide feedback (only if logged in)
           * Display the feedback on the platform in the Feedback section
         * Resources
-            * Nice page with useful resources related to Java:
-              * Links
-              * Books
-              * Videos
+            * ~~Nice page with useful resources related to Java:~~
+              * ~~Links~~
+              * ~~Books~~
+              * ~~Videos~~
         * ~~Account~~
             * ~~Create register page~~
             * ~~Create login page~~
