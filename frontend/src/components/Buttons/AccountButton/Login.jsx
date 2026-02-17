@@ -1,57 +1,60 @@
-import React, {useState, useEffect } from "react";
-import {useForm} from "react-hook-form";
+import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import './Login.css';
-import {Link, useNavigate} from "react-router-dom";
 
 function Login() {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
-
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const [message, setMessage] = useState(null);
     const [status, setStatus] = useState(null);
-
     const navigate = useNavigate();
 
-    //only temporary for testing
-    //checks if an account exists (statically)
     const onSubmit = async (data) => {
-        try{
+        try {
             const res = await fetch("http://localhost:8080/api/auth/login", {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     email: data.email,
                     password: data.password
                 })
             });
 
-            const result = await res.json();
-
-            if(res.ok){
-                localStorage.setItem("token", result.token);
-                setStatus("success");
-                setMessage("Logged in successfully!");
-
-                setTimeout(() => navigate("/account"), 1000);
+            let result = {};
+            try {
+                result = await res.json();
+            } catch {
+                console.warn("Login response empty or invalid JSON");
             }
-            else{
+
+            if (!res.ok) {
                 setStatus("error");
-                setMessage("Server Error");
+                setMessage(result.message || "Login failed");
+                return;
             }
-        }
-            // eslint-disable-next-line no-unused-vars
-        catch(err){
+
+            // store token and user in localStorage
+            localStorage.setItem("token", result.token);
+            localStorage.setItem("user", JSON.stringify({
+                firstName: result.firstName,
+                lastName: result.lastName,
+                email: result.email
+            }));
+
+            setStatus("success");
+            setMessage("Logged in successfully!");
+
+            navigate("/account"); // go to account page
+        } catch (err) {
+            console.error(err);
             setStatus("error");
-            setMessage("Server error")
+            setMessage("Server error");
         }
     };
 
+    // hide messages automatically
     useEffect(() => {
-        if(!message)
-            return;
+        if (!message) return;
         const timer = setTimeout(() => {
             setMessage(null);
             setStatus(null);
@@ -64,11 +67,8 @@ function Login() {
             <div className="login-card">
                 <h2>Login</h2>
 
-                {message && (
-                    <div className={`notification ${status}`}>
-                        {message}
-                    </div>
-                )}
+                {message && <div className={`notification ${status}`}>{message}</div>}
+
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input
                         type="email"
@@ -83,16 +83,12 @@ function Login() {
                         {...register("password", { required: true })}
                     />
                     {errors.password && <span className="error">Password is mandatory</span>}
+
                     <button type="submit">Login</button>
-                    <div className="auth-message">
-                        <span>Don't have an account? </span>
-                        <Link to="/register" className="sign-in">
-                            Register
-                        </Link>
-                    </div>
                 </form>
             </div>
         </div>
     );
 }
+
 export default Login;

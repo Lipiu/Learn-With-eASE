@@ -1,0 +1,43 @@
+.account-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.account-card {
+    background-color: var(--text);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 300px;
+}
+
+.username {
+    margin: 0.5rem 0;
+    font-size: 24px;
+    color: var(--bg);
+}
+
+.email {
+    font-size: 16px;
+    color: var(--bg);
+    margin-bottom: 1.5rem;
+}
+
+.logout-btn {
+    background-color: var(--bg);
+    color: var(--text);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
+}

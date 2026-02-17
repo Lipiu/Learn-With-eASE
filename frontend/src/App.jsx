@@ -28,7 +28,7 @@ import Feedback from "./components/Feedback/Feedback.jsx";
 import Login from "./components/Buttons/AccountButton/Login.jsx";
 import Register from "./components/Buttons/AccountButton/Register.jsx";
 import Quiz from "./components/Quiz/Quiz.jsx";
-
+import AccountPage from "./components/AccountPage/AccountPage.jsx";
 
 function App() {
 
@@ -75,6 +75,7 @@ function App() {
                     <Route path='/feedback' element={<Feedback/>}></Route>
                     <Route path='/login' element={<Login/>}></Route>
                     <Route path='/register' element={<Register/>}></Route>
+                    <Route path='/account' element={<AccountPage/>}></Route>
                 </Routes>
             </div>
       </BrowserRouter>

@@ -22,11 +22,6 @@ function AccountButton(){
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    const handleLogin = () => {
-        console.log("Logging in...");
-        //here will be the logic
-    };
-
     return (
         //main container wrapped with ref for outside click detection
         <div className='account-container' ref={accountRef}>
@@ -43,7 +38,7 @@ function AccountButton(){
                     {/*navigation to login or register*/}
                     <Link to='/login' className='dropdown-item' onClick={closeDropdownAccount}>Login</Link>
                     <Link to='/register' className='dropdown-item' onClick={closeDropdownAccount}>Register</Link>
-                    {/*<Link to='/logout' className='dropdown-item' onClick={closeDropdownAccount}>Logout</Link>*/}
+                    <Link to='/account' className='dropdown-item' onClick={closeDropdownAccount}>Account page</Link>
                 </div>
             )}
         </div>
