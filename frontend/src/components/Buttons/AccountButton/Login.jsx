@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import './Login.css';
 
 function Login() {
@@ -85,6 +85,12 @@ function Login() {
                     {errors.password && <span className="error">Password is mandatory</span>}
 
                     <button type="submit">Login</button>
+                    <div className="auth-message">
+                        <span>Don't have an account? </span>
+                        <Link to="/register" className="sign-in">
+                            Register here
+                        </Link>
+                    </div>
                 </form>
             </div>
         </div>

@@ -5,15 +5,15 @@ import ThemeButtonToggle from "../Buttons/ThemeButton/ThemeButton.jsx";
 import AccountButton from "../Buttons/AccountButton/AccountButton.jsx";
 
 function Navbar(){
-    const [openDropdown, setOpenDropdown] = useState(false);
+    const [openMenu, setOpenMenu] = useState(null);
     const navbarRef = useRef(null);
-    const closeDropdown = () => setOpenDropdown(false);
+    const closeDropdown = () => setOpenMenu(false);
 
     //make the dropdown sections menu disappear if click anywhere
     useEffect(() => {
         function handleClickOutside(e){
             if(navbarRef.current && !navbarRef.current.contains(e.target)){
-                setOpenDropdown(false);
+                setOpenMenu(false);
             }
         }
         document.addEventListener("mousedown", handleClickOutside);
@@ -28,10 +28,12 @@ function Navbar(){
                     <Link to="/" className="nav-link" onClick={closeDropdown}>Home</Link>
                 </li>
                 <li className='dropdown-li'>
-                    <button onClick={() => setOpenDropdown(prev => !prev)}>
+                    <button onClick={() => {
+                        setOpenMenu(openMenu === "sections" ? null : "sections")
+                    }}>
                         Sections
                     </button>
-                    {openDropdown && (
+                    {openMenu === "sections" && (
                         <ul className='dropdown-menu'>
                             <li><Link to="/section1" onClick={closeDropdown}>Section 1</Link></li>
                             <li><Link to="/section2" onClick={closeDropdown}>Section 2</Link></li>
@@ -43,11 +45,25 @@ function Navbar(){
                     )}
                 </li>
 
-                <li>
-                    <Link to="/quiz" onClick={closeDropdown}>
-                        <button>Quiz</button>
-                    </Link>
+                <li className='dropdown-li'>
+                    <button onClick={() => {
+                        setOpenMenu(openMenu === "quiz" ? null : "quiz")
+                    }}>
+                        Quiz
+                    </button>
+
+                    {openMenu === "quiz" && (
+                        <ul className='dropdown-menu'>
+                            <li><Link to="/quiz1" onClick={closeDropdown}>Quiz 1</Link></li>
+                            <li><Link to="/quiz2" onClick={closeDropdown}>Quiz 2</Link></li>
+                            <li><Link to="/quiz3" onClick={closeDropdown}>Quiz 3</Link></li>
+                            <li><Link to="/quiz4" onClick={closeDropdown}>Quiz 4</Link></li>
+                            <li><Link to="/quiz5" onClick={closeDropdown}>Quiz 5</Link></li>
+                            <li><Link to="/quiz6" onClick={closeDropdown}>Quiz 6</Link></li>
+                        </ul>
+                    )}
                 </li>
+
 
                 <li>
                     <Link to="/resources" onClick={closeDropdown}>

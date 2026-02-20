@@ -1,0 +1,89 @@
+.quiz-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.quiz-card {
+    background:  var(--bg);
+    padding: 40px;
+    border-radius: 16px;
+    width: 500px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.quiz-image{
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.question-text {
+    color: var(--text);
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.success-text {
+    color: green;
+    font-weight: bold;
+}
+
+.fail-text {
+    color: red;
+    font-weight: bold;
+}
+
+.option-btn {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: #f8f8f8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.option-btn:hover {
+    background: lightgray;
+}
+
+.option-btn.selected {
+    background-color: #4c8bf5;
+    color: var(--bg);
+    border: none;
+}
+
+.next-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #222;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.next-btn:disabled {
+    background: #999;
+    cursor: not-allowed;
+}
+
+.next-btn:hover:not(:disabled) {
+    background: #444;
+}
+
+.result-section h2 {
+    margin-bottom: 20px;
+}
