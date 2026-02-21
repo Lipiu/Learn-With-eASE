@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
 @Table(name="quiz_result")
 @NoArgsConstructor
@@ -21,6 +23,10 @@ public class QuizResult {
     private int totalQuestions;
     private double percentage;
     private boolean passed;
+
+    @Column(name="created_at", updatable = false)
+    @Temporal(TemporalType.DATE) //Temporal is deprecated but for this purpose is good enough
+    private Date createdAt = new Date();
 
     @ManyToOne
     @JoinColumn(name = "user_id")

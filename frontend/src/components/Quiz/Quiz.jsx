@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import "./Quiz.css";
 import questions from "./Questions/questions.js";
 
@@ -10,6 +10,41 @@ function Quiz(){
     const [showResult, setShowResult] = useState(false); // checks whether the quiz is finished and displays result
 
     const navigate = useNavigate(); // we use 'useNavigate' to redirect the user to /section2/theory if score > 50%
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        //check localStorage for a token
+        if(!token){
+            return; //no need if the user is not logged in
+        }
+
+        const fetchQuiz = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/api/quiz/results", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+                if(response.ok){
+                    const results = await response.json();
+                    if(results.length > 0){
+                        const lastResult = results[results.length - 1]; //get latest result
+                        setScore(lastResult.score);
+                        setShowResult(true);
+                    }
+                }
+                else{
+                    console.warn("Failed to fetch saved quiz:", await response.text());
+                }
+            }
+            catch(err){
+                console.error("Error fetching quiz:", err);
+            }
+        }
+        fetchQuiz();
+    }, []);
 
     //here we save user answer and store it in selectedAnswer
     const handleAnswerClick = (answer) => {
@@ -32,16 +67,15 @@ function Quiz(){
 
             const token = localStorage.getItem("token");
             if(token){
-                const finalScore = newScore;
                 try{
-                    const response = await fetch("http://localhost:8080/api/quiz/submit", {
+                    const response = await fetch("http://localhost:8080/api/quiz/submitted", { //here /submitted is the endpoint to send completed quiz to backend
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                             "Authorization": `Bearer ${token}`
                         },
                         body: JSON.stringify({
-                            score: finalScore,
+                            score: newScore,
                             totalQuestions: questions.length
                         })
                     });
@@ -53,7 +87,7 @@ function Quiz(){
                     }
                 }
                 catch(err){
-                    console.error("Error submiting the quiz:", err);
+                    console.error("Error submitting the quiz:", err);
                 }
             }
         }
