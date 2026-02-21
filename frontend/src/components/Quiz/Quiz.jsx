@@ -16,10 +16,12 @@ function Quiz(){
         setSelectedAnswer(answer);
     };
 
-    const handleNext = () => {
+    const handleNext = async () => {
+        let newScore = score;
         if(selectedAnswer.isCorrect){ //if user answer is correct we increment the score
-            setScore(score + 1);
+            newScore += 1;
         }
+        setScore(newScore);
         setSelectedAnswer(null); //reset selected to null
 
         if(currentQuestion + 1 < questions.length){ //we have not reached the end of the quiz
@@ -27,6 +29,33 @@ function Quiz(){
         }
         else{
             setShowResult(true); //reached the end -> show result
+
+            const token = localStorage.getItem("token");
+            if(token){
+                const finalScore = newScore;
+                try{
+                    const response = await fetch("http://localhost:8080/api/quiz/submit", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            score: finalScore,
+                            totalQuestions: questions.length
+                        })
+                    });
+                    if(response.ok){
+                        console.log("Quiz result saved!");
+                    }
+                    else{
+                        console.warn("Failed to save quiz:", await response.text());
+                    }
+                }
+                catch(err){
+                    console.error("Error submiting the quiz:", err);
+                }
+            }
         }
     };
 
