@@ -4,7 +4,6 @@ import "./Quiz.css";
 import questions from "./Questions/questions.js";
 
 function Quiz(){
-<<<<<<< HEAD
     const [currentQuestion, setCurrentQuestion] = useState(0); // which question the user is currently on
     const [selectedAnswer, setSelectedAnswer] = useState(null); // user's selected answer
     const [score, setScore] = useState(0); // keeps track of how many correct answers the user currently has
@@ -115,10 +114,6 @@ function Quiz(){
             </div>
         </div>
     )
-
-=======
-    return <p>Quiz page</p>;
->>>>>>> 3342eab (quiz)
 }
 
 export default Quiz;
