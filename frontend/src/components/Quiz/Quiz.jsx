@@ -125,15 +125,18 @@ function Quiz(){
                             <p className="fail-text">You need at least 50% to pass. Try again!</p>
                         )}
 
-                        {passed ? (
-                            <button onClick={() => navigate("/section2/theory")}>
-                                Go to Section 2
-                            </button>
-                        ) : (
-                            <button onClick={restartQuiz}>
+                        {passed && (
+                            <div className="button-container next-section-container">
+                                <button className="next-section-btn" onClick={() => navigate("/section2/theory")}>
+                                    Go to Section 2
+                                </button>
+                            </div>
+                        )}
+                        <div className="button-container retry-container">
+                            <button className="retry-btn" onClick={restartQuiz}>
                                 Retry quiz
                             </button>
-                        )}
+                        </div>
                     </div>
                 ) : (
                     <>

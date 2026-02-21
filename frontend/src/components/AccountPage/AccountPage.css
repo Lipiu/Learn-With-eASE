@@ -45,6 +45,21 @@
     font-style: italic;
 }
 
+.not-logged-in h1 {
+    color: var(--bg);
+}
+
+.not-logged-in p {
+    color: var(--bg);
+    font-weight: bold;
+}
+
+.link-register {
+    color: #4a90e2;
+    font-weight: bold;
+    text-decoration: none;
+}
+
 .quiz-list {
     display: flex;
     flex-direction: column;

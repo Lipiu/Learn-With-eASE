@@ -87,3 +87,53 @@
 .result-section h2 {
     margin-bottom: 20px;
 }
+
+/* Shared button styles */
+.next-section-btn,
+.retry-btn {
+    padding: 12px 24px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.button-container button + button {
+    margin-left: 16px;
+}
+
+.next-section-btn {
+    background-color: #4caf50;
+    color: var(--text);
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.retry-btn {
+    background-color: #f44336;
+    color: var(--text);
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.next-section-btn:hover{
+    transform: translateY(-4px);
+}
+
+.retry-btn:hover{
+    transform: translateY(-4px);
+}
