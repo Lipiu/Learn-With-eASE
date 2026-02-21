@@ -23,6 +23,6 @@ public class QuizResult {
     private boolean passed;
 
     @ManyToOne
-    @JoinColumn(name = "user_user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 }

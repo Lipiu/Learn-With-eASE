@@ -10,10 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/quiz")
@@ -23,7 +20,7 @@ public class QuizController {
     private final QuizResultRepository quizResultRepository;
     private final QuizService quizService;
 
-    @PostMapping("/submit")
+    @PostMapping("/submitted")
     public ResponseEntity<?> submitQuiz(@RequestBody QuizResultRequest request, @AuthenticationPrincipal UserDetails userDetails){
         //check if user is logged in
         if(userDetails == null){
@@ -36,5 +33,15 @@ public class QuizController {
         quizService.saveResult(user, request.getScore(), request.getTotalQuestions());
 
         return ResponseEntity.ok("Quiz saved successfully!");
+    }
+
+    //so that if the user is logged in and refreshes the page the quiz will not restart
+    @GetMapping("/results")
+    public ResponseEntity<?> getResults(@AuthenticationPrincipal UserDetails userDetails){
+        if(userDetails == null){
+            return ResponseEntity.status(401).body("You must be logged in!");
+        }
+        User user = userRepository.findByEmail(userDetails.getUsername()).orElseThrow();
+        return ResponseEntity.ok(quizResultRepository.findByUser(user));
     }
 }
