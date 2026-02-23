@@ -25,6 +25,23 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
+    //helper method to get rid of the duplicated code i had before
+    private AuthenticationResponse buildAuthResponse(User user){
+        Map<String, Object> extraClaims = new HashMap<>();
+        extraClaims.put("firstName", user.getFirstName());
+        extraClaims.put("lastName", user.getLastName());
+        extraClaims.put("role", user.getRole());
+
+        String token = jwtService.generateToken(extraClaims, user);
+
+        return new AuthenticationResponse(
+                token,
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail()
+        );
+    }
+
     //check if email already exists
     public AuthenticationResponse register(RegisterRequest request){
         if(userRepository.findByEmail(request.getEmail()).isPresent()){
@@ -42,20 +59,7 @@ public class AuthenticationService {
 
         userRepository.save(user);
 
-        //generate JWT
-        Map<String, Object> extraClaims = new HashMap<>();
-        extraClaims.put("firstName", user.getFirstName());
-        extraClaims.put("lastName", user.getLastName());
-        extraClaims.put("role", user.getRole());
-
-        String token = jwtService.generateToken(extraClaims, user);
-
-        return new AuthenticationResponse(
-                token,
-                user.getFirstName(),
-                user.getLastName(),
-                user.getEmail()
-        );
+        return buildAuthResponse(user);
     }
 
     public AuthenticationResponse authenticate(LoginRequest request){
@@ -69,18 +73,6 @@ public class AuthenticationService {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        //generate JWT
-        Map<String, Object> extraClaims = new HashMap<>();
-        extraClaims.put("firstName", user.getFirstName());
-        extraClaims.put("lastName", user.getLastName());
-        extraClaims.put("role", user.getRole());
-
-        String token = jwtService.generateToken(extraClaims, user);
-        return new AuthenticationResponse(
-                token,
-                user.getFirstName(),
-                user.getLastName(),
-                user.getEmail()
-        );
+        return buildAuthResponse(user);
     }
 }

@@ -1,7 +1,6 @@
 package com.thesis.backend.controller;
 
 import com.thesis.backend.dtos.quiz.QuizResultRequest;
-import com.thesis.backend.model.QuizResult;
 import com.thesis.backend.model.User;
 import com.thesis.backend.repository.QuizResultRepository;
 import com.thesis.backend.repository.UserRepository;

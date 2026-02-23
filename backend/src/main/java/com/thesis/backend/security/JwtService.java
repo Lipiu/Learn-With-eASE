@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -19,10 +18,6 @@ import java.util.function.Function;
 public class JwtService {
     @Value("${application.security.jwt.secret-key}") //we use the secret key from properties
     private String secretKey;
-
-    public String generateToken(UserDetails userDetails){
-        return generateToken(new HashMap<>(), userDetails);
-    }
 
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails){
         return Jwts.builder()
