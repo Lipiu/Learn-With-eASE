@@ -1,6 +1,12 @@
 # Repo for my Bachelor's Degree project: Java E-Learning Platform
 
 * ## **TO DO**:
+
+* Final TODO:
+  * Refactor code
+  * Clean the code
+  * Check for bugs
+
 * Buttons
     * ~~dropdown for account button~~
         * ~~Create account (if not logged in)~~
@@ -20,36 +26,36 @@
             * ~~will need more work but for now is fine~~
         * Sections
         * MODIFY LAYOUT OF SECTION -> theory + sandbox and put quiz on another page
-          * Section 1 - introduction about Java, JDK, variables/control
+          * ~~Section 1 - introduction about Java, JDK, variables/control~~
             * ~~For now just add the theory and style later~~
             * ~~Decide on layout~~
             * Add sandbox for coding exercises
             * ~~Make it so that the section part scrolls, not whole page~~
-          * Section 2 - OOP basics
+          * ~~Section 2 - OOP basics~~
             * ~~Add theory~~
             * Add sandbox for coding exercises
-          * Section 3 - Collections/generics
+          * ~~Section 3 - Collections/generics~~
             * ~~Add theory~~
             * Add sandbox for coding exercises
-          * Section 4 - Exceptions / streams / lambdas
+          * ~~Section 4 - Exceptions / streams / lambdas~~
             * ~~Add theory~~
             * Add sandbox for coding exercises
-          * Section 5 - Networking -- Files
+          * ~~Section 5 - Files~~
             * ~~Add theory~~
             * Add sandbox for coding exercises
-          * Section 6 - Networking
+          * ~~Section 6 - Networking~~
               * ~~Add theory~~
               * Add sandbox for coding exercises
 
         * Quiz section
           * Add quiz for each section
-          * Add grading
-          * Add status (fail/pass)
+          * ~~Add grading~~
+          * ~~Add status (fail/pass)~~
             * If user fails a quiz about a certain section provide option to navigate to that section
-              * Display message and points
-              * Allow to retry the quiz
+              * ~~Display message and points~~
+              * ~~Allow to retry the quiz~~
               * Shuffle the questions each time the quiz starts
-            * If user passes display message and points
+            * ~~If user passes display message and points~~
 
         * Feedback
           * ~~Create feedback page~~
@@ -70,4 +76,5 @@
     * ~~Account button responsiveness~~
     * ~~Sections responsiveness~~
     * ~~Resources page responsiveness~~
+    * Quiz page responsiveness
     * Feedback page responsiveness
