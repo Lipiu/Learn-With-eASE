@@ -1,9 +1,11 @@
-# Repo for my Bachelor's Degree project: Java E-Learning Platform
+# Repo for my Bachelor's Degree project (frontend): Java E-Learning Platform
 
 * ## **TO DO**:
 
 * Final TODO:
   * Refactor code
+    * Theory section - for now it has lots of duplicated code
+    * Quiz section - same issue
   * Clean the code
   * Check for bugs
 
@@ -48,14 +50,19 @@
               * Add sandbox for coding exercises
 
         * Quiz section
+          * Now if the user solves first quiz for multiple times for example on their personal page will be displayed quiz1, quiz2 etc...
+            * Have to solve -> display Quiz 1 1st try, Quiz 1 2nd try ...
           * Add quiz for each section
           * ~~Add grading~~
           * ~~Add status (fail/pass)~~
-            * If user fails a quiz about a certain section provide option to navigate to that section
+            * ~~If user fails a quiz about a certain section provide option to navigate to that section~~
               * ~~Display message and points~~
               * ~~Allow to retry the quiz~~
               * Shuffle the questions each time the quiz starts
             * ~~If user passes display message and points~~
+        
+        * Flashcard section
+          * Allow the user to create personalized flashcards which can be used during coding exercises
 
         * Feedback
           * ~~Create feedback page~~
