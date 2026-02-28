@@ -32,16 +32,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) {
         http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) //allow REACT frontend to communicate with the backend
+                .csrf(AbstractHttpConfigurer::disable) //no need since we use JWT, it would have been a risk if we used session-based authentication
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll() //everyone can access
                         .requestMatchers("/api/admin/**").hasRole("ADMIN") //protect ADMIN endpoint
-                        .anyRequest().authenticated()
+                        .anyRequest().authenticated() //must be authenticated but any role works
                 )
-                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //every request must carry its own JWT
                 .authenticationProvider(authenticationProvider) //provider which verifies the password
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); //process the JWT on every request
         return http.build();
     }
 

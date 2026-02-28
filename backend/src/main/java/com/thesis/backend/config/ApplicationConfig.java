@@ -27,7 +27,7 @@ public class ApplicationConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(); //use BCrypt as hashing algorithm
     }
 
     //verify the password

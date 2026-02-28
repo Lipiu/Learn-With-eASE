@@ -38,14 +38,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        String tokenPrefix = "Bearer"; //local variable to avoid the magic number 7
+        String tokenPrefix = "Bearer "; //local variable to avoid the magic number 7
         jwt = authHeader.substring(tokenPrefix.length()); // it will be 7 because of BEARER + a space so we get the key
         userEmail = jwtService.extractUsername(jwt); //we extract the email
 
+        //check if user is already authenticated
         if(userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null){
+            //load from database
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
 
             if(jwtService.isTokenValid(jwt, userDetails)){
+                //find if user has role: USER or ADMIN
                 UsernamePasswordAuthenticationToken authToken =
                         new UsernamePasswordAuthenticationToken(
                             userDetails,

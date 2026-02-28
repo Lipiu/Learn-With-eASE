@@ -21,10 +21,19 @@ public class JwtService {
 
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails){
         return Jwts.builder()
+                //any additional data we want to embed (for exmaple role of the user)
                 .setClaims(extraClaims)
-                .setSubject(userDetails.getUsername()) // in our case we get the email
+
+                // in our case we get the email, which becomes the main identifier
+                .setSubject(userDetails.getUsername())
+
+                //timestamp when token is created
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) //expires in 24h
+
+                //expiration date of the token (24h but since this is a demo it is irrelevant)
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
+
+                //sign everything with our secret key
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -39,6 +48,7 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
+    //helper methods to read the data back from the token
     public String extractUsername(String token){
         return extractClaim(token, Claims::getSubject);
     }
