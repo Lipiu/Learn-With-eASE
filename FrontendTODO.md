@@ -50,15 +50,17 @@
               * Add sandbox for coding exercises
 
         * Quiz section
-          * Now if the user solves first quiz for multiple times for example on their personal page will be displayed quiz1, quiz2 etc...
-            * Have to solve -> display Quiz 1 1st try, Quiz 1 2nd try ...
+          * ~~Now if the user solves first quiz for multiple times for example on their personal page will be displayed quiz1, quiz2 etc...~~
+            * ~~Have to solve -> display Quiz 1 1st try, Quiz 1 2nd try ...~~
+            * Add percentages for quiz (passed/failed)
+            * Add more details on user page
           * Add quiz for each section
           * ~~Add grading~~
           * ~~Add status (fail/pass)~~
             * ~~If user fails a quiz about a certain section provide option to navigate to that section~~
               * ~~Display message and points~~
               * ~~Allow to retry the quiz~~
-              * Shuffle the questions each time the quiz starts
+              * ~~Shuffle the questions each time the quiz starts~~
             * ~~If user passes display message and points~~
         
         * Flashcard section

@@ -5,6 +5,10 @@ import questions from "./Questions/questions.js";
 
 function Quiz(){
     const [currentQuestion, setCurrentQuestion] = useState(0); // which question the user is currently on
+
+    //so that the questions get shuffled when the quiz is refreshed
+    const [shuffleQuestions, setShuffleQuestions] = useState(() =>
+        [...questions].sort(() => Math.random() - 0.5));
     const [selectedAnswer, setSelectedAnswer] = useState(null); // user's selected answer
     const [score, setScore] = useState(0); // keeps track of how many correct answers the user currently has
     const [showResult, setShowResult] = useState(false); // checks whether the quiz is finished and displays result
@@ -29,8 +33,9 @@ function Quiz(){
                 });
                 if(response.ok){
                     const results = await response.json();
+                    const thisQuizResult = results.filter(r => r.quizNumber === 1) //hardcoded for testing purpose
                     if(results.length > 0){
-                        const lastResult = results[results.length - 1]; //get latest result
+                        const lastResult = thisQuizResult[thisQuizResult.length - 1]; //get latest result
                         setScore(lastResult.score);
                         setShowResult(true);
                     }
@@ -59,7 +64,7 @@ function Quiz(){
         setScore(newScore);
         setSelectedAnswer(null); //reset selected to null
 
-        if(currentQuestion + 1 < questions.length){ //we have not reached the end of the quiz
+        if(currentQuestion + 1 < shuffleQuestions.length){ //we have not reached the end of the quiz
             setCurrentQuestion(currentQuestion + 1);
         }
         else{
@@ -75,8 +80,9 @@ function Quiz(){
                             "Authorization": `Bearer ${token}`
                         },
                         body: JSON.stringify({
+                            quizNumber: 1,
                             score: newScore,
-                            totalQuestions: questions.length
+                            totalQuestions: shuffleQuestions.length
                         })
                     });
                     if(response.ok){
@@ -99,6 +105,7 @@ function Quiz(){
         setScore(0);
         setShowResult(false);
         setSelectedAnswer(null);
+        setShuffleQuestions([...questions].sort(() => Math.random() - 0.5));
     };
 
     //calculate passing grade
@@ -141,13 +148,13 @@ function Quiz(){
                 ) : (
                     <>
                         <h2>
-                            Question {currentQuestion + 1} of {questions.length}
+                            Question {currentQuestion + 1} of {shuffleQuestions.length}
                         </h2>
                         <div className="question-section">
-                            <p className="question-text">{questions[currentQuestion].question}</p>
-                            {questions[currentQuestion].image && (
+                            <p className="question-text">{shuffleQuestions[currentQuestion].question}</p>
+                            {shuffleQuestions[currentQuestion].image && (
                                 <img
-                                    src={questions[currentQuestion].image}
+                                    src={shuffleQuestions[currentQuestion].image}
                                     alt="Question visual"
                                     className="quiz-image"
                                 />
@@ -155,7 +162,7 @@ function Quiz(){
                         </div>
 
                         <div className="options">
-                            {questions[currentQuestion].answers.map((answer, index)=>(
+                            {shuffleQuestions[currentQuestion].answers.map((answer, index)=>(
                                 <button
                                     key={index}
                                     className={`option-btn ${

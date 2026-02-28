@@ -23,6 +23,7 @@ public class QuizResult {
     private int totalQuestions;
     private double percentage;
     private boolean passed;
+    private int quizNumber;
 
     @Column(name="created_at", updatable = false)
     @Temporal(TemporalType.DATE) //Temporal is deprecated but for this purpose is good enough

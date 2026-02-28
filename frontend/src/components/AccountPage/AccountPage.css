@@ -40,6 +40,10 @@
     margin-bottom: 15px;
 }
 
+.quiz-group-title{
+    color: var(--bg);
+}
+
 .no-quiz {
     color: #999;
     font-style: italic;

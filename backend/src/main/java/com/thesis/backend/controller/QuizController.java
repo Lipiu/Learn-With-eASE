@@ -29,7 +29,7 @@ public class QuizController {
         User user = userRepository.findByEmail(userDetails.getUsername()).orElseThrow();
 
         //save to database
-        quizService.saveResult(user, request.getScore(), request.getTotalQuestions());
+        quizService.saveResult(user, request.getQuizNumber(), request.getScore(), request.getTotalQuestions());
 
         return ResponseEntity.ok("Quiz saved successfully!");
     }

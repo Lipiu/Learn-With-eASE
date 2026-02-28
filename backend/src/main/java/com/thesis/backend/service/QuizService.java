@@ -11,13 +11,14 @@ import org.springframework.stereotype.Service;
 public class QuizService {
     private final QuizResultRepository quizResultRepository;
 
-    public void saveResult(User user, int score, int totalQuestions){
+    public void saveResult(User user, int quizNumber, int score, int totalQuestions){
         double percentage = ((double) score / totalQuestions) * 100; //calculate percentage
         boolean passed = percentage >= 50; //determine if the user passes or not
 
         //create QuizResult object
         QuizResult result = new QuizResult();
         result.setScore(score);
+        result.setQuizNumber(quizNumber);
         result.setTotalQuestions(totalQuestions);
         result.setPercentage(percentage);
         result.setPassed(passed);

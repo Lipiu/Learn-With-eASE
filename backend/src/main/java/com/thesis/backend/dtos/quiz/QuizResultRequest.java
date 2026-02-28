@@ -10,4 +10,5 @@ import lombok.*;
 public class QuizResultRequest {
     private int score;
     private int totalQuestions;
+    private int quizNumber;
 }

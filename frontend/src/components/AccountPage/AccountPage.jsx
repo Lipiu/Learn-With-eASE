@@ -12,6 +12,7 @@ function AccountPage() {
 
         //if user exists set it to state
         if(storedUser){
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setUser(storedUser);
         }
 
@@ -23,7 +24,7 @@ function AccountPage() {
             })
                 .then(res => res.json()) //parse the response as json
                 .then(data => setQuizResults(data)) // we set quizResult with state fetched data
-                .catch(err => console.error("Failed to fetch quiz results"))
+                .catch(() => console.error("Failed to fetch quiz results"))
         }
     }, []);
 
@@ -51,27 +52,48 @@ function AccountPage() {
                 <h2 className="quiz-header">Quiz History</h2>
                 {user && quizResults.length === 0 && <p className="no-quiz">You haven’t taken any quizzes yet.</p>}
 
-                {user && quizResults.length > 0 && (
-                    <div className="quiz-list">
-                        {quizResults.map((quiz, idx) => (
-                            <div key={idx} className={`quiz-item ${quiz.passed ? "passed" : "failed"}`}>
-                                <div className="quiz-main">
-                                    <span className="quiz-title">Quiz {idx + 1}</span>
-                                    <span className="quiz-score">{quiz.score} / {quiz.totalQuestions}</span>
-                                    <span className="quiz-percent">({quiz.percentage.toFixed(0)}%)</span>
-                                    <span className={`quiz-status ${quiz.passed ? "passed-text" : "failed-text"}`}>
-                                        {quiz.passed ? "Passed ✅" : "Failed ❌"}
-                                    </span>
-                                </div>
-                                {quiz.createdAt && (
-                                    <div className="quiz-date">
-                                        Last attempt: {new Date(quiz.createdAt).toLocaleString()}
+                {user && quizResults.length > 0 && (() => {
+                    const grouped = quizResults.reduce((acc, quiz) => {
+                        const key = quiz.quizNumber;
+                        if(!acc[key]){
+                            acc[key] = [];
+                        }
+                        acc[key].push(quiz);
+                        return acc;
+                }, {});
+
+                    return (
+                        <div className="quiz-list">
+                            {Object.entries(grouped)
+                                    .sort(([a], [b]) => Number(a) - Number(b))
+                                .map(([quizNum, attempts]) => (
+                                    <div key={quizNum} className="quiz-group">
+                                        <h3 className="quiz-group-title">Quiz {quizNum}</h3>
+                                        {attempts
+                                            .sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt))
+                                            .map((quiz, attemptIdx) => (
+                                            <div key={attemptIdx} className={`quiz-item ${quiz.passed ? "passed" : "failed"}`}>
+                                                <div className="quiz-main">
+                                                    <span className="quiz-title">Attempt {attemptIdx + 1}</span>
+                                                    <span className="quiz-score">{quiz.score} / {quiz.totalQuestions}</span>
+                                                    <span className="quiz-percent">({quiz.percentage.toFixed(0)}%)</span>
+                                                    <span className={`quiz-status ${quiz.passed ? "passed-text" : "failed-text"}`}>
+                                                        {quiz.passed ? "Passed ✅" : "Failed ❌"}
+                                                    </span>
+                                                </div>
+                                                {quiz.createdAt && (
+                                                    <div className="quiz-date">
+                                                        {new Date(quiz.createdAt).toLocaleString()}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        ))}
                                     </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                )}
+                                ))
+                            }
+                        </div>
+                    );
+                })()}
 
                 {user && (
                     <button
@@ -79,7 +101,7 @@ function AccountPage() {
                         onClick={() => {
                             localStorage.removeItem("user");
                             localStorage.removeItem("token");
-                            window.location.href = "/";
+                            window.location.href = "/login";
                         }}
                     >
                         Logout
