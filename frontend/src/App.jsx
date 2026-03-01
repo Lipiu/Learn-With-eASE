@@ -21,6 +21,13 @@ import Section5Theory from "./components/Sections/Section5/Section5Theory.jsx";
 import Section6 from "./components/Sections/Section6/Section6.jsx";
 import Section6Theory from "./components/Sections/Section6/Section6Theory.jsx";
 
+//Questions
+import quiz1questions from "./components/Quiz/Questions/quiz1questions.js";
+import quiz2questions from "./components/Quiz/Questions/quiz2questions.js";
+import quiz3questions from "./components/Quiz/Questions/quiz3questions.js";
+import quiz4questions from "./components/Quiz/Questions/quiz4questions.js";
+import quiz5questions from "./components/Quiz/Questions/quiz5questions.js";
+import quiz6questions from "./components/Quiz/Questions/quiz6questions.js";
 
 // Other pages
 import Resources from "./components/Resources/Resources.jsx";
@@ -29,6 +36,8 @@ import Login from "./components/Buttons/AccountButton/Login.jsx";
 import Register from "./components/Buttons/AccountButton/Register.jsx";
 import Quiz from "./components/Quiz/Quiz.jsx";
 import AccountPage from "./components/AccountPage/AccountPage.jsx";
+import ProtectedRouteQuiz from "./components/Quiz/ProtectedRouteQuiz.jsx";
+import QuizLocked from "./components/Quiz/QuizLocked.jsx";
 
 function App() {
 
@@ -71,8 +80,59 @@ function App() {
                     </Route>
 
                     <Route path='/resources' element={<Resources/>}></Route>
-                    <Route path='/quiz1' element={<Quiz/>}></Route>
+
+                    {/*
+                    key to force React to mount a fresh component for each quiz
+                    without key, if we solve the quiz1 for example, quiz2 will also appear solved
+                    same for the others, the next one will always appear solved
+                    key solves this issue
+                    */}
+                    <Route path='/quiz1' element={
+                        <ProtectedRouteQuiz quizNumber={1}>
+                            <Quiz key={1} quizNumber={1} questions={quiz1questions} nextSection="/section2/theory"/>
+                        </ProtectedRouteQuiz>
+                    }
+                    />
+
+                    <Route path='/quiz2' element={
+                        <ProtectedRouteQuiz quizNumber={2}>
+                            <Quiz key={2} quizNumber={2} questions={quiz2questions} nextSection="/section3/theory"/>
+                        </ProtectedRouteQuiz>
+                    }
+                    />
+
+                    <Route path='/quiz3' element={
+                        <ProtectedRouteQuiz quizNumber={3}>
+                            <Quiz key={3} quizNumber={3} questions={quiz3questions} nextSection="/section4/theory"/>
+                        </ProtectedRouteQuiz>
+                    }
+                    />
+
+                    <Route path='/quiz4' element={
+                        <ProtectedRouteQuiz quizNumber={4}>
+                            <Quiz key={4} quizNumber={4} questions={quiz4questions} nextSection="/section5/theory"/>
+                        </ProtectedRouteQuiz>
+                    }
+                    />
+
+                    <Route path='/quiz5' element={
+                        <ProtectedRouteQuiz quizNumber={5}>
+                            <Quiz key={5} quizNumber={5} questions={quiz5questions} nextSection="/section6/theory"/>
+                        </ProtectedRouteQuiz>
+                    }
+                    />
+
+                    <Route path='/quiz6' element={
+                        <ProtectedRouteQuiz quizNumber={6}>
+                            {/*for now redirect to home page but will create a "congratulations page" after finishing all quizzes*/}
+                            <Quiz key={6} quizNumber={6} questions={quiz6questions} nextSection="/"/>
+                        </ProtectedRouteQuiz>
+                    }
+                    />
+                    <Route path='/quiz-locked' element={<QuizLocked/>} />
+
                     <Route path='/feedback' element={<Feedback/>}></Route>
+
                     <Route path='/login' element={<Login/>}></Route>
                     <Route path='/register' element={<Register/>}></Route>
                     <Route path='/account' element={<AccountPage/>}></Route>

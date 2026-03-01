@@ -1,0 +1,56 @@
+.locked-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.locked-card {
+    background: var(--text);
+    color: var(--bg);
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.locked-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.locked-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.locked-message {
+    color: var(--bg);
+    font-size: 1rem;
+    opacity: 0.75;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.locked-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.locked-btn {
+    background: var(--bg);
+    color: var(--text);
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.locked-btn:hover { opacity: 0.8; }

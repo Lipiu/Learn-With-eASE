@@ -1,4 +1,4 @@
-const questions = [
+const quiz1questions = [
     {
         id: 1,
         question: "What is Java?",
@@ -102,4 +102,4 @@ const questions = [
     }
 ];
 
-export default questions;
+export default quiz1questions;

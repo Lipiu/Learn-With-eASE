@@ -1,12 +1,11 @@
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import "./Quiz.css";
-import questions from "./Questions/questions.js";
 
-function Quiz(){
+function Quiz({quizNumber, questions, nextSection }){
     const [currentQuestion, setCurrentQuestion] = useState(0); // which question the user is currently on
 
-    //so that the questions get shuffled when the quiz is refreshed
+    //so that the quiz1questions get shuffled when the quiz is refreshed
     const [shuffleQuestions, setShuffleQuestions] = useState(() =>
         [...questions].sort(() => Math.random() - 0.5));
     const [selectedAnswer, setSelectedAnswer] = useState(null); // user's selected answer
@@ -33,8 +32,8 @@ function Quiz(){
                 });
                 if(response.ok){
                     const results = await response.json();
-                    const thisQuizResult = results.filter(r => r.quizNumber === 1) //hardcoded for testing purpose
-                    if(results.length > 0){
+                    const thisQuizResult = results.filter(r => r.quizNumber === quizNumber)
+                    if(thisQuizResult.length > 0){
                         const lastResult = thisQuizResult[thisQuizResult.length - 1]; //get latest result
                         setScore(lastResult.score);
                         setShowResult(true);
@@ -49,7 +48,7 @@ function Quiz(){
             }
         }
         fetchQuiz();
-    }, []);
+    }, [quizNumber]);
 
     //here we save user answer and store it in selectedAnswer
     const handleAnswerClick = (answer) => {
@@ -80,7 +79,7 @@ function Quiz(){
                             "Authorization": `Bearer ${token}`
                         },
                         body: JSON.stringify({
-                            quizNumber: 1,
+                            quizNumber: quizNumber,
                             score: newScore,
                             totalQuestions: shuffleQuestions.length
                         })
@@ -134,8 +133,8 @@ function Quiz(){
 
                         {passed && (
                             <div className="button-container next-section-container">
-                                <button className="next-section-btn" onClick={() => navigate("/section2/theory")}>
-                                    Go to Section 2
+                                <button className="next-section-btn" onClick={() => navigate(nextSection)}>
+                                    Go to Section {quizNumber + 1}
                                 </button>
                             </div>
                         )}
