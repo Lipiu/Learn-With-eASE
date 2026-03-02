@@ -131,10 +131,10 @@ function Quiz({quizNumber, questions, nextSection }){
                             <p className="fail-text">You need at least 50% to pass. Try again!</p>
                         )}
 
-                        {passed && (
+                        {passed && nextSection && (
                             <div className="button-container next-section-container">
                                 <button className="next-section-btn" onClick={() => navigate(nextSection)}>
-                                    Go to Section {quizNumber + 1}
+                                    {nextSection ==="/" ? "Go to main page" : `Go to section ${quizNumber + 1}`}
                                 </button>
                             </div>
                         )}
