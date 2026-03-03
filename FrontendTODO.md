@@ -5,7 +5,7 @@
 * Final TODO:
   * Refactor code
     * Theory section - for now it has lots of duplicated code
-    * Quiz section - same issue
+    * ~~Quiz section - same issue~~
   * Clean the code
   * Check for bugs
 
@@ -49,7 +49,7 @@
               * ~~Add theory~~
               * Add sandbox for coding exercises
 
-        * Quiz section
+        * ~~Quiz section~~
           * ~~Now if the user solves first quiz for multiple times for example on their personal page will be displayed quiz1, quiz2 etc...~~
             * ~~Have to solve -> display Quiz 1 1st try, Quiz 1 2nd try ...~~
             * ~~Add percentages for quiz (passed/failed)~~
