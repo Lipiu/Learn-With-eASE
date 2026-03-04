@@ -4,7 +4,7 @@
 
 * Final TODO:
   * Refactor code
-    * Theory section - for now it has lots of duplicated code
+    * ~~Theory section - for now it has lots of duplicated code~~
     * ~~Quiz section - same issue~~
   * Clean the code
   * Check for bugs
@@ -21,6 +21,8 @@
         * ~~Resources~~
         * ~~Feedback~~
         * ~~Account~~
+        * Congratulations page -> if the user succeeds in solving all quizzes
+        * Flashcard
 
 * Pages for buttons
     * Customize each page accordingly
@@ -53,7 +55,7 @@
           * ~~Now if the user solves first quiz for multiple times for example on their personal page will be displayed quiz1, quiz2 etc...~~
             * ~~Have to solve -> display Quiz 1 1st try, Quiz 1 2nd try ...~~
             * ~~Add percentages for quiz (passed/failed)~~
-            * Add more details on user page
+            * ~~Add more details on user page~~
           * ~~Add quiz for each section~~
           * ~~Add grading~~
           * ~~Add status (fail/pass)~~
@@ -87,3 +89,4 @@
     * ~~Resources page responsiveness~~
     * ~~Quiz page responsiveness~~
     * Feedback page responsiveness
+    * Flashcard page

@@ -38,6 +38,7 @@ import Quiz from "./components/Quiz/Quiz.jsx";
 import AccountPage from "./components/AccountPage/AccountPage.jsx";
 import ProtectedRouteQuiz from "./components/Quiz/ProtectedRouteQuiz.jsx";
 import QuizLocked from "./components/Quiz/QuizLocked.jsx";
+import CongratulationsPage from "./components/Quiz/CongratulationsPage/CongratulationsPage.jsx";
 
 function App() {
 
@@ -125,10 +126,13 @@ function App() {
                     <Route path='/quiz6' element={
                         <ProtectedRouteQuiz quizNumber={6}>
                             {/*for now redirect to home page but will create a "congratulations page" after finishing all quizzes*/}
-                            <Quiz key={6} quizNumber={6} questions={quiz6questions} nextSection="/"/>
+                            <Quiz key={6} quizNumber={6} questions={quiz6questions} nextSection="/congratulations"/>
                         </ProtectedRouteQuiz>
                     }
                     />
+
+                    <Route path='/congratulations' element={<CongratulationsPage/>}/>
+
                     <Route path='/quiz-locked' element={<QuizLocked/>} />
 
                     <Route path='/feedback' element={<Feedback/>}></Route>

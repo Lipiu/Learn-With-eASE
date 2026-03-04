@@ -134,7 +134,7 @@ function Quiz({quizNumber, questions, nextSection }){
                         {passed && nextSection && (
                             <div className="button-container next-section-container">
                                 <button className="next-section-btn" onClick={() => navigate(nextSection)}>
-                                    {nextSection ==="/" ? "Go to main page" : `Go to section ${quizNumber + 1}`}
+                                    {nextSection ==="/congratulations" ? "See your results" : `Go to section ${quizNumber + 1}`}
                                 </button>
                             </div>
                         )}
