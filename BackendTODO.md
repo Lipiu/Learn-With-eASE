@@ -3,13 +3,19 @@
 * ## **TO DO**:
 
 * Add functionalities for ADMIN
-    * Quiz
+    * Special quiz page -ADMIN
       * Remove quiz
       * Add quiz
-    * Coding exercise
+    * Coding exercise -ADMIN
       * Remove exercise
       * Add exercise
+    * Feedback - ADMIN
+      * Admin can delete feedback from page
 
-* Keep track of user progress regarding theory
-* Make user feedback appear on the Feedback page only if the user is logged in
-* If user is not logged in they cannot leave feedback
+* Extra functionalities
+  * Make user feedback appear on the Feedback page only if the user is logged in
+  * If user is not logged in they cannot leave feedback 
+    * Display an error with: "You are not logged in, you cannot leave feedback"
+    * Redirect user to /register to create an account in order to leave feedback
+    * Flashcards
+      * Allow users to create personalized flashcards that persist

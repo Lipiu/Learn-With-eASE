@@ -21,15 +21,20 @@
         * ~~Resources~~
         * ~~Feedback~~
         * ~~Account~~
-        * Congratulations page -> if the user succeeds in solving all quizzes
-        * Flashcard
+        * ~~Congratulations page -> if the user succeeds in solving all quizzes~~
+          * Will have to customize this page accordingly:
+            * Display quiz statistics
+            * Display coding exercise statistics
+        * Flashcards
 
 * Pages for buttons
     * Customize each page accordingly
         * ~~Home~~
             * ~~will need more work but for now is fine~~
         * Sections
-        * MODIFY LAYOUT OF SECTION -> theory + sandbox and put quiz on another page
+          * Add button to allow user to go to quiz once they finish theory section (at the end of each section)
+          * Add button to allow user to go to coding exercise once they finish theory section (at the end of each section)
+        * Add coding sandbox on a new page
           * ~~Section 1 - introduction about Java, JDK, variables/control~~
             * ~~For now just add the theory and style later~~
             * ~~Decide on layout~~
@@ -89,4 +94,5 @@
     * ~~Resources page responsiveness~~
     * ~~Quiz page responsiveness~~
     * Feedback page responsiveness
-    * Flashcard page
+    * Flashcard page responsiveness
+    * Coding exercise page responsiveness
