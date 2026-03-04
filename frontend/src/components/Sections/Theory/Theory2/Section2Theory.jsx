@@ -1,4 +1,4 @@
-import "../Section1/SectionTheory.css";
+import "../../Section/SectionTheory.css";
 
 function Section2Theory() {
     return (
@@ -7,7 +7,7 @@ function Section2Theory() {
                 Section 2 – Object-Oriented Programming Basics
             </h2>
 
-            <section>
+            <section id="oop">
                 <h3>1. What is Object-Oriented Programming?</h3>
                 <p>
                     Object-oriented programming (OOP) in Java is a programming paradigm
@@ -18,7 +18,7 @@ function Section2Theory() {
                 </p>
             </section>
 
-            <section>
+            <section id="classes-objects">
                 <h3>2. Classes and Objects</h3>
                 <p>
                     A <strong>class</strong> is a blueprint for creating objects.
@@ -62,7 +62,7 @@ function Section2Theory() {
                 </ul>
             </section>
 
-            <section>
+            <section id="encapsulation">
                 <h3>3. Encapsulation</h3>
                 <p>
                     <strong>Encapsulation</strong> is the principle of hiding
@@ -123,7 +123,7 @@ function Section2Theory() {
 
             </section>
 
-            <section>
+            <section id="inheritance">
                 <h3>4. Inheritance</h3>
                 <p>
                     <strong>Inheritance</strong> allows one class to inherit properties and methods
@@ -169,7 +169,7 @@ function Section2Theory() {
 
             </section>
 
-            <section>
+            <section id="polymorphism">
                 <h3>5. Polymorphism</h3>
                 <p>
                     <strong>Polymorphism</strong> is a core concept in Java where an
@@ -204,8 +204,6 @@ function Section2Theory() {
                     <li><strong>Step 5 (Polymorphism):</strong> A <code>Human</code> reference can hold a <code>Student</code> object.
                         When calling <code>info()</code> on this reference, Java uses the actual object type (<code>Student</code>) at runtime, printing "I am a student".</li>
                 </ul>
-
-
             </section>
         </div>
     );

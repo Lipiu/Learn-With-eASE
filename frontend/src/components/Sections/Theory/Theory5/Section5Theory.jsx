@@ -1,4 +1,4 @@
-import '../Section1/SectionTheory.css';
+import '../../Section/SectionTheory.css';
 
 function Section5Theory(){
     return(
@@ -7,7 +7,7 @@ function Section5Theory(){
                 Section 5 – Files
             </h2>
 
-            <section>
+            <section id="read-write">
                 <h3>1. Reading and Writing Files</h3>
 
                 <p>
@@ -101,7 +101,9 @@ function Section5Theory(){
                     In real applications, libraries like <strong>Jackson</strong>
                     or <strong>Gson</strong> are used to parse JSON automatically.
                 </p>
+            </section>
 
+            <section id="streams-readers">
                 <h3>2. Understanding File Streams and Readers</h3>
 
                 <p>

@@ -1,4 +1,4 @@
-import '../Section1/SectionTheory.css';
+import '../../Section/SectionTheory.css';
 
 function Section3Theory(){
     return(
@@ -7,7 +7,7 @@ function Section3Theory(){
                 Section 3 – Java Collections & Generics
             </h2>
 
-            <section>
+            <section id="collections">
                 <h3>1. What are Java Collections?</h3>
                 <p>
                     <strong>Java Collection Framework (JCF)</strong> is a set of classes and interfaces
@@ -156,7 +156,8 @@ function Section3Theory(){
                     The method <code>poll()</code> removes elements in FIFO order (First-In-First-Out)
                     until the queue becomes empty.
                 </p>
-
+            </section>
+                <section id="generics">
                 <h3>2. What are Generics?</h3>
 
                 <p>

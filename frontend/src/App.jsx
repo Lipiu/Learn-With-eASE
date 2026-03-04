@@ -3,23 +3,23 @@ import Navbar from "./components/Navbar/Navbar.jsx";
 import Home from "./components/Home/Home.jsx";
 
 // Sections
-import Section1 from "./components/Sections/Section1/Section1.jsx";
-import Section1Theory from "./components/Sections/Section1/Section1Theory.jsx";
+import Section from "./components/Sections/Section/Section.jsx";
 
-import Section2 from "./components/Sections/Section2/Section2.jsx";
-import Section2Theory from "./components/Sections/Section2/Section2Theory.jsx";
+// Theory
+import Section1Theory from "./components/Sections/Theory/Theory1/Section1Theory.jsx";
+import Section2Theory from "./components/Sections/Theory/Theory2/Section2Theory.jsx";
+import Section3Theory from "./components/Sections/Theory/Theory3/Section3Theory.jsx";
+import Section4Theory from "./components/Sections/Theory/Theory4/Section4Theory.jsx";
+import Section5Theory from "./components/Sections/Theory/Theory5/Section5Theory.jsx";
+import Section6Theory from "./components/Sections/Theory/Theory6/Section6Theory.jsx";
 
-import Section3 from "./components/Sections/Section3/Section3.jsx";
-import Section3Theory from "./components/Sections/Section3/Section3Theory.jsx";
-
-import Section4 from "./components/Sections/Section4/Section4.jsx";
-import Section4Theory from "./components/Sections/Section4/Section4Theory.jsx";
-
-import Section5 from "./components/Sections/Section5/Section5.jsx";
-import Section5Theory from "./components/Sections/Section5/Section5Theory.jsx";
-
-import Section6 from "./components/Sections/Section6/Section6.jsx";
-import Section6Theory from "./components/Sections/Section6/Section6Theory.jsx";
+// Section Data
+import { headings as s1Headings, tips as s1Tips} from "./components/Sections/Theory/Theory1/Section1Data.js";
+import { headings as s2Headings, tips as s2Tips} from "./components/Sections/Theory/Theory2/Section2Data.js";
+import { headings as s3Headings, tips as s3Tips} from "./components/Sections/Theory/Theory3/Section3Data.js";
+import { headings as s4Headings, tips as s4Tips} from "./components/Sections/Theory/Theory4/Section4Data.js";
+import { headings as s5Headings, tips as s5Tips} from "./components/Sections/Theory/Theory5/Section5Data.js";
+import { headings as s6Headings, tips as s6Tips} from "./components/Sections/Theory/Theory6/Section6Data.js";
 
 //Questions
 import quiz1questions from "./components/Quiz/Questions/quiz1questions.js";
@@ -48,33 +48,33 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
 
-                    <Route path='/section1' element={<Section1/>}>
+                    <Route path='/section1' element={<Section headings={s1Headings} tips={s1Tips}/>}>
                         <Route index element={<Navigate to="theory" replace />} />
                         <Route path="theory" element={<Section1Theory />} />
                     </Route>
 
-                    <Route path='/section2' element={<Section2/>}>
+                    <Route path='/section2' element={<Section headings={s2Headings} tips={s2Tips}/>}>
                         <Route index element={<Navigate to="theory" replace />}/>
                         <Route path="theory" element={<Section2Theory/>}/>
                     </Route>
 
-                    <Route path='/section3' element={<Section3/>}>
+                    <Route path='/section3' element={<Section headings={s3Headings} tips={s3Tips}/>}>
                         <Route index element={<Navigate to="theory" replace />}/>
                         <Route path="theory" element={<Section3Theory/>}/>
                     </Route>
 
 
-                    <Route path='/section4' element={<Section4/>}>
+                    <Route path='/section4' element={<Section headings={s4Headings} tips={s4Tips}/>}>
                         <Route index element={<Navigate to="theory" replace />}/>
                         <Route path="theory" element={<Section4Theory/>}/>
                     </Route>
 
-                    <Route path='/section5' element={<Section5/>}>
+                    <Route path='/section5' element={<Section headings={s5Headings} tips={s5Tips}/>}>
                         <Route index element={<Navigate to="theory" replace />}/>
                         <Route path="theory" element={<Section5Theory/>}/>
                     </Route>
 
-                    <Route path='/section6' element={<Section6/>}>
+                    <Route path='/section6' element={<Section headings={s6Headings} tips={s6Tips}/>}>
                         <Route index element={<Navigate to="theory" replace />}/>
                         <Route path="theory" element={<Section6Theory/>}/>
                     </Route>

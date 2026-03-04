@@ -1,4 +1,4 @@
-import "./SectionTheory.css";
+import "../../Section/SectionTheory.css";
 
 function Section1Theory() {
     return (

@@ -1,4 +1,4 @@
-import '../Section1/SectionTheory.css';
+import '../../Section/SectionTheory.css';
 
 function Section6Theory(){
     return(
@@ -7,7 +7,7 @@ function Section6Theory(){
                 Section 6 – Networking (TCP & UDP)
             </h2>
 
-            <section>
+            <section id="networking">
 
                 <h3>1. Networking in Java</h3>
 
@@ -25,7 +25,8 @@ function Section6Theory(){
                     Networking works using <strong>sockets</strong>, which represent endpoints
                     of communication between two machines.
                 </p>
-
+            </section>
+            <section id="tcp">
                 <h3>2. TCP (Transmission Control Protocol)</h3>
 
                 <ul>
@@ -80,7 +81,8 @@ function Section6Theory(){
                     The client connects using <code>new Socket(host, port)</code>.
                     TCP ensures reliable and ordered communication.
                 </p>
-
+            </section>
+            <section id="udp">
                 <h3>3. UDP (User Datagram Protocol)</h3>
 
                 <ul>
@@ -141,8 +143,8 @@ function Section6Theory(){
                     There is no connection setup like TCP.
                     Messages are sent independently.
                 </p>
-
-
+            </section>
+            <section id="tcp-vs-udp">
                 <h3>4. TCP vs UDP Comparison</h3>
 
                 <ul>

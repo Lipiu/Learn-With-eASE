@@ -1,4 +1,4 @@
-import '../Section1/SectionTheory.css';
+import '../../Section/SectionTheory.css';
 
 function Section4Theory(){
     return(
@@ -7,7 +7,7 @@ function Section4Theory(){
                 Section 4 – Streams, Lambdas & Exceptions
             </h2>
 
-            <section>
+            <section id="streams">
                 <h3>1. What are Streams?</h3>
 
                 <p>
@@ -42,7 +42,8 @@ function Section4Theory(){
                     and print them using <code>forEach()</code>.
                 </p>
 
-
+            </section>
+            <section id="lambda">
                 <h3>2. What are Lambda Expressions?</h3>
 
                 <p>
@@ -73,7 +74,9 @@ function Section4Theory(){
                     is a lambda expression. It takes a number and prints
                     its double value.
                 </p>
+            </section>
 
+            <section id="exceptions">
                 <h3>3. What are Exceptions?</h3>
 
                 <p>
