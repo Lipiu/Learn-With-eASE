@@ -18,4 +18,5 @@
     * Display an error with: "You are not logged in, you cannot leave feedback"
     * Redirect user to /register to create an account in order to leave feedback
     * Flashcards
-      * Allow users to create personalized flashcards that persist
+      * ~~Allow users to create personalized flashcards that persist~~
+      * ~~If not logged in cannot create flashcard~~

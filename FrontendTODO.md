@@ -25,7 +25,7 @@
           * Will have to customize this page accordingly:
             * Display quiz statistics
             * Display coding exercise statistics
-        * Flashcards
+        * ~~Flashcards~~
 
 * Pages for buttons
     * Customize each page accordingly
@@ -94,5 +94,5 @@
     * ~~Resources page responsiveness~~
     * ~~Quiz page responsiveness~~
     * Feedback page responsiveness
-    * Flashcard page responsiveness
+    * ~~Flashcard page responsiveness~~
     * Coding exercise page responsiveness
