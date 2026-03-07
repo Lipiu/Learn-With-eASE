@@ -64,6 +64,12 @@ function Navbar(){
                     )}
                 </li>
 
+                <li>
+                    <Link to="/flashcard" onClick={closeDropdown}>
+                        <button>Flashcard</button>
+                    </Link>
+                </li>
+
 
                 <li>
                     <Link to="/resources" onClick={closeDropdown}>
