@@ -20,6 +20,19 @@ simplifies complex Java concepts and encourages active learning.
 
 ---
 
+### How to use
+**Frontend**\
+In frontend directory open terminal and run the command: `npm i`\
+Upon successfully downloading all dependencies run the command `npm run dev` -> this will open the frontend
+
+**Database + Backend**\
+Choose a PostgreSQL GUI (in this case I use `DBeaver` but `pgAdmin4` works great too)\
+Check `application.properties` which is located inside `resources` directory (here you will find the credentials for the database) \
+Create a local database in `DBeaver/pgAdmin4` and then run the backend program (just click on the green triangle in IntellijIDEA) \
+Upon successfully starting the backend, the application will become fully functional
+
+---
+
 ### Architecture & Tech Stack
 
 The platform follows a full-stack architecture:
