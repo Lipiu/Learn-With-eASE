@@ -6,9 +6,9 @@
 ![LightHomepage](./assets/home-light.png)
 
 ### Account creation
-* Login functionality - account stored in db and password securely hashed
+* Login functionality - account stored in db and password securely hashed \
 ![Login](./assets/login.png)
-* Register functionality - account creation and also stored in db with password securely hashed
+* Register functionality - account creation and also stored in db with password securely hashed \
 ![Register](./assets/register.png)
 
 ### Theory section
@@ -17,17 +17,17 @@
 ![Theory](./assets/section-theory.png)
 
 ### Quiz section
-* Users can access quizzes for each section
+* Users can access quizzes for each section \
 ![QuizPassed](./assets/quiz-pass.png)
 * If the user is logged in the quiz progress is saved and displayed on their personal page
-    * Progress is lost if the user does not have an account
+    * Progress is lost if the user does not have an account \
 ![QuizProgress](./assets/quiz-progress.png)
-* Users can only access next quiz if they successfully passed the previous one, else is blocked
+* Users can only access next quiz if they successfully passed the previous one, else is blocked \
 ![QuizLocked](./assets/quiz-locked.png)
 * Upon successfully passing all quizzes, the user is redirected to a "congratulations" page (to do)
 
 ### Flashcard section (have to customize it but it is correctly working)
-* The users can create, delete custom flashcards (persistent) only if logged in
+* The users can create, delete custom flashcards (persistent) only if logged in \
 ![Flashcard](./assets/flashcard.png)
 * Future functionality -> the users will be able to use flashcards during coding exercises.
 
