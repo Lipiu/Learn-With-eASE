@@ -75,8 +75,8 @@
 
         * Feedback
           * ~~Create feedback page~~
-          * Allow users to provide feedback (only if logged in)
-          * Display the feedback on the platform in the Feedback section
+          * ~~Allow users to provide feedback (only if logged in)~~
+          * ~~Display the feedback on the platform in the Feedback section~~
           
         * Resources
             * ~~Nice page with useful resources related to Java:~~
@@ -95,6 +95,6 @@
     * ~~Sections responsiveness~~
     * ~~Resources page responsiveness~~
     * ~~Quiz page responsiveness~~
-    * Feedback page responsiveness
+    * ~~Feedback page responsiveness~~
     * ~~Flashcard page responsiveness~~
     * Coding exercise page responsiveness
