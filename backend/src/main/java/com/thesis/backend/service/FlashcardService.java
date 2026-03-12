@@ -17,10 +17,6 @@ public class FlashcardService {
         return flashcardRepository.findFlashcardByUser(user);
     }
 
-    public List<Flashcard> getAllFlashcards(){
-        return flashcardRepository.findAll();
-    }
-
     public Flashcard createFlashcard(User user, String question, String answer){
         Flashcard flashcard = new Flashcard();
         flashcard.setUser(user);
