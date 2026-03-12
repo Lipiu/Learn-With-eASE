@@ -1,0 +1,262 @@
+.fc-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+    font-family: 'Crimson Pro', serif;
+}
+
+.fc-header {
+    margin-bottom: 2.5rem;
+}
+
+.fc-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 0.25rem;
+    letter-spacing: -0.02em;
+}
+
+.fc-subtitle {
+    font-size: 1rem;
+    color: var(--text);
+    opacity: 0.5;
+    margin: 0;
+    font-style: italic;
+}
+
+.fc-form {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.fc-input {
+    flex: 1;
+    min-width: 180px;
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    border: 2px solid var(--text);
+    background: transparent;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    outline: none;
+    opacity: 0.8;
+    transition: opacity 0.2s, border-color 0.2s;
+}
+
+.fc-input:focus {
+    opacity: 1;
+    border-color: var(--text);
+}
+
+.fc-input::placeholder {
+    opacity: 0.4;
+}
+
+.fc-create-btn {
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    border: none;
+    background: var(--text);
+    color: var(--bg);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+}
+
+.fc-create-btn:hover { opacity: 0.8; }
+
+.fc-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text);
+    opacity: 0.4;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+.fc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+.fc-card-wrapper {
+    animation: fadeUp 0.4s ease both;
+}
+
+.fc-card {
+    position: relative;
+    height: 200px;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.fc-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.fc-card.flipped .fc-card-inner {
+    transform: rotateY(180deg);
+}
+
+.fc-card-front, .fc-card-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--text);
+    background: var(--bg);
+}
+
+.fc-card-back {
+    transform: rotateY(180deg);
+    background: var(--text);
+    color: var(--bg);
+    border-color: transparent;
+}
+
+.fc-card-back .fc-card-label {
+    color: var(--bg);
+    opacity: 0.5;
+}
+
+.fc-card-back .fc-card-text {
+    color: var(--bg);
+}
+
+.fc-card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text);
+    opacity: 0.4;
+    margin-bottom: 0.75rem;
+}
+
+.fc-card-text {
+    font-size: 1.05rem;
+    text-align: center;
+    color: var(--text);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.fc-card-actions {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    display: flex;
+    gap: 0.4rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 10;
+}
+
+.fc-card:hover .fc-card-actions {
+    opacity: 1;
+}
+
+.fc-edit-btn,
+.fc-delete-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity 0.15s;
+}
+
+.fc-edit-btn {
+    background: var(--text);
+    color: var(--bg);
+}
+
+.fc-delete-btn {
+    background: #ef4444;
+    color: white;
+}
+
+.fc-edit-btn:hover,
+.fc-delete-btn:hover { opacity: 0.8; }
+
+.fc-edit-mode {
+    height: auto;
+    cursor: default;
+    background: var(--text);
+    border-radius: 14px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    border: 2px solid var(--text);
+}
+
+.fc-edit-input {
+    width: 100%;
+    min-width: unset;
+    background: var(--bg);
+    color: var(--text);
+    border-color: rgba(0,0,0,0.2);
+}
+
+.fc-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.fc-save-btn, .fc-cancel-btn {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.fc-save-btn {
+    background: var(--bg);
+    color: var(--text);
+}
+
+.fc-cancel-btn {
+    background: transparent;
+    color: var(--bg);
+    border: 2px solid var(--bg);
+    opacity: 0.6;
+}
+
+.fc-save-btn:hover,
+.fc-cancel-btn:hover { opacity: 0.8; }
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+    .fc-form { flex-direction: column; }
+    .fc-create-btn { width: 100%; }
+}

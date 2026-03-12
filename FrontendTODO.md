@@ -71,18 +71,20 @@
             * ~~If user passes display message and points~~
         
         * Flashcard section
-          * Allow the user to create personalized flashcards which can be used during coding exercises
+          * ~~Allow the user to create personalized flashcards~~
 
         * Feedback
           * ~~Create feedback page~~
           * Allow users to provide feedback (only if logged in)
           * Display the feedback on the platform in the Feedback section
+          
         * Resources
             * ~~Nice page with useful resources related to Java:~~
               * ~~Links~~
               * ~~Books~~
               * ~~Videos~~
-        * ~~Account~~
+              
+        * Account
             * ~~Create register page~~
             * ~~Create login page~~
             * ~~Login/register logic~~

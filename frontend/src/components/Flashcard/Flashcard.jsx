@@ -1,21 +1,18 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Flashcard.css";
 
 function Flashcards() {
     const [flashcards, setFlashcards] = useState([]);
     const [question, setQuestion] = useState("");
     const [answer, setAnswer] = useState("");
+    const [flipped, setFlipped] = useState({});
+    const [editingId, setEditingId] = useState(null);
+    const [editQuestion, setEditQuestion] = useState("");
+    const [editAnswer, setEditAnswer] = useState("");
     const navigate = useNavigate();
 
     const token = localStorage.getItem("token");
-
-    useEffect(() => {
-        if (!token) {
-            navigate("/register");
-            return;
-        }
-        fetchFlashcards();
-    }, []);
 
     const fetchFlashcards = async () => {
         const response = await fetch("http://localhost:8080/api/flashcard", {
@@ -25,17 +22,30 @@ function Flashcards() {
         setFlashcards(data);
     };
 
+    useEffect(() => {
+        const loadFlashcards = async () => {
+            if (!token) {
+                navigate("/register");
+                return;
+            }
+            const response = await fetch("http://localhost:8080/api/flashcard", {
+                headers: {Authorization: `Bearer ${token}`}
+            });
+            const data = await response.json();
+            setFlashcards(data);
+        };
+        loadFlashcards();
+    }, [token, navigate]);
+
     const createFlashcard = async () => {
-        if (!question || !answer) {
-            return;
-        }
+        if (!question || !answer) return;
         const response = await fetch("http://localhost:8080/api/flashcard", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
-            body: JSON.stringify({question, answer})
+            body: JSON.stringify({ question, answer })
         });
         if (response.ok) {
             setQuestion("");
@@ -49,41 +59,121 @@ function Flashcards() {
             method: "DELETE",
             headers: { "Authorization": `Bearer ${token}` }
         });
+        if (response.ok) await fetchFlashcards();
+    };
+
+    const saveEdit = async (id) => {
+        const response = await fetch(`http://localhost:8080/api/flashcard/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ question: editQuestion, answer: editAnswer })
+        });
         if (response.ok) {
+            setEditingId(null);
             await fetchFlashcards();
         }
     };
 
-    return (
-        <div style={{ padding: "2rem" }}>
-            <h1>Flashcards</h1>
+    const toggleFlip = (id) => {
+        setFlipped(prev => ({ ...prev, [id]: !prev[id] }));
+    };
 
-            <div style={{ marginBottom: "2rem" }}>
+    const startEdit = (card) => {
+        setEditingId(card.id);
+        setEditQuestion(card.question);
+        setEditAnswer(card.answer);
+    };
+
+    return (
+        <div className="fc-page">
+            <div className="fc-header">
+                <h1 className="fc-title">My Flashcards</h1>
+                <p className="fc-subtitle">Click a card to reveal the answer</p>
+            </div>
+
+            {/* Create form */}
+            <div className="fc-form">
                 <input
+                    className="fc-input"
                     type="text"
                     placeholder="Question"
                     value={question}
                     onChange={e => setQuestion(e.target.value)}
-                    style={{ marginRight: "0.5rem" }}
+                    onKeyDown={e => e.key === "Enter" && createFlashcard()}
                 />
                 <input
+                    className="fc-input"
                     type="text"
                     placeholder="Answer"
                     value={answer}
                     onChange={e => setAnswer(e.target.value)}
-                    style={{ marginRight: "0.5rem" }}
+                    onKeyDown={e => e.key === "Enter" && createFlashcard()}
                 />
-                <button onClick={createFlashcard}>Create</button>
+                <button className="fc-create-btn" onClick={createFlashcard}>
+                    + Add Card
+                </button>
             </div>
 
-            {flashcards.length === 0 && <p>No flashcards yet.</p>}
-            {flashcards.map(card => (
-                <div key={card.id} style={{ border: "1px solid gray", padding: "1rem", marginBottom: "1rem", borderRadius: "8px" }}>
-                    <p><strong>Q:</strong> {card.question}</p>
-                    <p><strong>A:</strong> {card.answer}</p>
-                    <button onClick={() => deleteFlashcard(card.id)}>Delete</button>
+            {/* Cards grid */}
+            {flashcards.length === 0 ? (
+                <div className="fc-empty">
+                    <p>No flashcards yet. Create your first one above!</p>
                 </div>
-            ))}
+            ) : (
+                <div className="fc-grid">
+                    {flashcards.map((card, idx) => (
+                        <div
+                            key={card.id}
+                            className="fc-card-wrapper"
+                            style={{ animationDelay: `${idx * 0.05}s` }}
+                        >
+                            {editingId === card.id ? (
+                                <div className="fc-card fc-edit-mode">
+                                    <input
+                                        className="fc-input fc-edit-input"
+                                        value={editQuestion}
+                                        onChange={e => setEditQuestion(e.target.value)}
+                                        placeholder="Question"
+                                    />
+                                    <input
+                                        className="fc-input fc-edit-input"
+                                        value={editAnswer}
+                                        onChange={e => setEditAnswer(e.target.value)}
+                                        placeholder="Answer"
+                                    />
+                                    <div className="fc-actions">
+                                        <button className="fc-save-btn" onClick={() => saveEdit(card.id)}>Save</button>
+                                        <button className="fc-cancel-btn" onClick={() => setEditingId(null)}>Cancel</button>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div
+                                    className={`fc-card ${flipped[card.id] ? "flipped" : ""}`}
+                                    onClick={() => toggleFlip(card.id)}
+                                >
+                                    <div className="fc-card-inner">
+                                        <div className="fc-card-front">
+                                            <span className="fc-card-label">Q</span>
+                                            <p className="fc-card-text">{card.question}</p>
+                                        </div>
+                                        <div className="fc-card-back">
+                                            <span className="fc-card-label">A</span>
+                                            <p className="fc-card-text">{card.answer}</p>
+                                        </div>
+                                    </div>
+                                    <div className="fc-card-actions" onClick={e => e.stopPropagation()}>
+                                        <button className="fc-edit-btn" onClick={() => startEdit(card)}>Edit</button>
+                                        <button className="fc-delete-btn" onClick={() => deleteFlashcard(card.id)}>Delete</button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 }
