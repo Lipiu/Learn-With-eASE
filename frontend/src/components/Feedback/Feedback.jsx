@@ -158,9 +158,9 @@ function Feedback() {
                                 <div
                                     key={fb.id} className="feedback-item">
                                     <p><strong>{fb.user?.firstName} {fb.user?.lastName}</strong></p>
-                                    <p>Ease of use: {fb.easeOfUseRating} ⭐</p>
-                                    <p>Learning experience: {fb.learningExperienceRating} ⭐</p>
-                                    <p>UI: {fb.uiRating} ⭐</p>
+                                    <p>Ease of use: {fb.easeOfUseRating}/5</p>
+                                    <p>Learning experience: {fb.learningExperienceRating}/5</p>
+                                    <p>UI: {fb.uiRating}/5</p>
                                     {fb.comment && <p>Comment: {fb.comment}</p>}
                                 </div>
                             ))

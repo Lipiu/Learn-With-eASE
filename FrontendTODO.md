@@ -25,6 +25,7 @@
           * Will have to customize this page accordingly:
             * Display quiz statistics
             * Display coding exercise statistics
+            * Also display statistics in a dedicated section on the user profile page
         * ~~Flashcards~~
 
 * Pages for buttons
@@ -58,6 +59,7 @@
 
         * ~~Quiz section~~
           * ~~Now if the user solves first quiz for multiple times for example on their personal page will be displayed quiz1, quiz2 etc...~~
+          * For each locked quiz instead of having the button "go to section1" have a button that gets the user to previous section
             * ~~Have to solve -> display Quiz 1 1st try, Quiz 1 2nd try ...~~
             * ~~Add percentages for quiz (passed/failed)~~
             * ~~Add more details on user page~~
