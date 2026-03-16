@@ -40,6 +40,7 @@ import ProtectedRouteQuiz from "./components/Quiz/ProtectedRouteQuiz.jsx";
 import QuizLocked from "./components/Quiz/QuizLocked.jsx";
 import CongratulationsPage from "./components/Quiz/CongratulationsPage/CongratulationsPage.jsx";
 import Flashcard from "./components/Flashcard/Flashcard.jsx";
+import Sandbox from "./components/Sandbox/Sandbox.jsx";
 
 function App() {
 
@@ -136,6 +137,8 @@ function App() {
                     <Route path='/quiz-locked' element={<QuizLocked/>} />
                     <Route path='/feedback' element={<Feedback/>}></Route>
                     <Route path='/flashcard' element={<Flashcard/>}></Route>
+
+                    <Route path='/sandbox' element={<Sandbox/>}/>
 
                     <Route path='/login' element={<Login/>}></Route>
                     <Route path='/register' element={<Register/>}></Route>

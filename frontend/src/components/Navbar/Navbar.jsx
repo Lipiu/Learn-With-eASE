@@ -65,6 +65,12 @@ function Navbar(){
                 </li>
 
                 <li>
+                    <Link to="/sandbox" onClick={closeDropdown}>
+                        <button>Coding Exercises</button>
+                    </Link>
+                </li>
+
+                <li>
                     <Link to="/flashcard" onClick={closeDropdown}>
                         <button>Flashcard</button>
                     </Link>
