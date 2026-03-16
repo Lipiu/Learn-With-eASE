@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) //allow REACT frontend to communicate with the backend
                 .csrf(AbstractHttpConfigurer::disable) //no need since we use JWT, it would have been a risk if we used session-based authentication
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll() //everyone can access
+                        .requestMatchers("/api/auth/**", "/api/exercises/**", "/api/feedback/**").permitAll() //everyone can access
                         .requestMatchers("/api/admin/**").hasRole("ADMIN") //protect ADMIN endpoint
                         .anyRequest().authenticated() //must be authenticated but any role works
                 )

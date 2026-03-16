@@ -35,7 +35,7 @@
         * Sections
           * Add button to allow user to go to quiz once they finish theory section (at the end of each section)
           * Add button to allow user to go to coding exercise once they finish theory section (at the end of each section)
-        * Add coding sandbox on a new page
+        * ~~Add coding sandbox on a new page~~
           * ~~Section 1 - introduction about Java, JDK, variables/control~~
             * ~~For now just add the theory and style later~~
             * ~~Decide on layout~~
@@ -99,4 +99,4 @@
     * ~~Quiz page responsiveness~~
     * ~~Feedback page responsiveness~~
     * ~~Flashcard page responsiveness~~
-    * Coding exercise page responsiveness
+    * ~~Coding exercise page responsiveness~~
