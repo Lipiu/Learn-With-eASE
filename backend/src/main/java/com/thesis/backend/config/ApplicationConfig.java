@@ -53,25 +53,4 @@ public class ApplicationConfig {
     public RestTemplate restTemplate(){
         return new RestTemplate();
     }
-
-    @Bean
-    CommandLineRunner seed(CodingExerciseRepository exerciseRepository){
-        return args -> {
-            if(exerciseRepository.count() == 0){
-                CodingExercise ex = new CodingExercise();
-                ex.setTitle("Hello World");
-                ex.setDescription("Write a Java program that prints exactly: Hello, World!");
-                ex.setStarterCode(
-                        "public class Main {\n" +
-                                "    public static void main(String[] args) {\n" +
-                                "        // write your code here\n" +
-                                "    }\n" +
-                                "}"
-                );
-                ex.setExpectedOutput("Hello, World!");
-                ex.setSectionNumber(1);
-                exerciseRepository.save(ex);
-            }
-        };
-    }
 }

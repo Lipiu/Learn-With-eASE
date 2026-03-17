@@ -9,8 +9,11 @@ import com.thesis.backend.repository.CodingExerciseRepository;
 import com.thesis.backend.repository.CodingExerciseResultRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -19,6 +22,8 @@ public class ExerciseService {
     private final CodingExerciseRepository codingExerciseRepository;
     private final CodingExerciseResultRepository codingExerciseResultRepository;
     private final SandboxService sandboxService;
+    private static final String COMPILE_OUTPUT_KEY = "\"compile_output\":\"";
+    private static final String STDOUT_KEY = "\"stdout\":\"";
 
     public List<ExerciseResponse> getAllExercises(){
         return codingExerciseRepository.findAll()
@@ -39,41 +44,39 @@ public class ExerciseService {
         return response;
     }
 
-    private ExerciseSubmitResponse checkOutput(String judgeResponse, String expectedOutput) {
-        if (judgeResponse == null) {
-            return new ExerciseSubmitResponse(false, "No response from judge.");
+    private ExerciseSubmitResponse checkOutput(String judgeResponse, String expectedOutput){
+        if(judgeResponse == null){
+            return new ExerciseSubmitResponse(false, "No response from judge");
         }
 
-        // check for compilation error
-        if (judgeResponse.contains("\"compile_output\":\"") ) {
-            int start = judgeResponse.indexOf("\"compile_output\":\"") + 10;
-            int end = judgeResponse.indexOf("\",", start);
-            if (end > start) {
-                String error = judgeResponse.substring(start, end).trim();
-                if (!error.isEmpty()) {
-                    return new ExerciseSubmitResponse(false, "Compilation error: " + error
-                            .replace("\\n", "\n")
-                            .replace("\\t", "\t"));
+        try{
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(judgeResponse);
+
+            JsonNode compileOutput = root.get("compile_output");
+            if(compileOutput != null && !compileOutput.isArray()){
+                String error = compileOutput.asString().trim();
+                if(!error.isEmpty()){
+                    return new ExerciseSubmitResponse(false, "Compilation error:\n" + error);
                 }
             }
-        }
+            JsonNode stdout = root.get("stdout");
+            if(stdout == null || stdout.isNull()){
+                return new ExerciseSubmitResponse(false, "No output produced.");
+            }
 
-        // check stdout
-        if (!judgeResponse.contains("\"stdout\"")) {
-            return new ExerciseSubmitResponse(false, "No output produced.");
-        }
+            String actualOutput = stdout.asString().trim();
+            String normalizedExpected = expectedOutput.trim();
 
-        int start = judgeResponse.indexOf("\"stdout\":\"") + 10;
-        int end = judgeResponse.indexOf("\"", start);
-        if (end <= start) {
-            return new ExerciseSubmitResponse(false, "Could not read output.");
+            if(actualOutput.equals(normalizedExpected)){
+                return new ExerciseSubmitResponse(true, "Correct!");
+            }
+            else{
+                return new ExerciseSubmitResponse(false, "Wrong answer. Expected:\n" + normalizedExpected + "\nGot:\n" + actualOutput);
+            }
         }
-
-        String actualOutput = judgeResponse.substring(start, end).trim();
-        if (actualOutput.equals(expectedOutput.trim())) {
-            return new ExerciseSubmitResponse(true, "Correct!");
-        } else {
-            return new ExerciseSubmitResponse(false, "Wrong answer. Expected: " + expectedOutput.trim() + " but got: " + actualOutput);
+        catch(Exception e){
+            return new ExerciseSubmitResponse(false, "Error parsing judge response: " + e.getMessage());
         }
     }
 
