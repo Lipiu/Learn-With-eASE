@@ -39,23 +39,29 @@
           * ~~Section 1 - introduction about Java, JDK, variables/control~~
             * ~~For now just add the theory and style later~~
             * ~~Decide on layout~~
-            * Add sandbox for coding exercises
+            * ~~Add sandbox for coding exercises~~
+            * ~~Add exercises~~
             * ~~Make it so that the section part scrolls, not whole page~~
           * ~~Section 2 - OOP basics~~
             * ~~Add theory~~
-            * Add sandbox for coding exercises
+            * ~~Add sandbox for coding exercises~~
+            * Add exercises
           * ~~Section 3 - Collections/generics~~
             * ~~Add theory~~
-            * Add sandbox for coding exercises
+            * ~~Add sandbox for coding exercises~~
+            * Add exercises
           * ~~Section 4 - Exceptions / streams / lambdas~~
             * ~~Add theory~~
-            * Add sandbox for coding exercises
+            * ~~Add sandbox for coding exercises~~
+            * Add exercises
           * ~~Section 5 - Files~~
             * ~~Add theory~~
-            * Add sandbox for coding exercises
+            * ~~Add sandbox for coding exercises~~
+            * Add exercises
           * ~~Section 6 - Networking~~
               * ~~Add theory~~
-              * Add sandbox for coding exercises
+              * ~~Add sandbox for coding exercises~~
+              * Add exercises
 
         * ~~Quiz section~~
           * ~~Now if the user solves first quiz for multiple times for example on their personal page will be displayed quiz1, quiz2 etc...~~
