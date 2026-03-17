@@ -18,12 +18,14 @@ function Sandbox() {
             .then(data => setExercises(data));
     }, []);
 
+    //when user clicks on an exercise it loads the starter code into the editor
     const selectExercise = (exercise) => {
         setSelectedExercise(exercise);
         setCode(exercise.starterCode);
         setOutput(null);
     };
 
+    //method to group exercises based on sectionNumber
     const groupedExercises  = exercises.reduce((groups, exercise) => {
         const section = exercise.sectionNumber;
         if(!groups[section]){
@@ -50,10 +52,16 @@ function Sandbox() {
                 setOutput({ passed: false, message: "Server error: " + response.status });
                 return;
             }
+
+            //parse the response as json and store in output
             const result = await response.json();
             setOutput(result);
             if (result.passed) {
-                setSolvedIds(prev => [...new Set([...prev, selectedExercise.id])]);
+                setSolvedIds(prev => {
+                    if(prev.includes(selectedExercise.id))
+                        return prev;
+                    return[...prev, selectedExercise.id];
+                })
             }
         } catch (err) {
             setOutput({ passed: false, message: "Error: " + err.message });
