@@ -24,6 +24,15 @@ function Sandbox() {
         setOutput(null);
     };
 
+    const groupedExercises  = exercises.reduce((groups, exercise) => {
+        const section = exercise.sectionNumber;
+        if(!groups[section]){
+            groups[section] = [];
+        }
+        groups[section].push(exercise);
+        return groups;
+    }, {});
+
     const submitCode = async () => {
         if (!selectedExercise) return;
         setLoading(true);
@@ -57,20 +66,32 @@ function Sandbox() {
         <div className="sandbox-page">
             <aside className="sandbox-sidebar">
                 <h3 className="sidebar-heading">Exercises</h3>
-                <ul className="exercise-list">
-                    {exercises.map(ex => (
-                        <li
-                            key={ex.id}
-                            className={`exercise-item ${selectedExercise?.id === ex.id ? "active" : ""}`}
-                            onClick={() => selectExercise(ex)}
-                        >
-                            <span className="exercise-title">{ex.title}</span>
-                            {solvedIds.includes(ex.id) && (
-                                <span className="exercise-badge solved">✓</span>
-                            )}
-                        </li>
-                    ))}
-                </ul>
+                {Object.entries(groupedExercises).map(([section, sectionExercises]) => (
+                    <div key={section} className="exercise-group">
+                        <div className="exercise-group-header">
+                            <span className="exercise-group-label">
+                                Section {section}
+                            </span>
+                            <div className="exercise-group-line"/>
+                        </div>
+                        <ul className="exercise-list">
+                            {sectionExercises.map(ex => (
+                                <li
+                                    key={ex.id}
+                                    className={`exercise-item ${selectedExercise?.id === ex.id ? "active" : ""}`}
+                                    onClick={() => selectExercise(ex)}
+                                >
+                                    <span className="exercise-title">
+                                        {ex.title}
+                                    </span>
+                                    {solvedIds.includes(ex.id) && (
+                                        <span className="exercise-badge solved">✓</span>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
             </aside>
 
             <div className="sandbox-main">
