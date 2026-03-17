@@ -31,6 +31,16 @@ public class ExerciseController {
         return ResponseEntity.ok(exerciseService.getExerciseById(id));
     }
 
+    @GetMapping("/solved")
+    public ResponseEntity<List<Long>> getSolvedExerciseIds(@AuthenticationPrincipal UserDetails userDetails){
+        if(userDetails == null){
+            return ResponseEntity.status(401).build();
+        }
+        User user = userRepository.findByEmail(userDetails.getUsername()).orElseThrow();
+        List<Long> solvedIds = exerciseService.getSolvedExerciseIds(user);
+        return ResponseEntity.ok(solvedIds);
+    }
+
     @PostMapping("/{id}/submit")
     public ResponseEntity<ExerciseSubmitResponse> submitExercise(
             @PathVariable Long id,

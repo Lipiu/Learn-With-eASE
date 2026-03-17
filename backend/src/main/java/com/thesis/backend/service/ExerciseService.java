@@ -50,8 +50,10 @@ public class ExerciseService {
         }
 
         try{
+            //convert JSON strings into Java objects (basically acts as a JSON parser)
             ObjectMapper mapper = new ObjectMapper();
-            JsonNode root = mapper.readTree(judgeResponse);
+
+            JsonNode root = mapper.readTree(judgeResponse); // parse the JSON string into a tree structure (root is the entire json object)
 
             JsonNode compileOutput = root.get("compile_output");
             if(compileOutput != null && !compileOutput.isArray()){
@@ -101,5 +103,14 @@ public class ExerciseService {
         result.setPassed(passed);
         result.setCreatedAt(LocalDateTime.now());
         codingExerciseResultRepository.save(result);
+    }
+
+    public List<Long> getSolvedExerciseIds(User user){
+        return codingExerciseResultRepository.findByUser(user)
+                .stream()
+                .filter(CodingExerciseResult::isPassed)
+                .map(result -> result.getCodingExercise().getId())
+                .distinct()
+                .toList();
     }
 }

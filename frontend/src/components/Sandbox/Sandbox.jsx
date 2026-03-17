@@ -16,6 +16,15 @@ function Sandbox() {
         fetch("http://localhost:8080/api/exercises")
             .then(res => res.json())
             .then(data => setExercises(data));
+        if(token){
+            fetch("http://localhost:8080/api/exercises/solved", {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => setSolvedIds(data));
+        }
     }, []);
 
     //when user clicks on an exercise it loads the starter code into the editor
