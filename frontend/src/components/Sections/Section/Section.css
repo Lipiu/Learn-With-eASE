@@ -96,3 +96,33 @@
     padding-left: 0.75rem;
     border-left: 2px solid rgba(255, 200, 0, 0.5);
 }
+
+.section-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--text);
+    opacity: 0.9;
+    max-width: 900px;
+}
+
+.section-action-btn {
+    padding: 0.65rem 1.5rem;
+    border-radius: 10px;
+    border: none;
+    background: var(--text);
+    color: var(--bg);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.section-action-btn:hover { opacity: 0.8; }
+
+.section-action-btn.secondary {
+    background: transparent;
+    border: 1.5px solid var(--text);
+    color: var(--text);
+}

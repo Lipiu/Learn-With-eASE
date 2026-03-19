@@ -9,6 +9,7 @@ function Sandbox() {
     const [output, setOutput] = useState(null);
     const [loading, setLoading] = useState(false);
     const [solvedIds, setSolvedIds] = useState([]);
+    const [showNote, setShowNote] = useState(false);
 
     const token = localStorage.getItem("token");
 
@@ -83,6 +84,17 @@ function Sandbox() {
         <div className="sandbox-page">
             <aside className="sandbox-sidebar">
                 <h3 className="sidebar-heading">Exercises</h3>
+                <div className="sandbox-note" onClick={() => setShowNote(prev => ! prev)}>
+                    <span className="sandbox-note-icon">ℹ️ Useful information</span>
+                    {showNote && (
+                        <p>
+                            Please pay attention to <code>formatting rules</code> because Judge0 test cases are really strict and will give compilation error. <br></br><br></br>
+                            Also, when creating additional classes, use <code>class MyClass</code> instead of <code>public class MyClass</code> to avoid compilation errors. <br></br><br></br>
+                            <code>For section 5 (Files)</code> there will not be any files created because of working in a limited sandbox.<br></br><br></br>
+                            <code>For section 6 (Networking)</code> exercises are tricky for Judge0 because you can't open actual sockets in a this sandboxed environment.
+                        </p>
+                    )}
+                </div>
                 {Object.entries(groupedExercises).map(([section, sectionExercises]) => (
                     <div key={section} className="exercise-group">
                         <div className="exercise-group-header">

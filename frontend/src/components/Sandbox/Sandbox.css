@@ -183,3 +183,39 @@
     background: var(--text);
     opacity: 0.2;
 }
+
+.sandbox-note {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--text);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.sandbox-note:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.sandbox-note-icon {
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.sandbox-note p {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    margin: 0;
+    color: var(--text);
+}
+
+.sandbox-note code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1px 4px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}

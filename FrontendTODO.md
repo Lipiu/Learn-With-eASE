@@ -33,8 +33,8 @@
         * ~~Home~~
             * ~~will need more work but for now is fine~~
         * Sections
-          * Add button to allow user to go to quiz once they finish theory section (at the end of each section)
-          * Add button to allow user to go to coding exercise once they finish theory section (at the end of each section)
+          * ~~Add button to allow user to go to quiz once they finish theory section (at the end of each section)~~
+          * ~~Add button to allow user to go to coding exercise once they finish theory section (at the end of each section)~~
         * ~~Add coding sandbox on a new page~~
           * ~~Section 1 - introduction about Java, JDK, variables/control~~
             * ~~For now just add the theory and style later~~
@@ -45,23 +45,23 @@
           * ~~Section 2 - OOP basics~~
             * ~~Add theory~~
             * ~~Add sandbox for coding exercises~~
-            * Add exercises
+            * ~~Add exercises~~
           * ~~Section 3 - Collections/generics~~
             * ~~Add theory~~
             * ~~Add sandbox for coding exercises~~
-            * Add exercises
+            * ~~Add exercises~~
           * ~~Section 4 - Exceptions / streams / lambdas~~
             * ~~Add theory~~
             * ~~Add sandbox for coding exercises~~
-            * Add exercises
+            * ~~Add exercises~~
           * ~~Section 5 - Files~~
             * ~~Add theory~~
             * ~~Add sandbox for coding exercises~~
-            * Add exercises
+            * ~~Add exercises~~
           * ~~Section 6 - Networking~~
               * ~~Add theory~~
               * ~~Add sandbox for coding exercises~~
-              * Add exercises
+              * ~~Add exercises~~
 
         * ~~Quiz section~~
           * ~~Now if the user solves first quiz for multiple times for example on their personal page will be displayed quiz1, quiz2 etc...~~

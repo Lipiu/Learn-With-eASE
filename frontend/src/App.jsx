@@ -51,33 +51,33 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
 
-                    <Route path='/section1' element={<Section headings={s1Headings} tips={s1Tips}/>}>
+                    <Route path='/section1' element={<Section headings={s1Headings} tips={s1Tips} sectionNumber={1}/>}>
                         <Route index element={<Navigate to="theory" replace />} />
                         <Route path="theory" element={<Section1Theory />} />
                     </Route>
 
-                    <Route path='/section2' element={<Section headings={s2Headings} tips={s2Tips}/>}>
+                    <Route path='/section2' element={<Section headings={s2Headings} tips={s2Tips} sectionNumber={2}/>}>
                         <Route index element={<Navigate to="theory" replace />}/>
                         <Route path="theory" element={<Section2Theory/>}/>
                     </Route>
 
-                    <Route path='/section3' element={<Section headings={s3Headings} tips={s3Tips}/>}>
+                    <Route path='/section3' element={<Section headings={s3Headings} tips={s3Tips} sectionNumber={3}/>}>
                         <Route index element={<Navigate to="theory" replace />}/>
                         <Route path="theory" element={<Section3Theory/>}/>
                     </Route>
 
 
-                    <Route path='/section4' element={<Section headings={s4Headings} tips={s4Tips}/>}>
+                    <Route path='/section4' element={<Section headings={s4Headings} tips={s4Tips} sectionNumber={4}/>}>
                         <Route index element={<Navigate to="theory" replace />}/>
                         <Route path="theory" element={<Section4Theory/>}/>
                     </Route>
 
-                    <Route path='/section5' element={<Section headings={s5Headings} tips={s5Tips}/>}>
+                    <Route path='/section5' element={<Section headings={s5Headings} tips={s5Tips} sectionNumber={5}/>}>
                         <Route index element={<Navigate to="theory" replace />}/>
                         <Route path="theory" element={<Section5Theory/>}/>
                     </Route>
 
-                    <Route path='/section6' element={<Section headings={s6Headings} tips={s6Tips}/>}>
+                    <Route path='/section6' element={<Section headings={s6Headings} tips={s6Tips} sectionNumber={6}/>}>
                         <Route index element={<Navigate to="theory" replace />}/>
                         <Route path="theory" element={<Section6Theory/>}/>
                     </Route>

@@ -18,8 +18,14 @@ public class CodingExercise {
     private Long id;
 
     private String title;
+
+    @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
+
+    @Column(name = "starter_code", nullable = false, columnDefinition = "TEXT")
     private String starterCode;
+
+    @Column(name = "expected_output", nullable = false, columnDefinition = "TEXT")
     private String expectedOutput;
     private int sectionNumber;
 }
