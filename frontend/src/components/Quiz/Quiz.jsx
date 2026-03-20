@@ -14,6 +14,14 @@ function Quiz({quizNumber, questions, nextSection }){
 
     const navigate = useNavigate(); // we use 'useNavigate' to redirect the user to /section2/theory if score > 50%
 
+    let nextButtonLabel;
+    if(quizNumber === 6) {
+        nextButtonLabel = "Finish Quiz Section";
+    }
+    else{
+        nextButtonLabel = `Go to Section ${quizNumber + 1}`;
+    }
+
     useEffect(() => {
         const token = localStorage.getItem("token");
         //check localStorage for a token
@@ -134,7 +142,7 @@ function Quiz({quizNumber, questions, nextSection }){
                         {passed && nextSection && (
                             <div className="button-container next-section-container">
                                 <button className="next-section-btn" onClick={() => navigate(nextSection)}>
-                                    {nextSection ==="/congratulations" ? "See your results" : `Go to section ${quizNumber + 1}`}
+                                    {nextButtonLabel}
                                 </button>
                             </div>
                         )}

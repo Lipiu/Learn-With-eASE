@@ -33,10 +33,10 @@ const quiz4questions = [
         ]
     },
     {
-        //image to be added
         id: 4,
         type: "single",
         question: "In the Stream example, what will be printed after filter and sorted?",
+        image: "src/components/Quiz/Questions/Assets/streams.png",
         answers: [
             { text: "Ana, Alex", isCorrect: false },
             { text: "Alex, Ana", isCorrect: true },
@@ -70,7 +70,8 @@ const quiz4questions = [
         //image to be added
         id: 7,
         type: "single",
-        question: "What will numbers.forEach(n -> System.out.println(n * 2)) print for the list [1, 2, 3, 4, 5]?",
+        question: "What will be the output of this code sequence?",
+        image: "src/components/Questions/Assets/foreach.png",
         answers: [
             { text: "1, 2, 3, 4, 5", isCorrect: false },
             { text: "2, 4, 6, 8, 10", isCorrect: true },
@@ -105,6 +106,7 @@ const quiz4questions = [
         id: 10,
         type: "single",
         question: "In the exception example, what always executes regardless of whether an exception occurs?",
+        image: "src/components/Quiz/Questions/Assets/try_catch.png",
         answers: [
             { text: "The try block", isCorrect: false },
             { text: "The catch block", isCorrect: false },

@@ -36,7 +36,7 @@ function ProtectedRouteQuiz({quizNumber, children}){
     if(allowed === null)
         return <p>Loading...</p>
     if(!allowed)
-        return <Navigate to="/quiz-locked" replace/>
+        return <Navigate to="/quiz-locked" state={{ quizNumber }} replace/>
     return children;
 }
 

@@ -60,7 +60,6 @@ const quiz2questions = [
         ]
     },
     {
-        //image to be added with code snippet
         id: 7,
         question: "If Dog extends Animal, what can a Dog object access?",
         answers: [
@@ -91,7 +90,6 @@ const quiz2questions = [
         ]
     },
     {
-        //image to be added
         id: 10,
         question: "Given a Human reference holding a Student object, which info() method gets called?",
         answers: [

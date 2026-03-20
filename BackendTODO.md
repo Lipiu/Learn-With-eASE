@@ -19,7 +19,3 @@
     * ~~Flashcards~~
       * ~~Allow users to create personalized flashcards that persist~~
       * ~~If not logged in cannot create flashcard~~
-
-* Quiz functionalities
-  * if the user is logged in and changes the page (for example go to flashcards tab) the website \
-  should remember the quiz that the user was previously, not restart the quiz

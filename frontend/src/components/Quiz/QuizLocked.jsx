@@ -1,8 +1,12 @@
-import {useNavigate} from "react-router-dom";
+import {useNavigate,useLocation} from "react-router-dom";
 import "./QuizLocked.css";
 
 function QuizLocked(){
     const navigate = useNavigate();
+    const location = useLocation();
+    const quizNumber=location.state?.quizNumber;
+    const prevSection = quizNumber ? quizNumber - 1 : 1;
+    const isLastQuiz = quizNumber === 6;
     return(
         <div className="locked-container">
             <div className="locked-card">
@@ -15,9 +19,11 @@ function QuizLocked(){
                     <button className="locked-btn" onClick={() => navigate("/")}>
                         Go to main page
                     </button>
-                    <button className="locked-btn" onClick={() => navigate("/section1/theory")}>
-                        Go to first chapter
-                    </button>
+                    {!isLastQuiz && (
+                        <button className="locked-btn" onClick={() => navigate(`/section${prevSection}/theory`)}>
+                            Go to Section {prevSection}
+                        </button>
+                    )}
                 </div>
             </div>
         </div>
