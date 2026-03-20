@@ -113,4 +113,13 @@ public class ExerciseService {
                 .distinct()
                 .toList();
     }
+
+    public List<ExerciseResponse> getSolvedExerciseDetails(User user){
+        return codingExerciseResultRepository.findByUser(user)
+                .stream()
+                .filter(CodingExerciseResult::isPassed)
+                .map(result -> toResponse(result.getCodingExercise()))
+                .distinct()
+                .toList();
+    }
 }

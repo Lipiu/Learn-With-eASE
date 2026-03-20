@@ -1,6 +1,6 @@
 # Repo for my Bachelor's Degree project (frontend): Java E-Learning Platform
 
-* ## **TO DO**:
+* ## **TO DO - frontend is finished for now**:
 
 * Final TODO:
   * Refactor code
@@ -23,13 +23,13 @@
         * ~~Account~~
         * ~~Congratulations page -> if the user succeeds in solving all quizzes~~
           * Will have to customize this page accordingly:
-            * Display quiz statistics
-            * Display coding exercise statistics
-            * Also display statistics in a dedicated section on the user profile page
+            * ~~Display quiz statistics~~
+            * ~~Display coding exercise statistics~~
+            * ~~Also display statistics in a dedicated section on the user profile page~~
         * ~~Flashcards~~
 
 * Pages for buttons
-    * Customize each page accordingly
+    * ~~Customize each page accordingly~~
         * ~~Home~~
             * ~~will need more work but for now is fine~~
         * Sections

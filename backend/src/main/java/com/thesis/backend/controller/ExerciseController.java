@@ -6,6 +6,7 @@ import com.thesis.backend.dtos.coding_exercise.ExerciseSubmitResponse;
 import com.thesis.backend.model.User;
 import com.thesis.backend.repository.UserRepository;
 import com.thesis.backend.service.ExerciseService;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,17 +23,17 @@ public class ExerciseController {
     private final UserRepository userRepository;
 
     @GetMapping
-    public ResponseEntity<List<ExerciseResponse>> getAllExercises() {
+    public ResponseEntity<@NonNull List<ExerciseResponse>> getAllExercises() {
         return ResponseEntity.ok(exerciseService.getAllExercises());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ExerciseResponse> getExerciseById(@PathVariable Long id) {
+    public ResponseEntity<@NonNull ExerciseResponse> getExerciseById(@PathVariable Long id) {
         return ResponseEntity.ok(exerciseService.getExerciseById(id));
     }
 
     @GetMapping("/solved")
-    public ResponseEntity<List<Long>> getSolvedExerciseIds(@AuthenticationPrincipal UserDetails userDetails){
+    public ResponseEntity<@NonNull List<Long>> getSolvedExerciseIds(@AuthenticationPrincipal UserDetails userDetails){
         if(userDetails == null){
             return ResponseEntity.status(401).build();
         }
@@ -41,8 +42,18 @@ public class ExerciseController {
         return ResponseEntity.ok(solvedIds);
     }
 
+    @GetMapping("/solved/details")
+    public ResponseEntity<@NonNull List<ExerciseResponse>> getSolvedExerciseDetails(@AuthenticationPrincipal UserDetails userDetails){
+        if(userDetails == null){
+            return ResponseEntity.status(401).build();
+        }
+        User user = userRepository.findByEmail(userDetails.getUsername()).orElseThrow();
+        List<ExerciseResponse> solved = exerciseService.getSolvedExerciseDetails(user);
+        return ResponseEntity.ok(solved);
+    }
+
     @PostMapping("/{id}/submit")
-    public ResponseEntity<ExerciseSubmitResponse> submitExercise(
+    public ResponseEntity<@NonNull ExerciseSubmitResponse> submitExercise(
             @PathVariable Long id,
             @RequestBody CodeSubmissionRequest request,
             @AuthenticationPrincipal UserDetails userDetails) {
