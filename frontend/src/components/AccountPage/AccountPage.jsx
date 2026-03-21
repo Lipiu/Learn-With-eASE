@@ -2,152 +2,171 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./AccountPage.css";
 
+// Constants
+const TABS = {
+    QUIZ: "quiz",
+    EXERCISES: "exercises",
+    ADMIN: "admin",
+};
+
+const API = {
+    QUIZ_RESULTS: "http://localhost:8080/api/quiz/results",
+    EXERCISES: "http://localhost:8080/api/exercises",
+    SOLVED_EXERCISES: "http://localhost:8080/api/exercises/solved/details",
+    ADMIN_USERS: "http://localhost:8080/api/admin/users",
+    ADMIN_USER_QUIZ: (id) => `http://localhost:8080/api/admin/users/${id}/quiz-results`,
+    ADMIN_USER_EXERCISES: (id) => `http://localhost:8080/api/admin/users/${id}/exercise-results`,
+    ADMIN_DELETE_USER: (id) => `http://localhost:8080/api/admin/users/${id}`,
+}
+
+// Helpers
+const authHeader = (token) => ({
+    "Authorization": `Bearer ${token}`
+});
+
+const groupByQuizNumber = (results) => results.reduce((groups, result) => {
+    const key = result.quizNumber;
+    if(!groups[key])
+        groups[key] = [];
+    groups[key].push(result);
+    return groups;
+}, {});
+
+const calculatePassRate = (results) => {
+    if(results.length === 0){
+        return 0;
+    }
+    const passed = results.filter((result) => result.passed).length;
+    return ((passed / results.length) * 100).toFixed(0);
+};
+
+const calculateCompletionRate = (total, solved) => {
+    if(total === 0){
+        return 0;
+    }
+    return ((solved / total) * 100).toFixed(0);
+};
+
+const buildExercisesBySection = (allExercises, solvedExercises) => {
+    const solvedIds = new Set(solvedExercises.map(exercise => exercise.id));
+
+    return allExercises.reduce((groups, exercise) => {
+        const key = exercise.sectionNumber;
+        if (!groups[key]) {
+            groups[key] = { total: 0, solved: 0 };
+        }
+        groups[key].total++;
+        if (solvedIds.has(exercise.id)) {
+            groups[key].solved++;
+        }
+        return groups;
+    }, {});
+};
+
+const getInitials = (firstName, lastName) => {
+    const first = firstName ? firstName[0] : "";
+    const last = lastName ? lastName[0] : "";
+    return (first + last).toUpperCase();
+}
+
 function AccountPage() {
-    const [user, setUser] = useState(null); //state for currently logged-in user
-    const [quizResults, setQuizResults] = useState([]); //holds all quiz attempts
-    const [allExercises, setAllExercises] = useState([]); // holds all coding exercises
-    const [solvedExercises, setSolvedExercises ] = useState([]); // holds exercises the user passed
-    const [activeTab, setActiveTab] = useState("quiz"); //trac which tab is active
-    const [expandedQuiz, setExpandedQuiz] = useState(null); //track which quiz group is exapnded (null = collapsed)
+
+    // Authentication
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("token");
+    const isAdmin = storedUser && storedUser.role === "ADMIN";
+
+    // Admin
+    const [users, setUsers] = useState([]);
     const [selectedAdminUser, setSelectedAdminUser] = useState(null);
     const [selectedUserQuizResults, setSelectedUserQuizResults] = useState([]);
     const [selectedUserExerciseResults, setSelectedUserExerciseResults] = useState([]);
 
-    const navigate = useNavigate();
 
-    const token = localStorage.getItem("token");
+    // Quiz
+    const [quizResults, setQuizResults] = useState([]); //holds all quiz attempts
+    const [expandedQuiz, setExpandedQuiz] = useState(null); //track which quiz group is expanded (null = collapsed)
 
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    const isAdmin = storedUser && storedUser.role === "ADMIN";
-    const [users, setUsers] = useState([]);
-
-    useEffect(() => {
-        const storedUser = JSON.parse(localStorage.getItem("user"));
-
-        //if user exists set it to state
-        if(storedUser){
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            setUser(storedUser);
-        }
-
-        if(token){
-            fetch("http://localhost:8080/api/quiz/results", {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                },
-            })
-                .then(res => res.json()) //parse the response as json
-                .then(data => setQuizResults(data)) // we set quizResult with state fetched data
-                .catch(() => console.error("Failed to fetch quiz results"))
-
-            fetch("http://localhost:8080/api/exercises", {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            })
-                .then(res => res.json())
-                .then(data => setAllExercises(data))
-                .catch(() => console.error("Failed to fetch exercises"));
-
-            fetch("http://localhost:8080/api/exercises/solved/details", {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            })
-                .then(res => res.json())
-                .then(data => setSolvedExercises(data))
-                .catch(() => console.error("Failed to fetch solved exercises"));
-
-            if(token && isAdmin){
-                fetch("http://localhost:8080/api/admin/users", {
-                    headers: {
-                        "Authorization": `Bearer ${token}`
-                    }
-                })
-                    .then(res => res.json())
-                    .then(data => setUsers(data))
-                    .catch(() => console.error("Failed to fetch users"));
-            }
-        }
-    }, []);
-
-    const logout = () => {
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
-        navigate("/login");
-    }
-
-    const totalAttempts = quizResults.length;
-    const passedAttempts = quizResults.filter(r => r.passed).length;
-    let passRate = 0;
-    if(totalAttempts > 0){
-        passRate = ((passedAttempts/totalAttempts)*100).toFixed(0);
-    }
+    // Quiz derived
+    const passRate = calculatePassRate(quizResults);
 
     //group all attempts by quiz number into an object
-    const groupedQuizzes = quizResults.reduce((groups, result) => {
-        const key = result.quizNumber;
-        if(!groups[key]){
-            groups[key] = [];
-        }
-        groups[key].push(result);
-        return groups;
-    }, {});
+    const groupedQuizzes = groupByQuizNumber(quizResults);
 
+    // Coding exercises
+    const [allExercises, setAllExercises] = useState([]); // holds all coding exercises
+    const [solvedExercises, setSolvedExercises ] = useState([]); // holds exercises the user passed
+
+    // Coding exercises derived
     const totalExercises = allExercises.length;
     const totalSolved = solvedExercises.length;
+    const completionRate = calculateCompletionRate(totalExercises, totalSolved);
+    const exercisesBySection = buildExercisesBySection(allExercises, solvedExercises);
 
-    let completionRate = 0;
-    if(totalExercises > 0){
-        completionRate = ((totalSolved/totalExercises) * 100).toFixed(0);
-    }
+    // UI
+    const [activeTab, setActiveTab] = useState(TABS.QUIZ); //track which tab is active
 
-    const exercisesBySection = allExercises.reduce((groups, ex) => {
-        const key = ex.sectionNumber;
-        if(!groups[key]){
-            groups[key] = { total: 0, solved: 0 };
-        }
-        groups[key].total++;
-        return groups;
-    }, {});
+    const navigate = useNavigate();
+
+    // Data fetching
+    const loadQuizResults = () => {
+        fetch(API.QUIZ_RESULTS, {
+            headers: authHeader(token)
+        })
+            .then((res) => res.json())
+            .then((data) => setQuizResults(data))
+            .catch(() => console.error("Failed to fetch quiz results"));
+    };
+
+    const loadExercises = () => {
+        fetch(API.EXERCISES, {
+            headers: authHeader(token)
+        })
+            .then((res) => res.json())
+            .then((data) => setAllExercises(data))
+            .catch(() => console.error("Failed to fetch exercises"));
+    };
+
+    const loadSolvedExercises = () => {
+        fetch(API.SOLVED_EXERCISES, {
+            headers: authHeader(token)
+        })
+            .then((res) => res.json())
+            .then((data) => setSolvedExercises(data))
+            .catch(() => console.error("Failed to fetch solved exercises"));
+    };
 
     const fetchUsers = async () => {
-        const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:8080/api/admin/users", {
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        });
+        const response = await fetch(API.ADMIN_USERS, {
+            headers: authHeader(token)
+        })
         const data = await response.json();
         setUsers(data);
     };
 
     const fetchUserProgress = async (userId) => {
-        const token = localStorage.getItem("token");
-        const quizResponse = await fetch(`http://localhost:8080/api/admin/users/${userId}/quiz-results`, {
-            headers: {
-                "Authorization":`Bearer ${token}`
-            }
-        });
-        const quizData = await quizResponse.json();
-        setSelectedUserQuizResults(quizData);
+        const [quizResponse, exerciseResponse] = await Promise.all([
+            fetch(API.ADMIN_USER_QUIZ(userId), {
+                headers: authHeader(token)
+            }),
+            fetch(API.ADMIN_USER_EXERCISES(userId), {
+                headers: authHeader(token)
+            }),
+        ]);
 
-        const exerciseResponse = await fetch(`http://localhost:8080/api/admin/users/${userId}/exercise-results`, {
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        });
-        const exerciseData = await exerciseResponse.json();
+        const [quizData, exerciseData] = await Promise.all([
+            quizResponse.json(),
+            exerciseResponse.json(),
+        ]);
+
+        setSelectedUserQuizResults(quizData);
         setSelectedUserExerciseResults(exerciseData);
-    }
+    };
 
     const deleteUser = async (id) => {
-        const token = localStorage.getItem("token");
-        const response = await fetch(`http://localhost:8080/api/admin/users/${id}`, {
+        const response = await fetch(API.ADMIN_DELETE_USER(id), {
             method: "DELETE",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
+            headers: authHeader(token),
         });
         if(response.ok){
             if(selectedAdminUser && selectedAdminUser.id === id){
@@ -157,15 +176,21 @@ function AccountPage() {
             }
             await fetchUsers();
         }
-    }
+    };
 
-    solvedExercises.forEach(ex => {
-        if(exercisesBySection[ex.sectionNumber]) {
-            exercisesBySection[ex.sectionNumber].solved++;
+    useEffect(() => {
+        if(!token)
+            return;
+        loadQuizResults();
+        loadExercises();
+        loadSolvedExercises();
+
+        if(isAdmin) {
+            (async () => await fetchUsers())();
         }
-    });
+    }, []);
 
-    if(!user){
+    if(!storedUser){
         return (
             <div className="account-page">
                 <div className="not-logged-in">
@@ -178,49 +203,53 @@ function AccountPage() {
         );
     }
 
-    const firstInitial = user.firstName ? user.firstName[0] : "";
-    const lastInitial = user.lastName ? user.lastName[0] : "";
-    const initials = (firstInitial + lastInitial).toUpperCase();
+    const initials = getInitials(storedUser.firstName, storedUser.lastName);
 
 
     return (
         <div className="account-page">
             <aside className="account-sidebar">
                 <div className="account-avatar">{initials}</div>
-                <h2 className="account-name">{user.firstName} {user.lastName}</h2>
-                <p className="account-email">{user.email}</p>
-                <button className="account-logout" onClick={logout}>Logout</button>
+                <h2 className="account-name">{storedUser.firstName} {storedUser.lastName}</h2>
+                <p className="account-email">{storedUser.email}</p>
+                <button className="account-logout" onClick={() => {
+                    localStorage.removeItem("user");
+                    localStorage.removeItem("token");
+                    navigate("/login");
+                }}>
+                    Logout
+                </button>
             </aside>
 
             <div className="account-main">
                 <div className="account-tabs">
                     <button
-                        className={`account-tab ${activeTab === "quiz" ? "active" : ""}`}
-                        onClick={() => setActiveTab("quiz")}
+                        className={`account-tab ${activeTab === TABS.QUIZ ? "active" : ""}`}
+                        onClick={() => setActiveTab(TABS.QUIZ)}
                     >
                         Quiz Stats
                     </button>
                     <button
-                        className={`account-tab ${activeTab === "exercises" ? "active" : ""}`}
-                        onClick={() => setActiveTab("exercises")}
+                        className={`account-tab ${activeTab === TABS.EXERCISES ? "active" : ""}`}
+                        onClick={() => setActiveTab(TABS.EXERCISES)}
                     >
                         Exercise Stats
                     </button>
                     {isAdmin && (
                         <button
-                            className={`account-tab ${activeTab === "admin" ? "active" : ""}`}
-                            onClick={() => setActiveTab("admin")}
+                            className={`account-tab ${activeTab === TABS.ADMIN ? "active" : ""}`}
+                            onClick={() => setActiveTab(TABS.ADMIN)}
                         >
                             Admin
                         </button>
                     )}
                 </div>
 
-                {activeTab === "quiz" && (
+                {activeTab === TABS.QUIZ && (
                     <div className="stats-content">
                         <div className="stats-cards">
                             <div className="stats-card">
-                                <span className="stats-card-value">{totalAttempts}</span>
+                                <span className="stats-card-value">{quizResults.length}</span>
                                 <span className="stats-card-label">Total Attempts</span>
                             </div>
                             <div className="stats-card">
@@ -229,12 +258,15 @@ function AccountPage() {
                             </div>
                         </div>
 
-                        {Object.entries(groupedQuizzes)
-                            .sort(([a], [b]) => Number(a) - Number(b))
-                            .map(([quizNum, attempts]) => {
-                                const best = Math.max(...attempts.map(a => a.percentage));
-                                const passed = attempts.some(a => a.passed);
-                                const isExpanded = expandedQuiz === quizNum;
+                        {quizResults.length === 0 ? (
+                            <p className="empty-state">You haven't taken any quizzes yet.</p>
+                        ) : (
+                            Object.entries(groupedQuizzes)
+                                .sort(([a], [b]) => Number(a) - Number(b))
+                                .map(([quizNum, attempts]) => {
+                                    const best = Math.max(...attempts.map((attempt) => attempt.percentage));
+                                    const passed = attempts.some((attempt) => attempt.passed);
+                                    const isExpanded = expandedQuiz === quizNum;
 
                                 return (
                                     <div key={quizNum} className="quiz-group-card">
@@ -255,7 +287,7 @@ function AccountPage() {
 
                                         {isExpanded && (
                                             <div className="quiz-attempts">
-                                                {attempts
+                                                {[...attempts]
                                                     .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
                                                     .map((attempt, i) => (
                                                         <div key={i} className={`attempt-row ${attempt.passed ? "passed" : "failed"}`}>
@@ -274,15 +306,12 @@ function AccountPage() {
                                         )}
                                     </div>
                                 );
-                            })}
-
-                        {quizResults.length === 0 && (
-                            <p className="empty-state">You haven't taken any quizzes yet.</p>
+                            })
                         )}
                     </div>
                 )}
 
-                {activeTab === "exercises" && (
+                {activeTab === TABS.EXERCISES && (
                     <div className="stats-content">
                         <div className="stats-cards">
                             <div className="stats-card">
@@ -295,53 +324,53 @@ function AccountPage() {
                             </div>
                         </div>
 
-                        {Object.entries(exercisesBySection)
-                            .sort(([a], [b]) => Number(a) - Number(b))
-                            .map(([section, data]) => (
-                                <div key={section} className="section-exercise-card">
-                                    <div className="section-exercise-header">
-                                        <span className="section-exercise-name">Section {section}</span>
-                                        <span className="section-exercise-count">{data.solved} / {data.total} solved</span>
-                                    </div>
-                                    <div className="section-progress-bar">
-                                        <div
-                                            className="section-progress-fill"
-                                            style={{ width: `${(data.solved / data.total) * 100}%` }}
-                                        />
-                                    </div>
-                                </div>
-                            ))}
-
-                        {solvedExercises.length === 0 && (
+                        {solvedExercises.length === 0 ? (
                             <p className="empty-state">You haven't solved any exercises yet.</p>
+                        ) : (
+                            Object.entries(exercisesBySection)
+                                .sort(([a], [b]) => Number(a) - Number(b))
+                                .map(([section, data]) => (
+                                    <div key={section} className="section-exercise-card">
+                                        <div className="section-exercise-header">
+                                            <span className="section-exercise-name">Section {section}</span>
+                                            <span className="section-exercise-count">{data.solved} / {data.total} solved</span>
+                                        </div>
+                                        <div className="section-progress-bar">
+                                            <div
+                                                className="section-progress-fill"
+                                                style={{ width: `${(data.solved / data.total) * 100}%` }}
+                                            />
+                                        </div>
+                                    </div>
+                                ))
                         )}
                     </div>
                 )}
-                {activeTab === "admin" && (
+                {activeTab === TABS.ADMIN && (
                     <div className="stats-content">
                         <h3 className="admin-section-title">Registered Users</h3>
                         {users.length === 0 ? (
                             <p className="empty-state">No users found.</p>
                         ):(
-                            users.map(u => (
+                            users.map(registeredUser => (
                                 <div
-                                    key={u.id}
-                                    className={`user-row ${selectedAdminUser && selectedAdminUser.id === u.id ? "selected" : ""}`}
+                                    key={registeredUser.id}
+                                    className={`user-row ${selectedAdminUser && selectedAdminUser.id === registeredUser.id ? "selected" : ""}`}
                                     onClick={() => {
-                                        setSelectedAdminUser(u);
-                                        fetchUserProgress(u.id);
+                                        setSelectedAdminUser(registeredUser);
+                                        fetchUserProgress(registeredUser.id);
                                     }}
                                 >
                                     <div className="user-info">
-                                        <span className="user-name">{u.firstName} {u.lastName}</span>
-                                        <span className="user-email">{u.email}</span>
-                                        <span className={`user-role ${u.role === "ADMIN" ? "role-admin" : "role-user"}`}>{u.role}</span>
+                                        <span className="user-name">{registeredUser.firstName} {registeredUser.lastName}</span>
+                                        <span className="user-email">{registeredUser.email}</span>
+                                        <span className={`user-role ${registeredUser.role === "ADMIN" ? "role-admin" : "role-user"}`}>{registeredUser.role}</span>
                                     </div>
                                     {/*show delete button only if the user is not ADMIN (cannot delete admin account) */}
-                                    {u.role !== "ADMIN" && (
+                                    {registeredUser.role !== "ADMIN" && (
                                         <button
                                             className="delete-user-btn"
-                                            onClick={() => deleteUser(u.id)}
+                                            onClick={(e) => { e.stopPropagation(); deleteUser(registeredUser.id); }}
                                         >
                                             Delete User
                                         </button>
@@ -358,15 +387,9 @@ function AccountPage() {
                                 {selectedUserQuizResults.length === 0 ? (
                                     <p className="empty-state">No quiz attempts yet.</p>
                                 ):(
-                                    Object.entries(
-                                        selectedUserQuizResults.reduce((groups, result) => {
-                                            const key = result.quizNumber;
-                                            if(!groups[key])
-                                                groups[key] = [];
-                                            groups[key].push(result);
-                                            return groups;
-                                        }, {})
-                                    ).sort(([a], [b]) => Number(a) - Number(b)).map(([quizNum, attempts]) => {
+                                    Object.entries(groupByQuizNumber(selectedUserQuizResults))
+                                        .sort(([a], [b]) => Number(a) - Number(b))
+                                        .map(([quizNum, attempts]) => {
                                         const best = Math.max(...attempts.map(attempt => attempt.percentage));
                                         const passed = attempts.some(attempt => attempt.passed);
                                         return (
@@ -381,10 +404,10 @@ function AccountPage() {
                                     })
                                 )}
                                 <h4 className="progress-subtitle">Exercises solved</h4>
-                                {selectedUserExerciseResults.filter(r => r.passed).length === 0 ? (
+                                {selectedUserExerciseResults.filter(result => result.passed).length === 0 ? (
                                     <p className="empty-state">No exercises solved yet.</p>
                                 ):(
-                                    selectedUserExerciseResults.filter(r => r.passed).map((result, index)=> (
+                                    selectedUserExerciseResults.filter(result => result.passed).map((result, index)=> (
                                         <div key={index} className="user-progress-row">
                                             <span className="quiz-status-dot passed" />
                                             <span className="user-progress-label">{result.codingExercise.title}</span>
