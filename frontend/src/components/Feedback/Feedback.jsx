@@ -5,8 +5,7 @@ import {useEffect, useState} from "react";
 const categories = [
     { id: "ease", label: "Ease of use" },
     { id: "learning", label: "Learning experience" },
-    { id: "ui", label: "User interface" },
-
+    { id: "ui", label: "User interface" }
 ];
 
 const colors = {
@@ -17,23 +16,23 @@ const colors = {
 function Feedback() {
     const [ratings, setRatings] = useState({});
     const [hover, setHover] = useState({});
-    const isValidFeedback = categories.every(({ id }) => ratings[id] > 0);
     const [submitted, setSubmitted] = useState(false);
     const [comment, setComment] = useState("");
     const [feedbackList, setFeedbackList] = useState([]);
+
+    const token = localStorage.getItem("token");
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const isAdmin = storedUser && storedUser.role === "ADMIN";
+    const isValidFeedback = categories.every(({ id }) => ratings[id] > 0);
+    const authHeader = { "Authorization": `Bearer ${token}` };
 
     const fetchFeedback = async () => {
-        const token = localStorage.getItem("token");
         if (!token) {
             return;
         }
         try {
             const response = await fetch("http://localhost:8080/api/feedback", {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
+                headers: authHeader
             });
             if(!response.ok){
                 throw new Error("Failed to fetch feedback");
@@ -47,13 +46,10 @@ function Feedback() {
     };
 
     const deleteFeedback = async (id) => {
-        const token = localStorage.getItem("token");
         try{
             const response = await fetch(`http://localhost:8080/api/feedback/${id}`, {
                 method: "DELETE",
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
+                headers: authHeader
             });
             if(response.ok){
                 await fetchFeedback();
@@ -64,21 +60,16 @@ function Feedback() {
         }
     }
 
-    useEffect(() => {
-        fetchFeedback();
-    }, []);
-
-
     const handleClick = (category, value) => {
-        setRatings({ ...ratings, [category]: value });
+        setRatings(prev => ({ ...prev, [category]: value }));
     };
 
     const handleHover = (category, value) => {
-        setHover({ ...hover, [category]: value });
+        setHover(prev => ({ ...prev, [category]: value }));
     };
 
     const handleLeave = (category) => {
-        setHover({ ...hover, [category]: undefined });
+        setHover(prev => ({ ...prev, [category]: undefined }));
     };
 
     const handleSubmit = async () => {
@@ -86,7 +77,6 @@ function Feedback() {
             return;
         }
 
-        const token = localStorage.getItem("token");
         if(!token){
             alert("You must be logged in to submit feedback!");
             return;
@@ -96,7 +86,7 @@ function Feedback() {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
+                    ...authHeader
                 },
                 body: JSON.stringify({
                     easeOfUseRating: ratings.ease,
@@ -113,13 +103,16 @@ function Feedback() {
             setRatings({});
             setComment("");
             await fetchFeedback();
-
         }
         catch(error){
             console.error(error);
             alert("Error while submitting feedback");
         }
     };
+
+    useEffect(() => {
+        fetchFeedback();
+    }, []);
 
     return (
         <div className="feedback-page">

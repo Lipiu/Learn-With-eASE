@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import {useState, useEffect } from "react";
 import {useForm} from "react-hook-form";
 import './Register.css';
 import {Link, useNavigate} from "react-router-dom";
@@ -13,6 +13,8 @@ function Register() {
     const [message, setMessage] = useState(null);
     const [status, setStatus] = useState(null);
     const navigate = useNavigate();
+    const timeout = 1500;
+    const useEffectTimeout = 3000;
 
     const onSubmit = async (data) => {
         try{
@@ -29,19 +31,18 @@ function Register() {
             const result = await res.json();
 
             if(res.ok){
-                setStatus("Success");
+                setStatus("success");
                 setMessage("Account created successfully!");
 
-                setTimeout(() => navigate("/login", 1500));
+                setTimeout(() => navigate("/login"), timeout);
             }
             else{
-                setStatus("Error");
+                setStatus("error");
                 setMessage(result.message || "Registration failed");
             }
         }
-            // eslint-disable-next-line no-unused-vars
-        catch(err){
-            setStatus("Error");
+        catch {
+            setStatus("error");
             setMessage("Server error");
         }
     };
@@ -52,7 +53,7 @@ function Register() {
         const timer = setTimeout(() => {
             setMessage(null);
             setStatus(null);
-        }, 3000);
+        }, useEffectTimeout);
         return () => clearTimeout(timer);
     }, [message]);
 

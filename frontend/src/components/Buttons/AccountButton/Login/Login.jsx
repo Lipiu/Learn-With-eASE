@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {Link, useNavigate} from "react-router-dom";
 import './Login.css';
@@ -8,6 +8,16 @@ function Login() {
     const [message, setMessage] = useState(null);
     const [status, setStatus] = useState(null);
     const navigate = useNavigate();
+
+    const saveUserToLocalStorage = (result) => {
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("user", JSON.stringify({
+            firstName: result.firstName,
+            lastName: result.lastName,
+            email: result.email,
+            role: result.role
+        }));
+    }
 
     const onSubmit = async (data) => {
         try {
@@ -33,19 +43,11 @@ function Login() {
                 return;
             }
 
-            // store token and user in localStorage
-            localStorage.setItem("token", result.token);
-            localStorage.setItem("user", JSON.stringify({
-                firstName: result.firstName,
-                lastName: result.lastName,
-                email: result.email,
-                role: result.role
-            }));
-
+            saveUserToLocalStorage(result);
             setStatus("success");
             setMessage("Logged in successfully!");
-
             navigate("/account"); // go to account page
+
         } catch (err) {
             console.error(err);
             setStatus("error");

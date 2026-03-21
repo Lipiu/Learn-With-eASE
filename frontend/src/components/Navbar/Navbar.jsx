@@ -7,13 +7,17 @@ import AccountButton from "../Buttons/AccountButton/Account/AccountButton.jsx";
 function Navbar(){
     const [openMenu, setOpenMenu] = useState(null);
     const navbarRef = useRef(null);
-    const closeDropdown = () => setOpenMenu(false);
+    const closeDropdown = () => setOpenMenu(null);
+
+    const toggleMenu = (menu) => {
+        setOpenMenu(prev => prev === menu ? null : menu);
+    }
 
     //make the dropdown sections menu disappear if click anywhere
     useEffect(() => {
         function handleClickOutside(e){
             if(navbarRef.current && !navbarRef.current.contains(e.target)){
-                setOpenMenu(false);
+                setOpenMenu(null);
             }
         }
         document.addEventListener("mousedown", handleClickOutside);
@@ -22,14 +26,14 @@ function Navbar(){
 
     return(
         <div className='navbar' ref={navbarRef}>
-            <ThemeButtonToggle></ThemeButtonToggle>
+            <ThemeButtonToggle />
             <ul>
                 <li>
-                    <Link to="/" className="nav-link" onClick={closeDropdown}>Home</Link>
+                    <Link to="/" onClick={closeDropdown}>Home</Link>
                 </li>
                 <li className='dropdown-li'>
                     <button onClick={() => {
-                        setOpenMenu(openMenu === "sections" ? null : "sections")
+                        toggleMenu("sections")
                     }}>
                         Sections
                     </button>
@@ -47,7 +51,7 @@ function Navbar(){
 
                 <li className='dropdown-li'>
                     <button onClick={() => {
-                        setOpenMenu(openMenu === "quiz" ? null : "quiz")
+                        toggleMenu("quiz")
                     }}>
                         Quiz
                     </button>
@@ -66,30 +70,30 @@ function Navbar(){
 
                 <li>
                     <Link to="/sandbox" onClick={closeDropdown}>
-                        <button>Coding Exercises</button>
+                        Coding Exercises
                     </Link>
                 </li>
 
                 <li>
                     <Link to="/flashcard" onClick={closeDropdown}>
-                        <button>Flashcard</button>
+                        Flashcard
                     </Link>
                 </li>
 
 
                 <li>
                     <Link to="/resources" onClick={closeDropdown}>
-                        <button>Resources</button>
+                        Resources
                     </Link>
                 </li>
 
                 <li>
                     <Link to="/feedback" onClick={closeDropdown}>
-                        <button>Feedback</button>
+                        Feedback
                     </Link>
                 </li>
             </ul>
-            <AccountButton></AccountButton>
+            <AccountButton />
         </div>
     )
 }

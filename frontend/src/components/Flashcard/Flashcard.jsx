@@ -13,29 +13,24 @@ function Flashcards() {
     const navigate = useNavigate();
 
     const token = localStorage.getItem("token");
+    const authHeader = { "Authorization": `Bearer ${token}` };
 
     const fetchFlashcards = async () => {
         const response = await fetch("http://localhost:8080/api/flashcard", {
-            headers: { "Authorization": `Bearer ${token}` }
+            headers: authHeader
         });
         const data = await response.json();
         setFlashcards(data);
     };
 
     useEffect(() => {
-        const loadFlashcards = async () => {
-            if (!token) {
-                navigate("/register");
-                return;
-            }
-            const response = await fetch("http://localhost:8080/api/flashcard", {
-                headers: {Authorization: `Bearer ${token}`}
-            });
-            const data = await response.json();
-            setFlashcards(data);
-        };
-        loadFlashcards();
-    }, [token, navigate]);
+        if(!token){
+            navigate("/register");
+            return;
+        }
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        fetchFlashcards();
+    }, []);
 
     const createFlashcard = async () => {
         if (!question || !answer) return;
@@ -43,7 +38,7 @@ function Flashcards() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
+                ...authHeader
             },
             body: JSON.stringify({ question, answer })
         });
@@ -57,7 +52,7 @@ function Flashcards() {
     const deleteFlashcard = async (id) => {
         const response = await fetch(`http://localhost:8080/api/flashcard/${id}`, {
             method: "DELETE",
-            headers: { "Authorization": `Bearer ${token}` }
+            headers: authHeader
         });
         if (response.ok) await fetchFlashcards();
     };
@@ -67,7 +62,7 @@ function Flashcards() {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
+                ...authHeader
             },
             body: JSON.stringify({ question: editQuestion, answer: editAnswer })
         });

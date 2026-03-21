@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import './ThemeButton.css'
-import '../AccountButton/Account/AccountButton.jsx'
 import sunIcon from "../../../assets/sun.png";
 import moonIcon from "../../../assets/moon.png";
 
@@ -15,7 +14,7 @@ function ThemeButtonToggle(){
     }, [theme]);
 
     const toggleTheme = () => {
-        setTheme(theme === "light" ? "dark" : "light");
+        setTheme(prev => prev === "light" ? "dark" : "light");
     };
 
     return (

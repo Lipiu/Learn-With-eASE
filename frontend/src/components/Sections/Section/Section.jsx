@@ -5,6 +5,13 @@ import './Section.css'
 function Section( {headings = [], tips = [], sectionNumber }) {
     const navigate = useNavigate();
 
+    const scrollToSection = (id) => {
+        const element = document.getElementById(id);
+        if(element){
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <div className="section">
             <div className="section-layout">
@@ -32,15 +39,10 @@ function Section( {headings = [], tips = [], sectionNumber }) {
                             <h4 className="sidebar-title">On this page</h4>
                             <ul className="sidebar-nav">
 
-                                {headings.map((h, i) => (
-                                    <li key={i}>
-                                        <span className="sidebar-link" onClick={()=>{
-                                            const element = document.getElementById(h.id);
-                                            if(element) {
-                                                element.scrollIntoView({behavior: "smooth"})
-                                            }
-                                        }}>
-                                            {h.label}
+                                {headings.map((heading, index) => (
+                                    <li key={index}>
+                                        <span className="sidebar-link" onClick={()=> scrollToSection(heading.id)}>
+                                            {heading.label}
                                         </span>
                                     </li>
                                 ))}
@@ -51,8 +53,8 @@ function Section( {headings = [], tips = [], sectionNumber }) {
                         <div className="sidebar-card tips-card">
                             <h4 className="sidebar-title">Did you know?</h4>
                             <ul className="tips-list">
-                                {tips.map((tip, i) => (
-                                    <li key={i} className="tip-item">{tip}</li>
+                                {tips.map((tip, index) => (
+                                    <li key={index} className="tip-item">{tip}</li>
                                 ))}
                             </ul>
                         </div>
