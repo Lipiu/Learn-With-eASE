@@ -3,7 +3,7 @@
 * ## **TO DO - frontend is finished for now**:
 
 * Final TODO:
-  * Refactor code
+  * ~~Refactor code~~
     * ~~Theory section - for now it has lots of duplicated code~~
     * ~~Quiz section - same issue~~
   * ~~Clean the code~~
