@@ -5,7 +5,7 @@
 * Add functionalities for ADMIN
   * ~~Admin can delete feedback from page~~
   * ~~Admin can delete users~~
-  * Admin can see user quiz/exercise progress
+  * ~~Admin can see user quiz/exercise progress~~
 
 
 * ~~Extra functionalities~~

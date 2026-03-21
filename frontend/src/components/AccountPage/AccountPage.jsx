@@ -9,6 +9,10 @@ function AccountPage() {
     const [solvedExercises, setSolvedExercises ] = useState([]); // holds exercises the user passed
     const [activeTab, setActiveTab] = useState("quiz"); //trac which tab is active
     const [expandedQuiz, setExpandedQuiz] = useState(null); //track which quiz group is exapnded (null = collapsed)
+    const [selectedAdminUser, setSelectedAdminUser] = useState(null);
+    const [selectedUserQuizResults, setSelectedUserQuizResults] = useState([]);
+    const [selectedUserExerciseResults, setSelectedUserExerciseResults] = useState([]);
+
     const navigate = useNavigate();
 
     const token = localStorage.getItem("token");
@@ -118,6 +122,25 @@ function AccountPage() {
         setUsers(data);
     };
 
+    const fetchUserProgress = async (userId) => {
+        const token = localStorage.getItem("token");
+        const quizResponse = await fetch(`http://localhost:8080/api/admin/users/${userId}/quiz-results`, {
+            headers: {
+                "Authorization":`Bearer ${token}`
+            }
+        });
+        const quizData = await quizResponse.json();
+        setSelectedUserQuizResults(quizData);
+
+        const exerciseResponse = await fetch(`http://localhost:8080/api/admin/users/${userId}/exercise-results`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        const exerciseData = await exerciseResponse.json();
+        setSelectedUserExerciseResults(exerciseData);
+    }
+
     const deleteUser = async (id) => {
         const token = localStorage.getItem("token");
         const response = await fetch(`http://localhost:8080/api/admin/users/${id}`, {
@@ -127,6 +150,11 @@ function AccountPage() {
             }
         });
         if(response.ok){
+            if(selectedAdminUser && selectedAdminUser.id === id){
+                setSelectedAdminUser(null);
+                setSelectedUserQuizResults([]);
+                setSelectedUserExerciseResults([]);
+            }
             await fetchUsers();
         }
     }
@@ -296,7 +324,14 @@ function AccountPage() {
                             <p className="empty-state">No users found.</p>
                         ):(
                             users.map(u => (
-                                <div key={u.id} className="user-row">
+                                <div
+                                    key={u.id}
+                                    className={`user-row ${selectedAdminUser && selectedAdminUser.id === u.id ? "selected" : ""}`}
+                                    onClick={() => {
+                                        setSelectedAdminUser(u);
+                                        fetchUserProgress(u.id);
+                                    }}
+                                >
                                     <div className="user-info">
                                         <span className="user-name">{u.firstName} {u.lastName}</span>
                                         <span className="user-email">{u.email}</span>
@@ -313,6 +348,51 @@ function AccountPage() {
                                     )}
                                 </div>
                             ))
+                        )}
+                        {selectedAdminUser && (
+                            <div className="user-progress-section">
+                                <h3 className="admin-section-title">
+                                    Progress for {selectedAdminUser.firstName} {selectedAdminUser.lastName}
+                                </h3>
+                                <h4 className="progress-subtitle">Quiz Results</h4>
+                                {selectedUserQuizResults.length === 0 ? (
+                                    <p className="empty-state">No quiz attempts yet.</p>
+                                ):(
+                                    Object.entries(
+                                        selectedUserQuizResults.reduce((groups, result) => {
+                                            const key = result.quizNumber;
+                                            if(!groups[key])
+                                                groups[key] = [];
+                                            groups[key].push(result);
+                                            return groups;
+                                        }, {})
+                                    ).sort(([a], [b]) => Number(a) - Number(b)).map(([quizNum, attempts]) => {
+                                        const best = Math.max(...attempts.map(attempt => attempt.percentage));
+                                        const passed = attempts.some(attempt => attempt.passed);
+                                        return (
+                                            <div key={quizNum} className="user-progress-row">
+                                                <span className={`quiz-status-dot ${passed ? "passed" : "failed"}`} />
+                                                <span className="user-progress-label">Quiz {quizNum}</span>
+                                                <span className="user-progress-detail">Best: {best.toFixed(0)}%</span>
+                                                <span className="user-progress-detail">{attempts.length} attempt{attempts.length > 1 ? "s" : ""}</span>
+                                                <span className={passed ? "passed-text" : "failed-text"}>{passed ? "Passed ✅" : "Failed ❌"}</span>
+                                            </div>
+                                        );
+                                    })
+                                )}
+                                <h4 className="progress-subtitle">Exercises solved</h4>
+                                {selectedUserExerciseResults.filter(r => r.passed).length === 0 ? (
+                                    <p className="empty-state">No exercises solved yet.</p>
+                                ):(
+                                    selectedUserExerciseResults.filter(r => r.passed).map((result, index)=> (
+                                        <div key={index} className="user-progress-row">
+                                            <span className="quiz-status-dot passed" />
+                                            <span className="user-progress-label">{result.codingExercise.title}</span>
+                                            <span className="user-progress-detail">Section {result.codingExercise.sectionNumber}</span>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
                         )}
                     </div>
                 )}
