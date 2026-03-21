@@ -13,6 +13,10 @@ function AccountPage() {
 
     const token = localStorage.getItem("token");
 
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const isAdmin = storedUser && storedUser.role === "ADMIN";
+    const [users, setUsers] = useState([]);
+
     useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem("user"));
 
@@ -49,6 +53,17 @@ function AccountPage() {
                 .then(res => res.json())
                 .then(data => setSolvedExercises(data))
                 .catch(() => console.error("Failed to fetch solved exercises"));
+
+            if(token && isAdmin){
+                fetch("http://localhost:8080/api/admin/users", {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => setUsers(data))
+                    .catch(() => console.error("Failed to fetch users"));
+            }
         }
     }, []);
 
@@ -91,6 +106,30 @@ function AccountPage() {
         groups[key].total++;
         return groups;
     }, {});
+
+    const fetchUsers = async () => {
+        const token = localStorage.getItem("token");
+        const response = await fetch("http://localhost:8080/api/admin/users", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        const data = await response.json();
+        setUsers(data);
+    };
+
+    const deleteUser = async (id) => {
+        const token = localStorage.getItem("token");
+        const response = await fetch(`http://localhost:8080/api/admin/users/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        if(response.ok){
+            await fetchUsers();
+        }
+    }
 
     solvedExercises.forEach(ex => {
         if(exercisesBySection[ex.sectionNumber]) {
@@ -139,6 +178,14 @@ function AccountPage() {
                     >
                         Exercise Stats
                     </button>
+                    {isAdmin && (
+                        <button
+                            className={`account-tab ${activeTab === "admin" ? "active" : ""}`}
+                            onClick={() => setActiveTab("admin")}
+                        >
+                            Admin
+                        </button>
+                    )}
                 </div>
 
                 {activeTab === "quiz" && (
@@ -239,6 +286,33 @@ function AccountPage() {
 
                         {solvedExercises.length === 0 && (
                             <p className="empty-state">You haven't solved any exercises yet.</p>
+                        )}
+                    </div>
+                )}
+                {activeTab === "admin" && (
+                    <div className="stats-content">
+                        <h3 className="admin-section-title">Registered Users</h3>
+                        {users.length === 0 ? (
+                            <p className="empty-state">No users found.</p>
+                        ):(
+                            users.map(u => (
+                                <div key={u.id} className="user-row">
+                                    <div className="user-info">
+                                        <span className="user-name">{u.firstName} {u.lastName}</span>
+                                        <span className="user-email">{u.email}</span>
+                                        <span className={`user-role ${u.role === "ADMIN" ? "role-admin" : "role-user"}`}>{u.role}</span>
+                                    </div>
+                                    {/*show delete button only if the user is not ADMIN (cannot delete admin account) */}
+                                    {u.role !== "ADMIN" && (
+                                        <button
+                                            className="delete-user-btn"
+                                            onClick={() => deleteUser(u.id)}
+                                        >
+                                            Delete User
+                                        </button>
+                                    )}
+                                </div>
+                            ))
                         )}
                     </div>
                 )}

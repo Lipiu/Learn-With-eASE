@@ -3,8 +3,10 @@
 * ## **TO DO**:
 
 * Add functionalities for ADMIN
-    * ~~Feedback - ADMIN~~
-      * ~~Admin can delete feedback from page~~
+  * ~~Admin can delete feedback from page~~
+  * ~~Admin can delete users~~
+  * Admin can see user quiz/exercise progress
+
 
 * ~~Extra functionalities~~
   * ~~Make user feedback appear on the Feedback page only if the user is logged in~~

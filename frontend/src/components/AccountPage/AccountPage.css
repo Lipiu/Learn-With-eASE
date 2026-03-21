@@ -275,3 +275,71 @@
     font-style: italic;
     padding: 2rem;
 }
+
+/*admin page*/
+.admin-section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    opacity: 0.7;
+}
+
+.user-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.875rem 1.25rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--text);
+    border-radius: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.user-email {
+    font-size: 0.82rem;
+    opacity: 0.5;
+}
+
+.user-role {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 99px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.role-admin {
+    background: rgba(250, 200, 0, 0.15);
+    color: #facc15;
+}
+
+.role-user {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    opacity: 0.6;
+}
+
+.delete-user-btn {
+    padding: 4px 14px;
+    border-radius: 6px;
+    border: none;
+    background: #ef4444;
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.delete-user-btn:hover { opacity: 0.8; }
