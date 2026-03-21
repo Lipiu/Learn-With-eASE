@@ -12,8 +12,8 @@ Each section contains:
 
 - Structured theory chapters
 - Code snippets + explanations meant to ease the learning process
-- Quiz system (to be implemented)
-- Practical coding problems (to be implemented)
+- Quiz system
+- Practical coding problems
 
 The main goal of this project is to create a modern, accessible, and structured learning environment that
 simplifies complex Java concepts and encourages active learning.
@@ -44,8 +44,6 @@ The platform follows a full-stack architecture:
 ---
 
 # Platform Sections
-
----
 
 ## Section 1 – Introduction to Java
 
