@@ -21,6 +21,8 @@ function Feedback() {
     const [submitted, setSubmitted] = useState(false);
     const [comment, setComment] = useState("");
     const [feedbackList, setFeedbackList] = useState([]);
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const isAdmin = storedUser && storedUser.role === "ADMIN";
 
     const fetchFeedback = async () => {
         const token = localStorage.getItem("token");
@@ -43,6 +45,24 @@ function Feedback() {
             console.error(error);
         }
     };
+
+    const deleteFeedback = async (id) => {
+        const token = localStorage.getItem("token");
+        try{
+            const response = await fetch(`http://localhost:8080/api/feedback/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+            if(response.ok){
+                await fetchFeedback();
+            }
+        }
+        catch(error){
+            console.error(error);
+        }
+    }
 
     useEffect(() => {
         fetchFeedback();
@@ -157,11 +177,19 @@ function Feedback() {
                             feedbackList.map((fb) => (
                                 <div
                                     key={fb.id} className="feedback-item">
-                                    <p><strong>{fb.user?.firstName} {fb.user?.lastName}</strong></p>
+                                    <p><strong>{fb.user.firstName} {fb.user.lastName}</strong></p>
                                     <p>Ease of use: {fb.easeOfUseRating}/5</p>
                                     <p>Learning experience: {fb.learningExperienceRating}/5</p>
                                     <p>UI: {fb.uiRating}/5</p>
                                     {fb.comment && <p>Comment: {fb.comment}</p>}
+                                    {isAdmin && (
+                                        <button
+                                            className="delete-feedback-btn"
+                                            onClick={() => deleteFeedback(fb.id)}
+                                        >
+                                            Delete
+                                        </button>
+                                    )}
                                 </div>
                             ))
                         )}

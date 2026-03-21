@@ -30,7 +30,7 @@ public class SecurityConfig {
     private final AuthenticationProvider authenticationProvider;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) //allow REACT frontend to communicate with the backend
                 .csrf(AbstractHttpConfigurer::disable) //no need since we use JWT, it would have been a risk if we used session-based authentication

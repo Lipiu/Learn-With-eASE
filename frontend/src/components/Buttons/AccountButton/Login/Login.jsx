@@ -38,7 +38,8 @@ function Login() {
             localStorage.setItem("user", JSON.stringify({
                 firstName: result.firstName,
                 lastName: result.lastName,
-                email: result.email
+                email: result.email,
+                role: result.role
             }));
 
             setStatus("success");

@@ -127,3 +127,18 @@
     font-size: 12px;
     min-height: 18px;
 }
+
+.delete-feedback-btn {
+    margin-top: 0.5rem;
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: none;
+    background: #ef4444;
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.delete-feedback-btn:hover { opacity: 0.8; }

@@ -3,14 +3,8 @@
 * ## **TO DO**:
 
 * Add functionalities for ADMIN
-    * Special quiz page -ADMIN
-      * Remove quiz
-      * Add quiz
-    * Coding exercise -ADMIN
-      * Remove exercise
-      * Add exercise
-    * Feedback - ADMIN
-      * Admin can delete feedback from page
+    * ~~Feedback - ADMIN~~
+      * ~~Admin can delete feedback from page~~
 
 * ~~Extra functionalities~~
   * ~~Make user feedback appear on the Feedback page only if the user is logged in~~

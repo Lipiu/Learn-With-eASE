@@ -23,7 +23,10 @@ public class FeedbackService {
         feedback.setComment(comment);
         feedback.setCreatedAt(new Date());
         return feedbackRepository.save(feedback);
+    }
 
+    public void deleteFeedback(Long id){
+        feedbackRepository.deleteById(id);
     }
 
     public List<Feedback> getAllFeedback(){

@@ -6,8 +6,8 @@
   * Refactor code
     * ~~Theory section - for now it has lots of duplicated code~~
     * ~~Quiz section - same issue~~
-  * Clean the code
-  * Check for bugs
+  * ~~Clean the code~~
+  * ~~Check for bugs~~
 
 * Buttons
     * ~~dropdown for account button~~

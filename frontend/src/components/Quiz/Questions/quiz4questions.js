@@ -71,7 +71,7 @@ const quiz4questions = [
         id: 7,
         type: "single",
         question: "What will be the output of this code sequence?",
-        image: "src/components/Questions/Assets/foreach.png",
+        image: "src/components/Quiz/Questions/Assets/foreach.png",
         answers: [
             { text: "1, 2, 3, 4, 5", isCorrect: false },
             { text: "2, 4, 6, 8, 10", isCorrect: true },

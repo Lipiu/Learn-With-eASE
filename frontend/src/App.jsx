@@ -32,8 +32,8 @@ import quiz6questions from "./components/Quiz/Questions/quiz6questions.js";
 // Other pages
 import Resources from "./components/Resources/Resources.jsx";
 import Feedback from "./components/Feedback/Feedback.jsx";
-import Login from "./components/Buttons/AccountButton/Login.jsx";
-import Register from "./components/Buttons/AccountButton/Register.jsx";
+import Login from "./components/Buttons/AccountButton/Login/Login.jsx";
+import Register from "./components/Buttons/AccountButton/Register/Register.jsx";
 import Quiz from "./components/Quiz/Quiz.jsx";
 import AccountPage from "./components/AccountPage/AccountPage.jsx";
 import ProtectedRouteQuiz from "./components/Quiz/ProtectedRouteQuiz.jsx";

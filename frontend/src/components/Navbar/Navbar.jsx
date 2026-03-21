@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import { Link } from "react-router-dom";
 import './Navbar.css'
 import ThemeButtonToggle from "../Buttons/ThemeButton/ThemeButton.jsx";
-import AccountButton from "../Buttons/AccountButton/AccountButton.jsx";
+import AccountButton from "../Buttons/AccountButton/Account/AccountButton.jsx";
 
 function Navbar(){
     const [openMenu, setOpenMenu] = useState(null);
