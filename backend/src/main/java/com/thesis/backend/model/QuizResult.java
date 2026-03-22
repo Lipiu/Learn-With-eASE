@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="quiz_result")
@@ -17,17 +17,25 @@ import java.util.Date;
 public class QuizResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "quiz_id", nullable = false)
     private Long id;
 
+    @Column(name = "quiz_score", nullable = false)
     private int score;
+
+    @Column(name = "quiz_total_questions", nullable = false)
     private int totalQuestions;
+
+    @Column(name = "percentage", nullable = false)
     private double percentage;
+
     private boolean passed;
+
+    @Column(name = "quiz_number", nullable = false)
     private int quizNumber;
 
     @Column(name="created_at", updatable = false)
-    @Temporal(TemporalType.DATE) //Temporal is deprecated but for this purpose is good enough
-    private Date createdAt = new Date();
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "user_id")

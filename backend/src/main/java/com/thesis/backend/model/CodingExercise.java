@@ -15,8 +15,10 @@ import lombok.Setter;
 public class CodingExercise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "coding_exercise_id")
     private Long id;
 
+    @Column(name = "coding_exercise_title", nullable = false)
     private String title;
 
     @Column(name = "description", nullable = false, columnDefinition = "TEXT")
@@ -27,5 +29,6 @@ public class CodingExercise {
 
     @Column(name = "expected_output", nullable = false, columnDefinition = "TEXT")
     private String expectedOutput;
+
     private int sectionNumber;
 }

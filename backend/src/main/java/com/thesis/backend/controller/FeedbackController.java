@@ -1,6 +1,7 @@
 package com.thesis.backend.controller;
 
 import com.thesis.backend.dtos.feedback.FeedbackRequest;
+import com.thesis.backend.model.Feedback;
 import com.thesis.backend.model.User;
 import com.thesis.backend.model.enums.Role;
 import com.thesis.backend.repository.UserRepository;
@@ -11,6 +12,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/feedback")
 @RequiredArgsConstructor
@@ -19,7 +22,7 @@ public class FeedbackController {
     private final FeedbackService feedbackService;
 
     @PostMapping
-    public ResponseEntity<?> submitFeedback(@RequestBody FeedbackRequest feedbackRequest, @AuthenticationPrincipal UserDetails userDetails){
+    public ResponseEntity<String> submitFeedback(@RequestBody FeedbackRequest feedbackRequest, @AuthenticationPrincipal UserDetails userDetails){
         if(userDetails == null){
             return ResponseEntity.status(401).body("In order to leave feedback you have to be logged in!");
         }
@@ -43,7 +46,7 @@ public class FeedbackController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getFeedback(){
+    public ResponseEntity<List<Feedback>> getFeedback(){
         return ResponseEntity.ok(feedbackService.getAllFeedback());
     }
 }

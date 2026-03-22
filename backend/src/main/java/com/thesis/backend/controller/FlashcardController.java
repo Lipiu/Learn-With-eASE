@@ -3,7 +3,6 @@ package com.thesis.backend.controller;
 import com.thesis.backend.dtos.flashcard.FlashcardRequest;
 import com.thesis.backend.model.Flashcard;
 import com.thesis.backend.model.User;
-import com.thesis.backend.repository.FlashcardRepository;
 import com.thesis.backend.repository.UserRepository;
 import com.thesis.backend.service.FlashcardService;
 import lombok.RequiredArgsConstructor;
@@ -22,17 +21,17 @@ public class FlashcardController {
     private final FlashcardService flashcardService;
 
     @GetMapping
-    public ResponseEntity<?> getFlashcards(@AuthenticationPrincipal UserDetails userDetails){
+    public ResponseEntity<List<Flashcard>> getFlashcards(@AuthenticationPrincipal UserDetails userDetails){
         if(userDetails == null){
             return ResponseEntity.badRequest().build();
         }
         User user = userRepository.findByEmail(userDetails.getUsername()).orElseThrow();
-        List<Flashcard> flashcards = flashcardService.getFlashcardByUser(user);
+        List<Flashcard> flashcards = flashcardService.getFlashcardsByUser(user);
         return ResponseEntity.ok(flashcards);
     }
 
     @PostMapping
-    public ResponseEntity<?> createFlashcard(@RequestBody FlashcardRequest flashcardRequest, @AuthenticationPrincipal UserDetails userDetails){
+    public ResponseEntity<Flashcard> createFlashcard(@RequestBody FlashcardRequest flashcardRequest, @AuthenticationPrincipal UserDetails userDetails){
         if(userDetails == null){
             return ResponseEntity.badRequest().build();
         }
@@ -42,7 +41,7 @@ public class FlashcardController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateFlashcard(@PathVariable Long id, @RequestBody FlashcardRequest flashcardRequest, @AuthenticationPrincipal UserDetails userDetails){
+    public ResponseEntity<Flashcard> updateFlashcard(@PathVariable Long id, @RequestBody FlashcardRequest flashcardRequest, @AuthenticationPrincipal UserDetails userDetails){
         if(userDetails == null){
             return ResponseEntity.badRequest().build();
         }
@@ -51,7 +50,7 @@ public class FlashcardController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteFlashcard(@PathVariable Long id, @AuthenticationPrincipal UserDetails userDetails){
+    public ResponseEntity<Void> deleteFlashcard(@PathVariable Long id, @AuthenticationPrincipal UserDetails userDetails){
         if(userDetails == null){
             return ResponseEntity.badRequest().build();
         }

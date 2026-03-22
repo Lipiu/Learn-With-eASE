@@ -13,28 +13,36 @@ import java.util.List;
 public class FlashcardService {
     private final FlashcardRepository flashcardRepository;
 
-    public List<Flashcard> getFlashcardByUser(User user) {
-        return flashcardRepository.findFlashcardByUser(user);
+    private void validateFlashcard(String question, String answer){
+        if(question == null || question.isBlank() || answer == null || answer.isBlank()){
+            throw new IllegalArgumentException("Question and answer cannot be empty");
+        }
+    }
+
+    public List<Flashcard> getFlashcardsByUser(User user) {
+        return flashcardRepository.findFlashcardsByUser(user);
     }
 
     public Flashcard createFlashcard(User user, String question, String answer){
+        validateFlashcard(question, answer);
         Flashcard flashcard = new Flashcard();
         flashcard.setUser(user);
-        flashcard.setQuestion(question);
-        flashcard.setAnswer(answer);
+        flashcard.setQuestion(question.trim());
+        flashcard.setAnswer(answer.trim());
         return flashcardRepository.save(flashcard);
     }
 
     public Flashcard updateFlashcard(Long id, String question, String answer){
-        Flashcard flashcard = flashcardRepository.findById(id).orElseThrow(() -> new RuntimeException("Flashcard not found"));
+        validateFlashcard(question, answer);
+        Flashcard flashcard = flashcardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Flashcard not found"));
 
-        flashcard.setQuestion(question);
-        flashcard.setAnswer(answer);
+        flashcard.setQuestion(question.trim());
+        flashcard.setAnswer(answer.trim());
         return flashcardRepository.save(flashcard);
     }
 
     public void deleteFlashcard(Long id){
-        Flashcard flashcard = flashcardRepository.findById(id).orElseThrow(() -> new RuntimeException("Flashcard not found"));
+        Flashcard flashcard = flashcardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Flashcard not found"));
         flashcardRepository.delete(flashcard);
     }
 }

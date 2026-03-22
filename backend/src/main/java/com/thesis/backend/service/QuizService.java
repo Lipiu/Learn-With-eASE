@@ -6,6 +6,8 @@ import com.thesis.backend.repository.QuizResultRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class QuizService {
@@ -25,5 +27,9 @@ public class QuizService {
         result.setUser(user);
 
         quizResultRepository.save(result);
+    }
+
+    public List<QuizResult> getResultsByUser(User user){
+        return quizResultRepository.findByUser(user);
     }
 }

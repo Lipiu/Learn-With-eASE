@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -25,12 +24,13 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    //helper method to get rid of the duplicated code i had before
+    //helper method to get rid of the duplicated code I had before
     private AuthenticationResponse buildAuthResponse(User user){
-        Map<String, Object> extraClaims = new HashMap<>();
-        extraClaims.put("firstName", user.getFirstName());
-        extraClaims.put("lastName", user.getLastName());
-        extraClaims.put("role", user.getRole());
+        Map<String, Object> extraClaims = Map.of(
+                "firstName", user.getFirstName(),
+                "lastName", user.getLastName(),
+                "role", user.getRole()
+        );
 
         String token = jwtService.generateToken(extraClaims, user);
 

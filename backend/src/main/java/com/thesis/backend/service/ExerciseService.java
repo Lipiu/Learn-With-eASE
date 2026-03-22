@@ -13,7 +13,6 @@ import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -22,8 +21,7 @@ public class ExerciseService {
     private final CodingExerciseRepository codingExerciseRepository;
     private final CodingExerciseResultRepository codingExerciseResultRepository;
     private final SandboxService sandboxService;
-    private static final String COMPILE_OUTPUT_KEY = "\"compile_output\":\"";
-    private static final String STDOUT_KEY = "\"stdout\":\"";
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     public List<ExerciseResponse> getAllExercises(){
         return codingExerciseRepository.findAll()
@@ -51,12 +49,11 @@ public class ExerciseService {
 
         try{
             //convert JSON strings into Java objects (basically acts as a JSON parser)
-            ObjectMapper mapper = new ObjectMapper();
 
-            JsonNode root = mapper.readTree(judgeResponse); // parse the JSON string into a tree structure (root is the entire json object)
+            JsonNode root = objectMapper.readTree(judgeResponse); // parse the JSON string into a tree structure (root is the entire json object)
 
             JsonNode compileOutput = root.get("compile_output");
-            if(compileOutput != null && !compileOutput.isArray()){
+            if(compileOutput != null && !compileOutput.isNull()){
                 String error = compileOutput.asString().trim();
                 if(!error.isEmpty()){
                     return new ExerciseSubmitResponse(false, "Compilation error:\n" + error);

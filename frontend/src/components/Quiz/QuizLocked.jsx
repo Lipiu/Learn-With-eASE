@@ -4,9 +4,16 @@ import "./QuizLocked.css";
 function QuizLocked(){
     const navigate = useNavigate();
     const location = useLocation();
-    const quizNumber=location.state?.quizNumber;
-    const prevSection = quizNumber ? quizNumber - 1 : 1;
-    const isLastQuiz = quizNumber === 6;
+
+    const quizNumber=location.state?.quizNumber ?? 1;
+    const hasPreviousQuiz = quizNumber > 1;
+    const previousSection = quizNumber ? quizNumber - 1 : 1;
+
+    const handleGoToMainPage = () => navigate("/");
+    const handleGoToPrevSection = () => {
+        navigate(`/section${previousSection}/theory`);
+    };
+
     return(
         <div className="locked-container">
             <div className="locked-card">
@@ -16,12 +23,12 @@ function QuizLocked(){
                     You need to pass the previous quiz to unlock this one.
                 </p>
                 <div className="locked-buttons">
-                    <button className="locked-btn" onClick={() => navigate("/")}>
+                    <button className="locked-btn" onClick={handleGoToMainPage}>
                         Go to main page
                     </button>
-                    {!isLastQuiz && (
-                        <button className="locked-btn" onClick={() => navigate(`/section${prevSection}/theory`)}>
-                            Go to Section {prevSection}
+                    {hasPreviousQuiz && (
+                        <button className="locked-btn" onClick={handleGoToPrevSection}>
+                            Go to Section {previousSection}
                         </button>
                     )}
                 </div>

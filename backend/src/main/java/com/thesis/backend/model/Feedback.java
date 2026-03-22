@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -17,6 +17,7 @@ import java.util.Date;
 public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "feedback_id")
     private Long id;
 
     @Column(name = "ease_of_use_rating", nullable = false)
@@ -32,7 +33,7 @@ public class Feedback {
     private String comment;
 
     @Column(name = "created_at", nullable = false)
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

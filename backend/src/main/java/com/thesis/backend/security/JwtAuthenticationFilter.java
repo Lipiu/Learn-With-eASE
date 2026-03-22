@@ -29,16 +29,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization"); //we look for the auth header
+        final String tokenPrefix = "Bearer "; //local variable to avoid the magic number 7
         final String jwt;
         final String userEmail;
 
         //if we do not find the authHeader, or it does not have Bearer we ignore it
-        if(authHeader == null || !authHeader.startsWith("Bearer")){
+        if(authHeader == null || !authHeader.startsWith(tokenPrefix)){
             filterChain.doFilter(request, response);
             return;
         }
 
-        String tokenPrefix = "Bearer "; //local variable to avoid the magic number 7
         jwt = authHeader.substring(tokenPrefix.length()); // it will be 7 because of BEARER + a space so we get the key
         userEmail = jwtService.extractUsername(jwt); //we extract the email
 

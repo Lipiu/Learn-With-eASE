@@ -1,10 +1,7 @@
 package com.thesis.backend.config;
 
-import com.thesis.backend.model.CodingExercise;
-import com.thesis.backend.repository.CodingExerciseRepository;
 import com.thesis.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -42,10 +39,8 @@ public class ApplicationConfig {
         return daoAuthenticationProvider;
     }
 
-
-
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
         return config.getAuthenticationManager();
     }
 

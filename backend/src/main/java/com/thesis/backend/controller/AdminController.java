@@ -1,6 +1,8 @@
 package com.thesis.backend.controller;
 
 import com.thesis.backend.dtos.auth.UserResponse;
+import com.thesis.backend.model.CodingExerciseResult;
+import com.thesis.backend.model.QuizResult;
 import com.thesis.backend.model.User;
 import com.thesis.backend.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -34,13 +36,13 @@ public class AdminController {
     }
 
     @GetMapping("/users/{id}/quiz-results")
-    public ResponseEntity<?> getUserQuizResults(@PathVariable Long id){
+    public ResponseEntity<List<QuizResult>> getUserQuizResults(@PathVariable Long id){
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         return ResponseEntity.ok(quizResultRepository.findByUser(user));
     }
 
     @GetMapping("/users/{id}/exercise-results")
-    public ResponseEntity<?> getUserExerciseResults(@PathVariable Long id){
+    public ResponseEntity<List<CodingExerciseResult>> getUserExerciseResults(@PathVariable Long id){
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         return ResponseEntity.ok(codingExerciseResultRepository.findByUser(user));
     }
@@ -54,7 +56,7 @@ public class AdminController {
         User userToDelete = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         quizResultRepository.deleteAll(quizResultRepository.findByUser(userToDelete));
         codingExerciseResultRepository.deleteAll(codingExerciseResultRepository.findByUser(userToDelete));
-        flashcardRepository.deleteAll(flashcardRepository.findFlashcardByUser(userToDelete));
+        flashcardRepository.deleteAll(flashcardRepository.findFlashcardsByUser(userToDelete));
         feedbackRepository.deleteAll(feedbackRepository.findByUser(userToDelete));
 
         userRepository.deleteById(id);

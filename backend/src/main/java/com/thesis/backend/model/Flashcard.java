@@ -15,6 +15,7 @@ import lombok.Setter;
 public class Flashcard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "flashcard_id")
     private Long id;
 
     @Column(name = "question", nullable = false)

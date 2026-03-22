@@ -45,7 +45,7 @@ public class SecurityConfig {
         return http.build();
     }
 
-    //create admin account -> probably not best practice but it works for now
+    // seeds the admin account on first startup if it doesn't exist
     @Bean
     CommandLineRunner createAdmin(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         return args -> {

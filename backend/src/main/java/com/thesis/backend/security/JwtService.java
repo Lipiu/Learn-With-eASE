@@ -18,6 +18,7 @@ import java.util.function.Function;
 public class JwtService {
     @Value("${application.security.jwt.secret-key}") //we use the secret key from properties
     private String secretKey;
+    private static final long TOKEN_EXPIRATION_MS = 1000L * 60 * 60 * 24; // 24 hours
 
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails){
         return Jwts.builder()
@@ -31,7 +32,7 @@ public class JwtService {
                 .setIssuedAt(new Date(System.currentTimeMillis()))
 
                 //expiration date of the token (24h but since this is a demo it is irrelevant)
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + TOKEN_EXPIRATION_MS))
 
                 //sign everything with our secret key
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
@@ -44,7 +45,7 @@ public class JwtService {
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
-        final Claims claims = extactAllClaims(token);
+        final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
@@ -57,7 +58,7 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    private Claims extactAllClaims(String token){
+    private Claims extractAllClaims(String token){
         return Jwts.parserBuilder()
                 .setSigningKey(getSignInKey())
                 .build()
