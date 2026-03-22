@@ -3,8 +3,9 @@
 * ## **TO DO**:
 
 * Security
-  * Store the api keys safely
-  * Double check everything security related
+  * ~~Store the api keys safely~~
+  * ~~Double check everything security related~~
+    * ~~Don't allow users to create invalid email addresses or enter invalid tokens~~
 
 * Polishing
   * ~~Clean the code (backend)~~

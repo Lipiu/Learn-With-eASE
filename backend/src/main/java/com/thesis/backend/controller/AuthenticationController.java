@@ -4,7 +4,7 @@ import com.thesis.backend.dtos.auth.AuthenticationResponse;
 import com.thesis.backend.dtos.auth.LoginRequest;
 import com.thesis.backend.dtos.auth.RegisterRequest;
 import com.thesis.backend.service.AuthenticationService;
-import lombok.NonNull;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,12 +19,12 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public ResponseEntity<@NonNull AuthenticationResponse> register(@RequestBody RegisterRequest request){
+    public ResponseEntity<AuthenticationResponse> register(@Valid @RequestBody RegisterRequest request){
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<@NonNull AuthenticationResponse> login(@RequestBody LoginRequest request){
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginRequest request){
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 }

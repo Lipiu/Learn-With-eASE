@@ -87,7 +87,7 @@ function Register() {
                         placeholder="Email"
                         {...register("email", { required: true })}
                     />
-                    {errors.email && <span className="error">Email is mandatory</span>}
+                    {errors.email && <span className="error">{errors.email.message || "Email is mandatory"}</span>}
 
                     <input
                         type="password"
