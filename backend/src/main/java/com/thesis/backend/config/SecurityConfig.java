@@ -5,6 +5,7 @@ import com.thesis.backend.model.enums.Role;
 import com.thesis.backend.repository.UserRepository;
 import com.thesis.backend.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +29,12 @@ import java.util.List;
 public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authenticationProvider;
+
+    @Value("${admin.email}")
+    private String adminEmail;
+
+    @Value("${admin.password}")
+    private String adminPassword;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
@@ -53,11 +60,11 @@ public class SecurityConfig {
                 User admin = User.builder()
                         .firstName("System")
                         .lastName("Admin")
-                        .email("admin@admin.com")
+                        .email(adminEmail)
 
                         //encode the password because spring security checks:
                         //passwordEncoder.matches(rawPassword, encodedPassword) so we cannot store it by plain text
-                        .password(passwordEncoder.encode("admin123"))
+                        .password(passwordEncoder.encode(adminPassword))
                         .role(Role.ADMIN) //give admin role
                         .build();
                 userRepository.save(admin);
