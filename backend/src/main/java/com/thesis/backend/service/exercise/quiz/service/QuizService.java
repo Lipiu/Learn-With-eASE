@@ -1,0 +1,35 @@
+package com.thesis.backend.service.exercise.quiz.service;
+
+import com.thesis.backend.model.quiz.result.QuizResult;
+import com.thesis.backend.model.user.User;
+import com.thesis.backend.repository.quiz.QuizResultRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class QuizService {
+    private final QuizResultRepository quizResultRepository;
+
+    public void saveResult(User user, int quizNumber, int score, int totalQuestions){
+        double percentage = ((double) score / totalQuestions) * 100; //calculate percentage
+        boolean passed = percentage >= 50; //determine if the user passes or not
+
+        //create QuizResult object
+        QuizResult result = new QuizResult();
+        result.setScore(score);
+        result.setQuizNumber(quizNumber);
+        result.setTotalQuestions(totalQuestions);
+        result.setPercentage(percentage);
+        result.setPassed(passed);
+        result.setUser(user);
+
+        quizResultRepository.save(result);
+    }
+
+    public List<QuizResult> getResultsByUser(User user){
+        return quizResultRepository.findByUser(user);
+    }
+}

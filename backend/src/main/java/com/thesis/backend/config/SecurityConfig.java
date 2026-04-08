@@ -1,8 +1,8 @@
 package com.thesis.backend.config;
 
-import com.thesis.backend.model.User;
+import com.thesis.backend.model.user.User;
 import com.thesis.backend.model.enums.Role;
-import com.thesis.backend.repository.UserRepository;
+import com.thesis.backend.repository.user.UserRepository;
 import com.thesis.backend.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
