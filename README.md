@@ -37,9 +37,10 @@ Upon successfully starting the backend, the application will become fully functi
 
 The platform follows a full-stack architecture:
 
-- **Frontend: React + Vite**
-- **Backend: Spring Boot**
-- **Database: PostgreSQL**
+- **Frontend:** `React + Vite`
+- **Backend:** `Spring Boot`
+- **Database:** `PostgreSQL`
+- **API:** `Judge0, Monaco Editor`
 
 ---
 
