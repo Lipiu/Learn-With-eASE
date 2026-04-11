@@ -92,9 +92,15 @@ function Register() {
                     <input
                         type="password"
                         placeholder="Password"
-                        {...register("password", { required: true })}
+                        {...register("password", {
+                            required: true,
+                            minLength: {
+                                value: 5,
+                                message: "Password must be at least 5 characters"
+                            }
+                        })}
                     />
-                    {errors.password && <span className="error">Password is mandatory</span>}
+                    {errors.password && <span className="error">{errors.password.message || "Password is mandatory"}</span>}
 
                     <button type="submit">Create account</button>
                     <div className="auth-message">
