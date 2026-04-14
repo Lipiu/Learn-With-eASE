@@ -196,7 +196,7 @@ function AccountPage() {
                 <div className="not-logged-in">
                     <h1>You are not logged in</h1>
                     <p>
-                        <Link to="/register">Register here</Link> or <Link to="/login">Login here</Link>
+                        Register <Link className="account-link" to="/register">here</Link> or Login <Link className="account-link" to="/login">here</Link>
                     </p>
                 </div>
             </div>
@@ -240,7 +240,7 @@ function AccountPage() {
                             className={`account-tab ${activeTab === TABS.ADMIN ? "active" : ""}`}
                             onClick={() => setActiveTab(TABS.ADMIN)}
                         >
-                            Admin
+                            Admin Panel
                         </button>
                     )}
                 </div>

@@ -398,3 +398,15 @@
     opacity: 0.5;
     font-size: 0.8rem;
 }
+
+.account-link {
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s;
+}
+
+.account-link:hover{
+    opacity: 0.6;
+}

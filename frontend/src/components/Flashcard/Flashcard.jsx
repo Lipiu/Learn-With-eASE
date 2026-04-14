@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "./Flashcard.css";
 
 function Flashcards() {
@@ -10,7 +10,6 @@ function Flashcards() {
     const [editingId, setEditingId] = useState(null);
     const [editQuestion, setEditQuestion] = useState("");
     const [editAnswer, setEditAnswer] = useState("");
-    const navigate = useNavigate();
 
     const token = localStorage.getItem("token");
     const authHeader = { "Authorization": `Bearer ${token}` };
@@ -25,12 +24,24 @@ function Flashcards() {
 
     useEffect(() => {
         if(!token){
-            navigate("/register");
             return;
         }
         // eslint-disable-next-line react-hooks/set-state-in-effect
         fetchFlashcards();
     }, []);
+
+    if(!token){
+        return (
+            <div className="fc-page">
+                <div className="not-logged-in">
+                    <h1>You are not logged in</h1>
+                    <p>
+                        Register <Link className="fc-link" to="/register">here</Link> or Login <Link className="fc-link" to="/login">here</Link>
+                    </p>
+                </div>
+            </div>
+        )
+    }
 
     const createFlashcard = async () => {
         if (!question || !answer) return;

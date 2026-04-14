@@ -32,6 +32,18 @@
     flex-wrap: wrap;
 }
 
+.fc-link {
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s;
+}
+
+.fc-link:hover{
+    opacity: 0.6;
+}
+
 .fc-input {
     flex: 1;
     min-width: 180px;
