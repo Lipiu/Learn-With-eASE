@@ -80,8 +80,8 @@
         
         * Flashcard section
           * ~~Allow the user to create personalized flashcards~~
-          * When user clicks on flashcard without being logged in the register form automatically appears
-            * Display something nicer for the user, replace the registration form
+          * ~~When user clicks on flashcard without being logged in the register form automatically appears~~
+            * ~~Display something nicer for the user, replace the registration form~~
 
         * Feedback
           * ~~Create feedback page~~
