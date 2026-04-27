@@ -40,6 +40,7 @@ import ProtectedRouteQuiz from "./components/Quiz/ProtectedRouteQuiz.jsx";
 import QuizLocked from "./components/Quiz/QuizLocked.jsx";
 import Flashcard from "./components/Flashcard/Flashcard.jsx";
 import Sandbox from "./components/Sandbox/Sandbox.jsx";
+import AIChat from "./components/AIChat/AIChat.jsx";
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
       <BrowserRouter>
             <div className='container'>
                 <Navbar/>
+                <AIChat/>
                 <Routes>
                     <Route path="/" element={<Home />} />
 

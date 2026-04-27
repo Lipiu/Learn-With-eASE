@@ -31,6 +31,12 @@ Check `application.properties` which is located inside `resources` directory (he
 Create a local database in `DBeaver/pgAdmin4` and then run the backend program (just click on the green triangle in IntellijIDEA) \
 Upon successfully starting the backend, the application will become fully functional
 
+**AI Chat** (Optional)\
+In ai-chat directory run the following commands:\
+install all dependencies provided in `requirements.txt`\
+starting the virtual env: `source venv/bin/source.fish` (in my case I use CachyOS with fish terminal)\
+then run: `uvicorn main:app --reload --port 8000`
+
 ---
 
 ### Architecture & Tech Stack
@@ -40,8 +46,8 @@ The platform follows a full-stack architecture:
 - **Frontend:** `React + Vite`
 - **Backend:** `Spring Boot`
 - **Database:** `PostgreSQL`
-- **API:** `Judge0, Monaco Editor`
-
+- **Sandbox API:** `Judge0`, `Monaco Editor`
+- **AI Chat API:** `Groq API`
 ---
 
 # Platform Sections

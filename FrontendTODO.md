@@ -97,7 +97,11 @@
         * Account
             * ~~Create register page~~
             * ~~Create login page~~
-            * ~~Login/register logic~~ 
+            * ~~Login/register logic~~
+    
+    * AI Chat
+      * ~~Implement an AI Chat using Groq API~~
+      * ~~Customize AI Chat~~
 
 * Responsiveness
     * ~~General Navbar responsiveness~~
