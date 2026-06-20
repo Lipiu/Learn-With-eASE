@@ -43,8 +43,8 @@ then run: `uvicorn main:app --reload --port 8000`
 
 The platform follows a full-stack architecture:
 
-- **Frontend:** `React + Vite`
-- **Backend:** `Spring Boot`
+- **Frontend:** `React 19, JavaScript, Vite`
+- **Backend:** `Java 21, Spring Boot 4, Spring Security(JWT), Hibernate / Spring Data JPA`
 - **Database:** `PostgreSQL`
 - **Sandbox API:** `Judge0`, `Monaco Editor`
 - **AI Chat API:** `Groq API`
