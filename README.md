@@ -1,74 +1,140 @@
-# Interactive Java E-Learning Platform
-## Bachelor's Degree Thesis Project - Learn With eASE
+# 📚 Learn With eASE
+## Interactive Java E-Learning Platform
+### Bachelor's Degree Thesis Project
 
-## Project Overview
+## 📖 Project Overview
 
-This project represents an interactive web-based E-Learning platform designed to help students learn,
-practice, and solidify their knowledge of Java programming.
+**Learn With eASE** is an interactive web-based e-learning platform designed to help students learn, practice, and strengthen their Java programming skills through a structured and engaging learning experience.
 
-The platform is structured into 6 progressive sections,
-starting from basic programming concepts and advancing toward more complex topics such as networking and file handling.
-Each section contains:
+The platform is divided into **six progressive learning sections**, starting with fundamental programming concepts and gradually advancing to topics such as file handling and networking.
 
-- Structured theory chapters
-- Code snippets + explanations meant to ease the learning process
-- Quiz system
-- Practical coding problems
+Each section includes:
 
-The main goal of this project is to create a modern, accessible, and structured learning environment that
-simplifies complex Java concepts and encourages active learning.
+- 📚 Structured theory chapters
+- 💻 Code examples with detailed explanations
+- 📝 Interactive quizzes
+- 🚀 Practical coding exercises
 
----
-
-### How to use
-**Frontend**\
-In frontend directory open terminal and run the command: `npm i`\
-Upon successfully downloading all dependencies run the command `npm run dev` -> this will open the frontend
-
-**Database + Backend**\
-Choose a PostgreSQL GUI (in this case I use `DBeaver` but `pgAdmin4` works great too)\
-Check `application.properties` which is located inside `resources` directory (here you will find the credentials for the database) \
-Create a local database in `DBeaver/pgAdmin4` and then run the backend program (just click on the green triangle in IntellijIDEA) \
-Upon successfully starting the backend, the application will become fully functional
-
-**AI Chat** (Optional)\
-In ai-chat directory run the following commands:\
-install all dependencies provided in `requirements.txt`\
-starting the virtual env: `source venv/bin/source.fish` (in my case I use CachyOS with fish terminal)\
-then run: `uvicorn main:app --reload --port 8000`
+The primary goal of this project is to provide a modern, accessible, and well-organized learning environment that simplifies complex Java concepts while encouraging active learning and hands-on practice.
 
 ---
 
-### Architecture & Tech Stack
+# 🚀 Getting Started
 
-The platform follows a full-stack architecture:
+## Frontend
 
-- **Frontend:** `React 19, JavaScript, Vite`
-- **Backend:** `Java 21, Spring Boot 4, Spring Security(JWT), Hibernate / Spring Data JPA`
-- **Database:** `PostgreSQL`
-- **Sandbox API:** `Judge0`, `Monaco Editor`
-- **AI Chat API:** `Groq API`
+Navigate to the `frontend` directory and install the project dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+This will launch the frontend application.
+
 ---
 
-# Platform Sections
+## Backend & Database
 
-## Section 1 – Introduction to Java
+This project uses **PostgreSQL**.
 
-This section builds the foundation of Java programming. It introduces:
+1. Install a PostgreSQL GUI such as:
+    - DBeaver *(recommended)*
+    - pgAdmin 4
 
-- What Java is and why it is platform-independent
-- JVM, JRE, and JDK
-- Programming paradigms (OOP, Imperative, Functional, Concurrent)
+2. Open the `application.properties` file located in:
+
+```
+src/main/resources/
+```
+
+and configure or verify the database credentials.
+
+3. Create a local PostgreSQL database.
+
+4. Run the Spring Boot backend (for example, by clicking the ▶ Run button in IntelliJ IDEA).
+
+Once the backend starts successfully, the application will be fully functional.
+
+---
+
+## AI Chat (Optional)
+
+The project also includes an optional AI assistant.
+
+Navigate to the `ai-chat` directory.
+
+Install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Activate your virtual environment.
+
+Example (Fish shell):
+
+```bash
+source venv/bin/activate.fish
+```
+
+Start the API server:
+
+```bash
+uvicorn main:app --reload --port 8000
+```
+
+---
+
+# 🏗️ Architecture & Tech Stack
+
+| Layer | Technologies |
+|--------|--------------|
+| **Frontend** | React 19, JavaScript, Vite |
+| **Backend** | Java 21, Spring Boot 4, Spring Security (JWT), Hibernate, Spring Data JPA |
+| **Database** | PostgreSQL |
+| **Code Execution** | Judge0 API, Monaco Editor |
+| **AI Integration** | Groq API |
+
+---
+
+# 📚 Learning Sections
+
+## 1. Introduction to Java
+
+Build a solid foundation in Java programming.
+
+Topics covered:
+
+- Introduction to Java
+- Platform independence
+- JVM, JRE and JDK
+- Programming paradigms
+    - Object-Oriented
+    - Imperative
+    - Functional
+    - Concurrent
 - Variables and data types
-- Control flow structures (if/else, switch, for, while)
+- Control flow
+    - `if / else`
+    - `switch`
+    - `for`
+    - `while`
 
-The objective is to help beginners understand how Java programs are structured and executed.
+**Goal:** Understand how Java programs are written, compiled, and executed.
 
 ---
 
-## Section 2 – Object-Oriented Programming Basics
+## 2. Object-Oriented Programming Basics
 
-This section focuses on core OOP principles:
+Learn the core principles of object-oriented programming.
+
+Topics covered:
 
 - Classes and objects
 - Encapsulation
@@ -76,69 +142,85 @@ This section focuses on core OOP principles:
 - Polymorphism
 - Access modifiers
 
-Students learn how to design structured, reusable, and maintainable code using object-oriented concepts.
+**Goal:** Learn how to design reusable, maintainable, and well-structured applications.
 
 ---
 
-## Section 3 – Java Collections & Generics
+## 3. Java Collections & Generics
 
-Here, students explore advanced data handling concepts:
+Explore Java's powerful data structures.
 
-- Java Collection Framework (List, Set, Map, Queue)
-- Differences between data structures
+Topics covered:
+
+- Java Collections Framework
+    - List
+    - Set
+    - Map
+    - Queue
+- Collection comparison
 - Iteration techniques
-- Generics for type safety and reusability
+- Generics
 - Generic classes and methods
 
-This section strengthens understanding of how data is stored, organized, and processed efficiently.
+**Goal:** Understand how data is stored, organized, and manipulated efficiently.
 
 ---
 
-## Section 4 – Streams, Lambdas & Exceptions
+## 4. Streams, Lambdas & Exceptions
 
-This section introduces modern Java features:
+Discover modern Java programming techniques.
 
-- Stream API for functional-style data processing
+Topics covered:
+
+- Stream API
 - Lambda expressions
 - Functional interfaces
-- Exception handling (checked vs unchecked)
-- try-catch-finally
+- Exception handling
+- Checked vs. unchecked exceptions
+- `try-catch-finally`
 
-Students learn how to write cleaner, more expressive, and robust Java code.
+**Goal:** Write cleaner, more expressive, and robust Java applications.
 
 ---
 
-## Section 5 – Files
+## 5. File Handling
 
-This section covers file handling and data persistence:
+Learn how Java applications interact with the file system.
+
+Topics covered:
 
 - Reading and writing text files
-- Binary file operations
-- JSON file handling
-- Streams (byte and character streams)
+- Binary files
+- JSON files
+- Byte and character streams
 - Serialization
 - Try-with-resources
 
-The goal is to teach how applications interact with the file system and manage data storage safely and efficiently.
+**Goal:** Understand data persistence and safe resource management.
 
 ---
 
-## Section 6 – Networking (TCP & UDP)
+## 6. Networking (TCP & UDP)
 
-The final section introduces networking concepts in Java:
+Learn the fundamentals of network programming in Java.
 
-- Sockets and communication models
-- TCP (connection-oriented, reliable)
-- UDP (connectionless, faster but unreliable)
+Topics covered:
+
+- Sockets
 - Client-server architecture
+- TCP communication
+- UDP communication
 
-Students gain insight into how distributed systems and network-based applications work.
+**Goal:** Gain an understanding of distributed applications and network communication.
 
 ---
 
-# Educational Objectives
+# 🎯 Educational Objectives
 
-- Provide structured and progressive Java learning.
-- Encourage active problem-solving.
-- Combine theory with practical examples.
-- Prepare students for backend development and software engineering.
+The platform aims to:
+
+- 📈 Provide a structured and progressive Java learning path.
+- 💡 Encourage active problem-solving through practical exercises.
+- 📚 Combine theory with real-world coding examples.
+- 🧩 Reinforce concepts using quizzes and programming challenges.
+- 🚀 Prepare students for backend development and software engineering careers.
