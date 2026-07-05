@@ -1,46 +1,112 @@
-# Current platform functionalities
+# ✨ Current Platform Features
 
-### Light/Dark theme support
-* The platform supports switching from light to dark mode
-![DarkHomepage](./assets/home-dark.png)
-![LightHomepage](./assets/home-light.png)
+## 🌗 Light & Dark Theme
 
-### Account creation
-* Login functionality - account stored in db and password securely hashed \
+The platform supports both **Light** and **Dark** themes, allowing users to choose the interface that best suits their preferences.
+
+| Dark Mode | Light Mode |
+|-----------|------------|
+| ![Dark Homepage](./assets/home-dark.png) | ![Light Homepage](./assets/home-light.png) |
+
+---
+
+## 👤 User Authentication
+
+### Login
+
+Users can securely log into their accounts. Passwords are securely hashed before being stored in the database.
+
 ![Login](./assets/login.png)
-* Register functionality - account creation and also stored in db with password securely hashed \
+
+### Registration
+
+New users can create an account, with all credentials securely stored using password hashing.
+
 ![Register](./assets/register.png)
 
-### Theory section
-* Six theory sections from where the user can learn
-* TODO: have to add buttons to end of each section for the user to navigate to the quiz
-![Theory](./assets/section-theory.png)
+---
 
-### Quiz section
-* Users can access quizzes for each section \
-![QuizPassed](./assets/quiz-pass.png)
-* If the user is logged in the quiz progress is saved and displayed on their personal page
-![QuizProgress](./assets/quiz-progress.png)
-* Users can only access next quiz if they successfully passed the previous one, else is blocked \
-![QuizLocked](./assets/quiz-locked.png)
-* Upon successfully passing all quizzes, the user is redirected to a "congratulations" page (to do)
+## 📚 Theory Section
 
-### Coding exercise sandbox
-* The user can practice and apply theory concepts in a virtual Java sandbox implemented via Judge0 API and Monaco Editor
-![Coding](./assets/codingEx.png)
+The platform provides **six structured learning sections**, each covering a different Java topic through organized lessons and code examples.
 
-### Flashcard section
-* The users can create, delete custom flashcards (persistent) only if logged in \
-![Flashcard](./assets/flashcardQA.gif)
+**Planned improvement**
+- Add navigation buttons at the end of each chapter to guide users directly to the corresponding quiz.
 
-### Resources page
+![Theory Section](./assets/section-theory.png)
+
+---
+
+## 📝 Quiz System
+
+Each learning section includes an interactive quiz to reinforce newly acquired knowledge.
+
+### Features
+
+- Progress is automatically saved for logged-in users.
+- Quiz completion status is displayed on the user's profile.
+- Users must successfully complete the previous quiz before unlocking the next one.
+- A dedicated **Congratulations** page will be shown after completing all quizzes *(planned feature)*.
+
+### Successfully Passed Quiz
+
+![Quiz Passed](./assets/quiz-pass.png)
+
+### Quiz Progress
+
+![Quiz Progress](./assets/quiz-progress.png)
+
+### Locked Quiz
+
+![Quiz Locked](./assets/quiz-locked.png)
+
+---
+
+## 💻 Interactive Coding Sandbox
+
+Students can immediately apply what they learn using an integrated Java coding environment powered by **Judge0 API** and **Monaco Editor**.
+
+Features include:
+
+- Writing Java code directly in the browser
+- Executing code safely inside an online sandbox
+- Instant feedback and experimentation
+
+![Coding Sandbox](./assets/codingEx.png)
+
+---
+
+## 🗂️ Flashcards
+
+Logged-in users can create their own personalized flashcards to aid revision.
+
+Features include:
+
+- Create custom flashcards
+- Delete flashcards
+- Persistent storage linked to the user's account
+
+![Flashcards](./assets/flashcardQA.gif)
+
+---
+
+## 📖 Resources Page
+
+The platform includes a dedicated resources section containing useful learning materials, including:
+
+- 🔗 Useful links
+- 📚 Recommended books
+- 📄 Official Java documentation
+- 🧩 Programming practice platforms
+
 ![Resources](./assets/resources.png)
-* A page with useful resources such as:
-  * Links
-  * Books
-  * Official Documentation
-  * Exercise Platforms
 
-### Feedback page
-* On this page users can leave feedback which will be displayed on the platform only if the user is logged in
+---
+
+## 💬 Feedback System
+
+Authenticated users can leave feedback about the platform.
+
+Submitted feedback is stored and displayed publicly, helping improve the learning experience through community input.
+
 ![Feedback](./assets/feedback.png)
