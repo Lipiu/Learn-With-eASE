@@ -9,6 +9,14 @@ function AccountButton(){
     const [openDropdown, setOpenDropdown] = useState(false);
     const accountRef = useRef(null);
     const closeDropdownAccount = () => setOpenDropdown(false);
+    const user = JSON.parse(localStorage.getItem("user"))
+
+    const logout = () => {
+        localStorage.removeItem("user")
+        localStorage.removeItem("token")
+        closeDropdownAccount();
+        window.location.href = "/login";
+    }
 
     //if the user clicks outside of the account container
     //the dropdown will automatically close
@@ -34,11 +42,43 @@ function AccountButton(){
                 Account
             </button>
             {openDropdown && (
-                <div className='dropdown-menu'>
-                    {/*navigation to login or register*/}
-                    <Link to='/login' className='dropdown-item' onClick={closeDropdownAccount}>Login</Link>
-                    <Link to='/register' className='dropdown-item' onClick={closeDropdownAccount}>Register</Link>
-                    <Link to='/account' className='dropdown-item' onClick={closeDropdownAccount}>Account page</Link>
+                <div className="dropdown-menu">
+                    {user ? (
+                        <>
+                            <Link
+                                to="/account"
+                                className="dropdown-item"
+                                onClick={closeDropdownAccount}
+                            >
+                                Personal Page
+                            </Link>
+
+                            <button
+                                className="dropdown-item logout-button"
+                                onClick={logout}
+                            >
+                                Log Out
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Link
+                                to="/login"
+                                className="dropdown-item"
+                                onClick={closeDropdownAccount}
+                            >
+                                Login
+                            </Link>
+
+                            <Link
+                                to="/register"
+                                className="dropdown-item"
+                                onClick={closeDropdownAccount}
+                            >
+                                Register
+                            </Link>
+                        </>
+                    )}
                 </div>
             )}
         </div>

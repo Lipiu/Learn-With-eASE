@@ -52,7 +52,7 @@
     display: inline-block;
 }
 
-.account-dropdown {
+.dark .account-dropdown {
     position: absolute;
     top: calc(100% + 8px);
     right: 0;
@@ -65,13 +65,13 @@
         rgba(207, 192, 251, 0.35),
         rgba(255, 255, 255, 1)
     );
-    border: 1.5px soplid var(--account-border);
+    border: 1.5px solid var(--account-border);
     border-radius: 10px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     z-index: 100;
 }
 
-.dark .account-dropdown {
+.account-dropdown {
     background: linear-gradient(
             to bottom,
             rgba(255, 255, 255, 0.06),
@@ -79,6 +79,18 @@
     );
 
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+}
+
+.logout-button {
+    width: 100%;
+    border: none;
+    background: none;
+    padding: 10px 12px;
+    border-radius: 8px;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
 }
 
 .dropdown-item {
@@ -97,6 +109,6 @@
     background: var(--container-bg);
 }
 
-.dark dropdown-item:hover{
+.dark .dropdown-item:hover{
     background: rgba(255, 255, 255, 0.08);
 }
